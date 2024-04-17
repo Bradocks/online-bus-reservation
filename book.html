@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>user account </title>
+  <link rel="stylesheet" href="form.css">
+
+</head>
+
+<body>
+
+  <form method="POST" action="clientordersubmission.php" onsubmit="return ordervalidate()">
+    <div class="formcontainer">
+      <!-- <div class="first">
+        <p style="text-align: center;">Item Details</p>
+        <label>source</label>
+        <input type="text" id="source" name="source"><br>
+        <label>destination</label>
+        <input type="text" id="destination" name="destination"><br>
+        <label>Quantity (in numbers)</label>
+        <input type="text" id="quantity" name="quantity"><br>
+        <label>description</label>
+        <input type="text" id="description" name="description"><br>
+        <label>select category</label>
+        <select name="category" id="category">
+          <option value=" notflagiel">notFragile</option>
+          <option value="fragile">fragile</option>
+          <option value="perishable">perishable</option>
+        </select>
+      </div> -->
+      <div class="booking-details">
+        <p style="text-align: center;">Booking details</p>
+        <label>Full Name</label>
+        <input type="text" id="name" name="name"><br>
+        <label>National number(ID)</label>
+        <input type="text" id="IdNo" name="IdNo"><br>
+        <label>MobileNumber</label>
+        <input type="text" id="mobileNumber" name="mobileNumber"><br>
+        <label>Email</label>
+        <input type="text" id="email" name="email"><br>
+        <label>Date of Departure</label>
+        <input type="text" name="date_of_departure" id="departure_date" placeholder="2024-12-03">
+        <label>Departure</label>
+        <input type="text" name="place_of_departure" id="current_location">
+        <label>Destination</label>
+        <input type="text" id="destination" name="destination"><br>
+        <label>Time</label>
+        <select name="time" id="departure_time">
+          <option value="*" hidden>Select Time</option>
+          <option value="am">8 am</option>
+          <option value="pm">10 pm</option>
+        </select>      
+      </div>
+    </div>
+    <div style="text-align: center;">
+      <button type="submit">submit</button>
+    </div>
+    </div>
+
+  </form>
+
+  <script src="registration.js"></script>
+</body>
+
+</html>

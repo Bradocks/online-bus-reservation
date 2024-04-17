@@ -1,0 +1,124 @@
+/* Styling for the body */
+/* Styling for the body */
+
+.logo {
+    width: 100px;
+    height: 80px;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    text-transform: capitalize;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: slideshow 20s infinite linear; /* Apply animation */
+}
+
+/* Keyframes for slideshow animation */
+@keyframes slideshow {
+    0% {
+        background-image: url('road1.jpeg'); /* Start with road1.jpeg */
+        background-position: right center; /* Start position */
+        animation: ease-in;
+    }
+    20% {
+        background-image: url('photo1.jpeg'); /* Change to photo1.jpeg at 20% */
+        background-position: right center; /* Slide left */
+    }
+    40% {
+        background-image: url('bus2.jpeg'); /* Change to bus2.jpeg at 40% */
+        background-position: right center; /* Slide left */
+    }
+    60% {
+        background-image: url('bus3.jpeg'); /* Change to bus3.jpeg at 60% */
+        background-position: right center; /* Slide left */
+    }
+    80% {
+        background-image: url('bus4.jpeg'); /* Change to bus4.jpeg at 80% */
+        background-position: right center; /* Slide left */
+    }
+    100% {
+        background-image: url('bus4.jpeg'); /* End with bus4.jpeg */
+        background-position: right center; /* Final position */
+        animation: ease-out;
+    }
+}
+
+
+/* Styling for the form container */
+form {
+    background-color: rgba(255, 0, 0, 0.5);/* Semi-transparent white background */
+    padding: 40px;
+    width: 500px;
+    height: max;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Box shadow for a subtle depth effect */
+    text-align: center; /* Center align text */
+}
+
+.formcontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form-container-inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 10px;
+}
+
+/* Styling for form elements */
+label {
+    display: block;
+    margin-bottom: 10px; /* Increase margin-bottom for better spacing */
+    font-weight: bold;
+    text-align: left; /* Left align text */
+    color: white;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+    width: calc(100% - 20px); /* Adjust width to accommodate padding */
+    padding: 10px;
+    margin: 0 auto 20px auto; /* Center align and add bottom margin */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+button {
+    width: calc(100% - 20px); /* Adjust width to accommodate padding */
+    padding: 12px;
+    margin: 0 auto; /* Center align */
+    background-color: #73a96b; /* Green button background color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+a {
+    text-decoration: none;
+    color: whitte;
+}
+
+button:hover {
+    background-color: #5c834f; /* Darker green background color on hover */
+}

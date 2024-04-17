@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Delete staff </title>
+        <link rel="stylesheet" href="form.css"  >
+    </head>
+    <body>
+     <div> 
+        <form style="text-transform: capitalize;"  method="POST" action="adminDeletestaff.php" onsubmit="return NotNullAndNan()">
+            <p style="text-align: center;">delete staff</p>
+        <label>enter staff ID</label>
+          <input type="text" id="searchid" name="staffId"><br>
+           
+       <button style="text-transform: capitalize; color: red;" type="submit">delete staff</button>  
+       <br>
+       <h5><a href="AdminDashboard.php" style="text-decoration: none; color: white;">Back</a></h5><br>
+        
+        </form>
+
+        <script src="validate.js"></script>
+     </div>
+    </body>
+</html>

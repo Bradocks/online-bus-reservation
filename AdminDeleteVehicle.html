@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Delete vehicle </title>
+        <link rel="stylesheet" href="form.css">
+    </head>
+    <body>
+     <div> 
+        <form  method="POST" action="AdminDeleteVehicle.php" onsubmit="return NotNullAndNan()">
+            <p style="text-align: center;">delete vehicle</p>
+        <label>enter vehicle ID</label>
+          <input type="text" id="searchid" name="vehicleId"><br>
+           
+       <button type="submit">delete vehicle</button>  
+       <br>
+       <h5><a href="AdminDashboard.php" style="text-decoration: none; color: white;">Back</a></h5><br>
+        </form>
+        <script src="validate.js"></script>
+     </div>
+    </body>
+</html>

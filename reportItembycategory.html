@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>user account </title>
+        <link rel="stylesheet" href="formms.css">
+    </head>
+    <body>
+     <div>           
+        <form  method="POST" action="adminReportGeneratin.php" onsubmit=" return  NotNull ()">
+            <p style="text-align: center;">filter by category</p>
+         
+        <label>select category</label>
+        <input type="hidden"     name="category" value="category">
+        <select id="searchid" name="searchid">
+          <option value="fragile">fragile</option>
+          <option value=" notflagiel">Not fragile</option>
+          <option value="perishable">perishable</option>
+        </select>
+         
+        </br>
+
+           <button type="submit" >submit</button><br>
+           <br> 
+           <a href="adminReporst.php">back</a>  
+        </form> 
+      <script src="validate.js"></script>
+         
+     </div>
+      
+    </body>
+</html>
