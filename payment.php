@@ -5,8 +5,8 @@ session_start();
 $config = array(
     "env" => "sandbox",
     "BusinessShortCode" => "174379",
-    "key" => "zGYAGGIc87k7AA04JYKCWjEfVTH4v2Xf5jrxmjha6DJKVD2X",
-    "secret" => "VFIKIVvaPFXV2aWe8gfjZ8pE2DIkTSKoo14SRjMGAq3bwrDGA3fDoLkwshd27A7f",
+    "key" => "000",
+    "secret" => "00",
     "username" => "apitest",
     "TransactionType" => "CustomerPayBillOnline",
     "passkey" => "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",
