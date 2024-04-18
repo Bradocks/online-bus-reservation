@@ -38,7 +38,7 @@ if(email.indexOf("@") === -1|| email.indexOf(".") === -1){
     return true;
  }
 
- function validatepayment() {
+ function validatePaymentSelect() {
     var paymentMethod=document.getElementById("paymentMethod").value;
     var paymentStatement=document.getElementById("paymenStatement").value;
 
