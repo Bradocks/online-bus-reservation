@@ -10,7 +10,7 @@
 
   <div class="form-payment-container">
 
-    <form action="payment.php" onsubmit="return validatePaymentSelect()" method="POST">
+    <form action="payment.php" onsubmit="return validatePaymentSelect()" method="post">
       <h2 style="margin-bottom: 2rem;">Payment Options</h2>
       <label>Payment Method</label>
       <select name="paymentMethod" id="paymentMethod" required>
@@ -20,7 +20,7 @@
       </select>
 
       <label>Mobile Number</label>
-      <input type="text" name="mobile" id="phone" required placeholder="07********">
+      <input type="text" name="phone_number" id="phone" required placeholder="07********">
 
       <label>Amount</label>
       <input type="text" name="amount" id="amount" required placeholder="Enter amount">
