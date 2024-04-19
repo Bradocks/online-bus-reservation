@@ -14,31 +14,50 @@ $userName = $_SESSION['userName'];
 </head>
 <body>
 
-<header class="header">
+<header class="passenger-header">
     <div class="logo-container">
-        <img src="logo.png" alt="Parcel Delivery Logo" class="logo" style="height: 20px;">
+        <img src="logo.png" alt="Parcel Delivery Logo" class="logo" style="height: 200px;">
     </div>
-    <div class="user-info">
-        <p class="userName">Welcome, <?php echo $userName; ?></p>
-        <p class="userId">ID: <?php echo $userId; ?></p>
+    <div class="passenger-nav-details">
+        <div class="user-info">
+            <p class="userName">Welcome, <?php echo $userName; ?></p>
+            <p class="userId">ID: <?php echo $userId; ?></p>
+        </div>
+        <nav class="navigation">`
+            <ul class="nav-list">
+                <!--Check on the list of active bookings and history of all passed bookings -->
+                <li><a href="book.html">Book</a></li>
+                <li><a href="ClientordersubmissionWait.html">Booking Status</a></li>
+                <li><a href="historyofbookins.php">History</a></li>
+                <li><a href="Profile.php">Profile</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
     </div>
-    <nav class="navigation">
-        <ul class="nav-list">
-            <!--Check on the list of active bookings and history of all passed bookings -->
-            <li><a href="book.html">Book</a></li>
-            <li><a href="ClientordersubmissionWait.html">Order Status</a></li>
-            <li><a href="historyofbookins.php">History</a></li>
-            <li><a href="Profile.php">Profile</a></li>
-            <li><a href="feedback.html">Feedback</a></li>
-        </ul>
-    </nav>
-    <div class="logout">
+   
+    <!-- <div class="logout">
         <a href="logout.php">Logout</a>
-    </div>
+    </div> -->
 </header>
 
 <main>
-    <p class="intro-text">Miss the Bus? Catch the Fun Instead! </p>
+    <p style="color: black; text-align: center; position: absolute; right: 0; left: 0; font-size: 20px; color: white;">MISS THE BUS? CATCH THE FUN INSTEAD!</p>
+    <div id="slideshow">
+        <div class="slide-wrapper">
+            <div class="slide">
+                <img src="road1.jpeg" alt="" style="height: 100%; width: 100%;">
+            </div>
+            <div class="slide">
+                <img src="photo1.jpeg" alt="" style="height: 100%; width: 100%;">
+            </div>
+            <div class="slide">
+                <img src="bus2.jpeg" alt="" style="height: 100%; width: 100%;">
+            </div>
+            <div class="slide">
+                <img src="bus3.jpeg" alt="" style="height: 100%; width: 100%;">
+            </div>
+        </div>
+    </div>
 </main>
 
 <footer class="footer">

@@ -57,6 +57,36 @@ form {
     padding-bottom: 10px;
 }
 
+.profile-container {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 18px;
+}
+
+.profile-title {
+    font-size: 30px;
+}
+
+.profile-buttons {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.edit-button {
+    width: 50%;
+}
+.back-button {
+    width: 50%;
+}
+
 /* Styling for form elements */
 label {
     display: block;
@@ -95,7 +125,7 @@ button {
 
 a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 button:hover {

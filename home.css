@@ -14,6 +14,20 @@ header {
     height: 40px;
 }
 
+.admin-control {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    background-color: #F3E8EB;
+    height: 400px;
+    margin-top: 3rem;
+    border-radius: 30px;
+    text-transform: capitalize;
+}
+
 /*section styles */
 section {
     padding: 20px;
@@ -90,55 +104,28 @@ button {
 
 a {
     color: white;
+    text-decoration: none;
 }
 
-
-/* Styling the home page */
-#home {
-
-    background-image: url('photo.jpeg');
-    /* Set background image */
-    text-align: center;
-    /* Center align text */
-    background-size: cover;
-    /* Cover the entire background */
-    background-repeat: no-repeat;
-    /* Do not repeat the background image to oavoid several small images*/
-    background-position: center;
-    /* Center the background image */
-    color: rgb(7, 66, 117);
-    /* Set text color */
-    font-size: x-large;
-    /* Set font size */
-
-
-}
-
-/*table styling */
 table {
-
     width: 80%;
-    /* Adjust the width of the table */
     margin: 0 auto;
-    /* Center the table horizontally */
-    /* Set body display to flex, align items and justify content to center to center content vertically and horizontally */
-
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 60px;
-    ;
 }
 
 th,
 td {
-    border: 2px solid rgb(187, 169, 187);
+    border: none;
+    border-radius: 10px;
     text-align: left;
+    color: white;
     padding: 8px;
 }
 
 th {
-    background-color: rgb(221, 213, 213);
+    background-color: #433E49;
 }
 
 .about_us_section {
@@ -185,4 +172,34 @@ address {
     80% {
         margin-left: calc(-728px * 3);
     }
+}
+
+.passenger-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.passenger-nav-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style-type: none;
+    gap: 30px;
+}
+
+.nav-list li a {
+    background-color: #433E49;
+    padding: 20px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
 }

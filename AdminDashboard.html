@@ -14,19 +14,34 @@ $userName = $_SESSION['userName']
 
 <body>
     <header>
-        <section><img src="logo.png" alt="" style="width: 80px; height: 30px;"></section>
+        <section><img src="logo.png" alt="" style="height: 100px;"></section>
         <section style=" background-color: transparent;"></section>
-        <section> UserName:<?php echo $userName; ?>
-            IdNO:<?php echo $userId; ?>
+        <section> Username:<?php echo $userName; ?>
+            <br>
+            ID no:<?php echo $userId; ?>
         </section>
-        <section><a href="logout.php">logout</a></section>
+        <!-- <section><a href="logout.php">logout</a></section> -->
     </header>
     <main>
 
-        <p style="color: blue; font-size:large; text-align: center;">Buy,
-            we deliver, likewise sell, and we will deliver too</p>
-
-        <div id="home" style="height: 350px; ">
+        <p style="color: black; text-align: center; position: absolute; right: 0; left: 0; font-size: 20px; color: white;">MISS THE BUS? CATCH THE FUN INSTEAD!</p>
+            <div id="slideshow">
+                <div class="slide-wrapper">
+                    <div class="slide">
+                        <img src="road1.jpeg" alt="" style="height: 100%; width: 100%;">
+                    </div>
+                    <div class="slide">
+                        <img src="photo1.jpeg" alt="" style="height: 100%; width: 100%;">
+                    </div>
+                    <div class="slide">
+                        <img src="bus2.jpeg" alt="" style="height: 100%; width: 100%;">
+                    </div>
+                    <div class="slide">
+                        <img src="bus3.jpeg" alt="" style="height: 100%; width: 100%;">
+                    </div>
+                </div>
+            </div>
+        <div id="home" class="admin-control">
 
             <table>
                 <tr>
@@ -59,12 +74,12 @@ $userName = $_SESSION['userName']
         <h2>Contact Us</h2>
         <p>Have questions? Contact our support team.</p>
         <address>
-            Email: support@parceldelivery.com<br>
-            Phone: 0794455836
+            Email: okomotravels@gmail.com<br>
+            Phone: 0799060221
         </address>
 
         <div id="copy">
-            &copy; 2024 Parcel Delivery. All rights reserved.
+            &copy; 2024 Okomo Travels. All rights reserved.
         </div>
     </footer>
 
