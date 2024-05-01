@@ -1,0 +1,162 @@
+.dashboard-container {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body {
+    background: #fff;
+    font-size: 18px;
+}
+
+.hero-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10rem;
+}
+.image-item {
+    border-radius: 30px;
+    background-size: contain;
+}
+.dash-image-container {
+    width: 50%;
+}
+.hero-text {
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+.hero-title {
+    text-transform: uppercase;
+    font-size: 72px;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+}
+.hero-description {
+    font-size: 20px;
+    opacity: .6;
+}
+
+#home-button {
+    border: none;
+    color: white;
+    background-color: black;
+    height: 3.5rem;
+    padding: 1em;
+    border-radius: 20px;
+    width: 10rem;
+}
+
+.welcome_section {
+    margin-top: 6rem;
+
+    .welcome_title {
+        font-family: "Poppins", sans-serif;
+        font-size: 32px;
+        font-weight: bold;
+        line-height: 4rem;
+    }
+    
+}
+
+.card_container {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 100%;
+    flex-wrap: wrap;
+
+    .card_item {
+        background-color: #E2E2E2;
+        height: max-content;
+        width: max-content;
+        padding: 2rem;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        p {
+            font-size: 20px;
+            font-weight: 700;
+        }
+    }
+    .card_image {
+        height: 200px;
+    }
+}
+
+.about_us_container {
+    margin-top: 6rem;
+
+    h2 {
+        font-size: 32px;
+        text-align: center;
+        font-family: "Poppins",sans-serif;
+        font-weight: bold;
+    }
+
+    p {
+        line-height: 2.5rem;
+        text-align: center;
+        font-size: 20px;
+    }
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #E2E2E2;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 10rem;
+
+    h2 {
+        font-size: 32px;
+        text-align: center;
+        font-family: "Poppins",sans-serif;
+        font-weight: bold;
+    }
+}
+
+.auth_button {
+    border: none;
+    color: white;
+    background-color: black;
+    height: 3.5rem;
+    padding: 1em;
+    border-radius: 20px;
+    width: 10rem;
+
+    a {
+        color: white;
+    }
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .navigation {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 5rem;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+}
