@@ -1,25 +1,24 @@
 <?php
-//estalish connnection to the database
+//establish connection to the database
 $servername = "localhost";
-$username = "Newton";
-$password = "database@123";
-$dbname = "parceldelivery";
+$username = "root";
+$password = "root";
+$dbname = "busreservation";
 $conn = new mysqli($servername, $username, $password, $dbname); // using the php new mysqli function to establish a connection.
 
-/* Check if the connection to the database was successful usinh connect_error if there is an connect_error the error will be 
-displayed and execution will be terminited by the die function. */
+/* Check if the connection to the database was successful using connect_error if there is a connect_error the error will be 
+displayed and execution will be terminated by the die function. */
 if ($conn->connect_error) {
    echo "coection error" . $conn->connect_error; //display the connection error if it exists
-   die("connection failled:" . $conn->connect_error); // Terminate script execution if the connection fails
+   die("connection failed:" . $conn->connect_error); // Terminate script execution if the connection fails
 }
 // process  form data from the post request and set the collected data to php variable for use in the php script
 $plateNO = $_POST['plateNO'];
-$type = $_POST['type'];
 $capacity = $_POST['capacity'];
 $state = $_POST['state'];
 $driverId = $_POST['driverId'];
 
-//ensure the driver exist
+//ensure the driver exists
 $checkifdriverexist = "select role from user where userId=$driverId";
 $chekresult = $conn->query($checkifdriverexist);
 $checkrow = $chekresult->fetch_assoc();
@@ -28,7 +27,7 @@ if ($checkrow) {
 
    if ($role === 'driver') {
 
-      //ensure driver doesn't have another vehicle arleady allocated
+      //ensure the driver doesn't have another vehicle already allocated
       $ensuredriverNotAllocated = "select * from vehicle where driverId=$driverId";
       $ensureResult = $conn->query($ensuredriverNotAllocated);
       $ensureRow = $ensureResult->fetch_assoc();
@@ -36,27 +35,27 @@ if ($checkrow) {
       if (!$row) {
 
          //insert data about staff into database , 
-         $sqladd = "INSERT INTO vehicle (plateNo,type,capacity,state,driverId)
-      VALUES (?,?,?,?,?)";//QL query to insert user data into the database 
-         // a  query that inserts values using placholders ?
+         $sqladd = "INSERT INTO vehicle (plateNo,capacity,state,driverId)
+      VALUES (?,?,?,?)";//QL query to insert user data into the database 
+         // a  query that inserts values using placeholders?
          $stmt = $conn->prepare($sqladd);
          //The bind_param() method binds variables to the placeholders in the SQL query.
-         $stmt->bind_param("ssisi", $plateNO, $type, $capacity, $state, $driverId);
+         $stmt->bind_param("sisi", $plateNO, $capacity, $state, $driverId);
          /* sends the query to the database server for execution with the 
           provided parameter values, returns true or false */
          $stmt->execute();
-         //check if the sql query was succesfful by checking if it is equivalent to TRUE
+         //check if the sql query was successful by checking if it is equivalent to TRUE
          if ($stmt) {
             // If the insertion is successful
-            echo " added sucessfully. add another one: <a href='AdminAddVehicle.html'>Add Another</a>";
+            echo " Vehicle added <a href='AdminAddVehicle.html'>Add vehicle</a>";
             "<br>";
-            echo "  or go back to dashBoard <a href='AdminDashboard.php'>Dashboard </a>";
+            echo "  Back to dashBoard <a href='AdminDashboard.php'>Dashboard </a>";
             "<br>";
 
 
          } else {
-            // If there's an error during insertion, display the error message by concantinating $sql variable that is the query and the error message
-            echo " not adedd sucessfully re do: <a href='AdminAddVehicle.html'> Re do add</a>";
+            // If there's an error during insertion, display the error message by concatenating $sql variable that is the query, and the error message
+            echo " Failed!: <a href='AdminAddVehicle.html'> Add Vehicle!</a>";
             "<br>";
          }
       } else {
