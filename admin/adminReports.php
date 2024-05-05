@@ -57,39 +57,31 @@ $userName=$_SESSION['userName']
 
                       </ul></th>
                       <th> <ul>
-                        <li>  staff report:
-                        <a href="adminReportGeneratin.php?type=listOfStaff">list of staff's</a>
+                        <li>  staff:
+                        <a href="adminReportGeneration.php?type=listOfStaff">list of staff's</a>
                         <br></br>
                        </li>
                         <li> 
-                        Vehicles reports:
-                        <a href="adminReportGeneratin.php?type=listOfVehicles">list of vehicle's</a>
+                        Vehicles:
+                        <a href="adminReportGeneration.php?type=listOfVehicles">list of vehicle's</a>
                         <br></br>
                         </li>
 
                         <li> 
-                        user reports:
-                        <a href="adminReportGeneratin.php?type=listOfUsers">list of user's</a>
+                        user:
+                        <a href="adminReportGeneration.php?type=listOfUsers">list of user's</a>
                         <br></br>
                         </li>
+                       
                         <li> 
-                        item reports:
-                        <a href="adminReportGeneratin.php?type=listOfItems">list of item's</a>
+                        passenger reports:
+                        <a href="adminReportGeneratoin.php?type=listOfSenders">list of sender's</a>
                         <br></br>
                         </li>
-                        <li> 
-                        sender reports:
-                        <a href="adminReportGeneratin.php?type=listOfSenders">list of sender's</a>
-                        <br></br>
-                        </li>
-                        <li> 
-                        sender reports:
-                        <a href="adminReportGeneratin.php?type=listOfOrder">list of orders's</a>
-                        <br></br>
-                        </li>
+                        
                         <li> 
                         Feedback reports: 
-                        <a href="adminReportGeneratin.php?type=listOfFeedbacks">list of Feedback's</a>
+                        <a href="adminReportGeneration.php?type=listOfFeedbacks">list of Feedback's</a>
                          
                         </li>
                       </ul> </th>                                                  
@@ -102,17 +94,17 @@ $userName=$_SESSION['userName']
         </main>
          
          <footer>
-            <h2>Contact Us</h2>
-            <p>Have questions? Contact our support team.</p>
-            <address>
-                Email: support@parceldelivery.com<br>
-                Phone: 0794455836
-            </address>
+        <h2>Contact Us</h2>
+        <p>Have questions? Contact our support team.</p>
+        <address>
+            Email: alluretravels@gmail.com<br>
+            Phone: 0710371315
+        </address>
 
-            <div id="copy">
-                &copy; 2024 Parcel Delivery. All rights reserved.
-            </div>
-        </footer>        
+        <div id="copy">
+            &copy; 2024. All rights reserved.
+        </div>
+    </footer>     
     
     </body>
 </html>
