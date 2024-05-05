@@ -18,7 +18,7 @@ displayed and execution will be terminated by the die function. */
 $userId=$_SESSION['userId'];
 
 //get user details
-$user="select  name,mobileNumber,email,address,userName,IdNo,DOB,gender
+$user="select  name,mobileNumber,email,userName,IdNo,DOB,gender
 from user  where  userId=$userId";
 /*executes the SQL query using the query() method of the database connection 
        object $conn. it sends the SQL query to the database server for execution.*/
@@ -29,7 +29,6 @@ $result=$conn->query($user);
       $name=$row['name'];
       $mobileNumber=$row['mobileNumber'];
       $email=$row['email'];
-      $address=$row['address'];
       $userName=$row['userName'];
       $IdNo=$row['IdNo'];
       $DOB=$row['DOB'];
