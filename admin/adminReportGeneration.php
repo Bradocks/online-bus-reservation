@@ -1,30 +1,30 @@
 <?php 
 //estalish connnection to the database
 $servername="localhost";
-$username="Newton";
-$password="database@123";
-$dbname="parceldelivery";
+$username="root";
+$password="root";
+$dbname="busreservation";
 $conn=new mysqli($servername,$username,$password,$dbname); // using the php new mysqli function to establish a connection.
 
-/* Check if the connection to the database was successful usinh connect_error if there is an connect_error the error will be 
-displayed and execution will be terminited by the die function. */
+/* Check if the connection to the database was successful using connect_error if there is a connect_error the error will be 
+displayed and execution will be terminated by the die function. */
  if ($conn->connect_error)  {
    echo"coection error". $conn->connect_error; //display the connection error if it exists
-    die ("connection failled:". $conn->connect_error); // Terminate script execution if the connection fails
+    die ("connection failed:". $conn->connect_error); // Terminate script execution if the connection fails
 }
 
-//check if type is setted as a queryparameter
+//check if the type is set as a query parameter
 /* isset($_GET['type']): This checks if the 'type' parameter is set in the GET request. $_GET is a superglobal array in PHP
  that contains variables passed to the current script via the URL parameters (GET method).
  This condition ensures that the 'type' parameter is present in the URL. its a bollean returns true if it is present*/
 if(isset($_GET['type'])){
   // assigns 'type' parameter to the variable $type.
     $type=$_GET['type'];
-    //starts a switch statement that runs either of the case based on the value of the 'type' parameter.
+    //starts a switch statement that runs either of the cases based on the value of the 'type' parameter.
     switch($type){
 
 
-         //sipmle reports
+         //simple reports
         case "listOfStaff":
           //call the function if its==='type' parameter
           list_of_staff($conn);
@@ -37,14 +37,10 @@ if(isset($_GET['type'])){
           //call the function if its==='type' parameter
           list_of_users($conn);
           break; 
-        case "listOfItems":
+        case "listOfbookings":
           //call the function if its==='type' parameter
             list_of_item($conn);
             break;
-        case "listOfSenders":
-          //call the function if its==='type' parameter
-          list_of_sender($conn);
-          break;
          case "listOfFeedbacks":
           //call the function if its==='type' parameter
             list_of_feedback($conn);
@@ -57,10 +53,10 @@ if(isset($_GET['type'])){
     }
 }
 /* The isset($_POST) function checks if the $_POST superglobal array contains any data.
- If data has been sent via POST, this condition evaluates to true else it evaluate to false, its a bollean. the $_POST superglobal 
- array contains data submitted via an HTML form using the POST method, and it allows PHP to access form data. */
+ If data has been sent via POST, this condition evaluates to true else it evaluates to false, it's a boolean. the $_POST superglobal 
+ array contains data submitted via an HTML form using the POST method, which allows PHP to access form data. */
 elseif(isset($_POST)){
-  //ssigns the value of the 'category' parameter sent via POST to the variable $category.
+  //assigns the value of the 'category' parameter sent via POST to the variable $category.
     $category=$_POST['category'];
     //starts a switch statement based on the value of the 'category' parameter received via POST
     switch($category){
@@ -69,15 +65,12 @@ elseif(isset($_POST)){
       //join reports case
         case "item":
           //call the function if its==='category' parameter
-            itemDetails($conn);
+            bookingDetails($conn);
             break;
-        case "client":
+        case "passenger":
           //call the function if its==='category' parameter
-            clientActivities($conn);
+            passengerActivities($conn);
            break;
-        case "customerCare":
-          //call the function if its==='category' parameter
-            customerCareActivities($conn);
             break;
         case "driver":
           //call the function if its==='category' parameter
@@ -86,88 +79,82 @@ elseif(isset($_POST)){
 
             
             //filter reports case
-        case "senderId":
-          //call the function if its==='category' parameter
-              list_of_itemBysenderId($conn);
-             break;
+      
          case "vehicleId":
           //call the function if its==='category' parameter
                list_of_itemByvehicleId($conn);
               break;
-          case "customercare":
-            //call the function if its==='category' parameter
-                list_of_itemBycustomercareId($conn);
-               break;
+          
          case "state": 
           //call the function if its==='category' parameter
-                list_of_itemBystate($conn);
+                list_of_bookingBystate($conn);
                break;
-         case "source":
+         case "departure":
           //call the function if its==='category' parameter
-                list_of_itemBysource($conn);
+                list_of_bookingBydeparture($conn);
                break;
          case "destination":
           //call the function if its==='category' parameter
-                list_of_itemBydestination($conn);
+                list_of_bookingBydestination($conn);
                break;
           case "category":
             //call the function if its==='category' parameter
-                list_of_itemBycategory($conn);
+                list_of_bookingBycategory($conn);
                break;
          case "route":
           //call the function if its==='category' parameter
-                list_of_itemByroute($conn);
+                list_of_bookingByroute($conn);
                break;
          case "charges":
           //call the function if its==='category' parameter
-                list_of_itemBycharges($conn);
+                list_of_bookingBycharges($conn);
                break;
           case "time":
             //call the function if its==='category' parameter
-                list_of_itemBytime($conn);
+                list_of_bookingsBytime($conn);
                break;
 
                //timely reports
          case "date":
             //call the function if its==='category' parameter
-                itemsByDate($conn);
+                bookingsByDate($conn);
                break;
 
           case "Month":
             //call the function if its==='category' parameter
-            itemsByMonth($conn);
+            bookingsByMonth($conn);
                break;
 
            case "Year":
              //call the function if its==='category' parameter
-             itemsByYear($conn);
+             bookingsByYear($conn);
                 break;
     }
 
 }
 //staff  ##simple reports 
-//a function taking  $conn parameter that provides connection to the database 
+//a function taking  $conn parameter that provides a connection to the database 
 function list_of_staff($conn){
- //mysqli query to the data base to select all from staff table
+ //mysqli query to the database to select all from the staff table
 $staff="select * from staff";
-/* executes the SQL query using the database connection represented by $conn using query mysqli method
+/* executes the SQL query using the database connection represented by $conn using the query mysqli method
 and stores the result in the $result variable. */
  $result=$conn->query($staff);
-// check  if the query result has any rows by ensuling number of rows are more than 0 using num_rows
+// check  if the query result has any rows by ensuring the number of rows is more than 0 using num_rows
 if($result->num_rows>0) {
   // setting table with a border attribute of '1'
-  echo"<a href='adminReporst.php'>back</a>";
+  echo"<a href='adminReports.php'>back</a>";
     echo"<table border='1'>";
     //table header row userName
-    echo" <tr> <th>staffId</th> <th>Name</th> <th> userName </th><th>IdNo</th> <th>Phone Number</th> <th>Email</th> <th>salary</th> 
-    <th>position</th> <th>state</th> <th>Gende</th> <th>date of birth</th>  <th>mode of employment</th></tr> ";
+    echo" <tr> <th>staffId</th> <th>Name</th> <th> userName </th><th>IdNo</th> <th>Phone Number</th> <th>Email</th>
+    <th>position</th> <th>state</th> <th>Gender</th> <th>date of birth</th> 
     //fetch_assoc() method is a function used in PHP to fetch a single row of result set from a MySQL database query as an associative array
       while($row=$result->fetch_assoc()){
-        /* presenting the result in table data cells and each database row to a different table row using while by looping through each row 
+        /* presenting the result in table data cells and each database row to a different table row while looping through each row 
         of the result set returned by the SQL query. Inside the loop: */
-   echo "<tr><td>". $row['staffId']."</td><td>". $row['name']."</td><td>". $row['userName']."</td><td>".  $row['IDNo']."</td><td>".  $row['phoneNO']."</td><td>".
-    $row['email']."</td><td>". $row['salary']."</td><td>". $row['position']. "</td><td>".  $row['state']. "</td><td>".
-     $row['gender']."</td><td>". $row['DtOfBth']. "</td><td>".$row['modeOfEmployment']."</td></tr>".
+   echo "<tr><td>". $row['staffId']."</td><td>". $row['name']."</td><td>". $row['userName']."</td><td>".  $row['IdNo']."</td><td>".  $row['phoneNO']."</td><td>".
+    $row['email']."</td><td>". $row['position']. "</td><td>".  $row['state']. "</td><td>".
+     $row['gender']."</td><td>". $row['DOB']. "</td><td>".
     "<br>";
       }
  
@@ -175,28 +162,27 @@ if($result->num_rows>0) {
 }
 
 
-function list_of_orders($conn){
-  //mysqli query to the data base to select all from staff table
- $staff="select * from orders";
+function list_of_bookings($conn){
+  //mysqli query to the database to select all from the staff table
+ $staff="select * from bookings";
  /* executes the SQL query using the database connection represented by $conn using query mysqli method
  and stores the result in the $result variable. */
   $result=$conn->query($staff);
- // check  if the query result has any rows by ensuling number of rows are more than 0 using num_rows
+ //Check  if the query result has any rows by ensuring the number of rows is more than 0 using num_rows
  if($result->num_rows>0) {
    // setting table with a border attribute of '1'
-   echo"<a href='adminReporst.php'>back</a>";
+   echo"<a href='adminReports.php'>back</a>";
      echo"<table border='1'>";
      //table header row 
-     echo" <tr> <th>orderNo</th> <th>senderId</th> <th>source</th> <th>destination</th> <th>quantity</th> <th>description</th> 
-     <th>category</th> <th>vehicleId</th><th>charges</th> <th>customerCareId</th><th>orderstate</th></tr> ";
+     echo" <tr> <th>bookingId</th> <th>passengerId</th> <th>departure/th> <th>destination</th> 
+     <th>category</th> <th>vehicleId</th><th>charges</th> ";
      //fetch_assoc() method is a function used in PHP to fetch a single row of result set from a MySQL database query as an associative array
        while($row=$result->fetch_assoc()){
         
          /* presenting the result in table data cells and each database row to a different table row using while by looping through each row 
          of the result set returned by the SQL query. Inside the loop: */
-    echo "<tr><td>".$row['orderId']."</td><td>".$row['senderId']."</td><td>".$row['source']."</td><td>". $row['destination']."</td><td>".
-     $row['quantity']."</td><td>".$row['description']."</td><td>".$row['category']."</td><td>". $row['vehicleId']."</td><td>".$row['charges'].
-     "</td><td>".$row['customerCareId']."</td><td>".$row['orderstate']. "</td></tr>".
+    echo "<tr><td>".$row['bookingId']."</td><td>".$row['passengerId']."</td><td>".$row['departure']."</td><td>". $row['destination']."</td><td>".
+    ."</td><td>".$row['category']."</td><td>". $row['vehicleId']."</td><td>".$row['charges']. "</td></tr>".
      "<br>";
        }
   
@@ -214,19 +200,19 @@ and stores the result in the $result variable. */
      $result=$conn->query($users);
     
     if($result->num_rows>0) {
-      echo"<a href='adminReporst.php'>back</a>";
+      echo"<a href='adminReports.php'>back</a>";
          // setting table with a border attribute of '1'
     echo"<table border='1'>";
     //table header row 
-        echo" <tr> <th> userId</th> <th>Name</th> <th>Phone Number</th> <th>Email</th> <th>address</th> 
+        echo" <tr> <th> userId</th> <th>Name</th> <th>Phone Number</th> <th>Email</th>
         <th>role</th> <th>userName</th> <th>password</th> <th>IdNo</th>  <th>Date of birth</th> <th>Gender</th></tr> ";
         //fetch_assoc() method is a function used in PHP to fetch a single row of result set from a MySQL database query as an associative array
           while($row=$result->fetch_assoc()){
              /* presenting the result in table data cells and each database row to a different table row using while by looping through each row 
         of the result set returned by the SQL query. Inside the loop: */
        echo "<tr><td>". $row['userId']."</td><td>". $row['name']."</td><td>".  $row['mobileNumber']."</td><td>".  
-        $row['email']."</td><td>". $row['address']."</td><td>". $row['role']. "</td><td>".  $row['userName']. "</td><td>".
-         $row['password']."</td><td>". $row['IDNO']. "</td><td>".$row['DtOfBth']. "</td><td>".$row['gender']."</td></tr>".
+        $row['email']."</td><td>". $row['role']. "</td><td>".  $row['userName']. "</td><td>".
+         $row['password']."</td><td>". $row['IdNo']. "</td><td>".$row['DOB']. "</td><td>".$row['gender']."</td></tr>".
         "<br>";
           }
      
@@ -243,7 +229,7 @@ and stores the result in the $result variable. */
          $result=$conn->query($vehicles);
         
         if($result->num_rows>0) {
-          echo"<a href='adminReporst.php'>back</a>";
+          echo"<a href='adminReports.php'>back</a>";
              // setting table with a border attribute of '1'
     echo"<table border='1'>";
     //table header row 
@@ -261,30 +247,28 @@ and stores the result in the $result variable. */
         }
         }
        //a function taking  $conn parameter that provides connection to the database
-        function list_of_sender($conn){
+        function list_of_passenger($conn){
  //mysqli query to select all from table sender
-            $sender="select * from sender";
+            $sender="select * from passenger";
 
           /* executes the SQL query using the database connection represented by $conn using query mysqli method
 and stores the result in the $result variable. */
              $result=$conn->query($sender);
             
       if($result->num_rows>0) {
-        echo"<a href='adminReporst.php'>back</a>";
+        echo"<a href='adminReports.php'>back</a>";
         // setting table with a border attribute of '1'
     echo"<table border='1'>";
     //table header row 
-      echo" <tr> <th>senderId</th> <th>sender Name</th> <th> senderIDNo</th> <th>senderPhoneNo</th> <th> senderEmail</th> 
-       <th>senderLocation</th> <th>senderDtOfBth</th> <th>senderGender</th>  <th>receiverName</th> 
-        <th>receiverLocation</th>  <th>receiverDtOfBth</th>  <th>receiverGender</th> </tr> ";
+      echo" <tr> <th>passengerId</th> <th>passenger Name</th> <th> passengerIdNo</th> <th>passengerPhoneNo</th> <th> passengerEmail</th> 
+       <th>passengerLocation</th> <th>passengerDOB</th> <th>passengerGender</th>  </tr> ";
         //fetch_assoc() method is a function used in PHP to fetch a single row of result set from a MySQL database query as an associative array
         while($row=$result->fetch_assoc()){
         /* presenting the result in table data cells and each database row to a different table row using while by looping through each row 
         of the result set returned by the SQL query. Inside the loop: */
-               echo "<tr><td>". $row['senderId']."</td><td>". $row['senderName']."</td><td>".  $row['senderIDNo']."</td><td>".  
-                $row['senderPhoneNo']."</td><td>". $row['senderEmail']."</td><td>". $row['senderLocation']. "</td><td>".  
-                $row['senderDtOfBth']. "</td><td>".  $row['senderGender']."</td><td>". $row['receiverName']."</td><td>".
-                 $row['receiverLocation']. "</td><td>". $row['receiverDtOfBth']. "</td><td>". $row['receiverGender']."</td><?tr>".                 
+               echo "<tr><td>". $row['passengerId']."</td><td>". $row['passengerName']."</td><td>".  $row['passengerIdNo']."</td><td>".  
+                $row['passengerPhoneNo']."</td><td>". $row['passengerEmail']."</td><td>". $row['passengerLocation']. "</td><td>".  
+                $row['passengerDOB']. "</td><td>".  $row['passegerGender']."</td><?tr>".                 
                 "<br>";
                   }
              
@@ -295,59 +279,27 @@ and stores the result in the $result variable. */
  function list_of_feedback($conn){
    //mysqli query to select all from table feedback
    $feedback="select * from feedback";
-   /* executes the SQL query using the database connection represented by $conn using query mysqli method
+   /* executes the SQL query using the database connection represented by $conn using the query mysqli method
 and stores the result in the $result variable. */
      $result=$conn->query($feedback);
                 
  if($result->num_rows>0) {
-  echo"<a href='adminReporst.php'>back</a>";
+  echo"<a href='adminReports.php'>back</a>";
     // setting table with a border attribute of '1'
     echo"<table border='1'>";
     //table header row 
-   echo" <tr> <th>feedBackId</th> <th>domain</th> <th>dateTime</th> <th>source</th> <th>feedBack</th>  </tr> ";
+   echo" <tr> <th>feedBackId</th>  <th>feedBack</th>  </tr> ";
    //fetch_assoc() method is a function used in PHP to fetch a single row of result set from a MySQL database query as an associative array
   while($row=$result->fetch_assoc()){
   /* presenting the result in table data cells and each database row to a different table row using while by looping through each row 
   of the result set returned by the SQL query. Inside the loop: */
-       echo "<tr><td>". $row['feedBackId']."</td><td>". $row['domain']."</td><td>".  $row['dateTime']."</td><td>".  
-           $row['source']."</td><td>". $row['feedBack']."</td></tr>".
+       echo "<tr><td>". $row['feedBackId']. $row['feedBack']."</td></tr>".
                     "<br>";
                       }
                  
                 }
                 }
-  //a function taking  $conn parameter that provides connection to the database
-function list_of_item($conn){
- //mysqli query to select all from table item
-       $item="select * from item";
-       /* executes the SQL query using the database connection represented by $conn using query mysqli method
-and stores the result in the $result variable. */
-         $result=$conn->query($item);
-                    
-    if($result->num_rows>0) {
-      echo"<a href='adminReporst.php'>back</a>";
-      // setting table with a border attribute of '1'
-    echo"<table border='1'>";
-    //table header row 
-     echo" <tr> <th>itemid</th> <th>senderId</th> <th>vehicleId</th> <th>customerCareId</th> <th>deliveryState</th> 
-      <th>source</th> <th>destination</th> <th>quantity</th> <th>description</th>  <th>category</th> <th>time orderd</th> 
-       <th>timeTaken</th> <th>route</th> <th>charges</th> <th>PaymentMethod</th> <th>PaymentStatement</th> <th>paymentDetail</th> <th>orderCode</th> </tr> ";
-       //fetch_assoc() method is a function used in PHP to fetch a single row of result set from a MySQL database query as an associative array
-      while($row=$result->fetch_assoc()){
-        /* presenting the result in table data cells and each database row to a different table row using while by looping through each row 
-        of the result set returned by the SQL query. Inside the loop: */
-        echo "<tr> <td>". $row['itemid']."</td> <td>". $row['senderId']."</td> <td>".  $row['vehicleId']."</td><td>".  
-         $row['customerCareId']."</td><td>". $row['deliveryState']."</td><td>". $row['source']. "</td><td>". 
-           $row['destination']. "</td><td>".$row['quantity']."</td><td>". $row['description']. "</td><td>".$row['category']."</td><td>"
-           .$row['orderTimeDate']."</td><td>".$row['timeTaken']. "</td><td>".$row['route']. "</td><td>".$row['charges']. 
-           "</td><td>".$row['PaymentMethod']. "</td><td>".$row['PaymentStatement']. "</td><td>".$row['paymentDetail'].
-           "</td><td>".$row['orderCode'].
-            "</td></tr>".
-                "<br>";
-               }
-                     
-             }
-         }
+ 
           
 
          //##join reports
@@ -363,8 +315,7 @@ function DriverActivities($conn){
             $vehicleId=$row['vehicleId'];
           
              
-    $history="select itemid, vehicleId,customerCareId,source,destination,deliveryState,
-    receiverName,receiverEmail,senderName,senderEmail 
+    $history="select itemid, vehicleId,departure,destination,passengerName,passengerEmail 
     from item  
     join sender ON itemid= orderNo
     where vehicleId=$vehicleId and deliveryState='sucessfull'";
@@ -395,38 +346,7 @@ and stores the result in the $result variable. */
   }else{
     echo"driver Not Assigned a vehicle";
   }
-}
 
-         //customercare activities
-         //a function taking  $conn parameter that provides connection to the database
-function customerCareActivities($conn){
-  //retrieves the value of a form field 'searchid' that was submitted via a POST request in PHP and set it to variable userId
-            $userId=$_POST['searchid'];
-   $history="select itemid, vehicleId,senderId,source,destination,deliveryState,charges,PaymentMethod,paymentDetail 
-from item where customerCareId=$userId";
- /* executes the SQL query using the database connection represented by $conn using query mysqli method
-and stores the result in the $result variable. */
-$result=$conn->query($history);
-
-if($result->num_rows>0) {
-  echo"<a href='adminReporst.php'>back</a>";
-        // setting table with a border attribute of '1'
-    echo"<table border='1'>";
-    //table header row 
-    echo "<tr><th>orderId</th><th>vehicleId</th><th>senderId</th> <th>source</th> <th>destination</th><th>deliveryState</th>
-    <th>charges</th> <th>PaymentMethod</th> <th>paymentDetail</th>  </tr>"; 
-    //fetch_assoc() method is a function used in PHP to fetch a single row of result set from a MySQL database query as an associative array 
-      while($row=$result->fetch_assoc()){
-        /* presenting the result in table data cells and each database row to a different table row using while by looping through each row 
-        of the result set returned by the SQL query. Inside the loop: */
-   echo "<tr><td>".$row['itemid']."</td><td>". $row['vehicleId']."</td><td>".$row['senderId'] ."</td><td>"
-   .$row['source']."</td><td>".$row['destination']."</td><td>".$row['deliveryState']."</td><td>".$row['charges'].
-   "</td><td>".$row['PaymentMethod']."</td><td>".$row['paymentDetail']."<br>";
-      }
-}else{
-      echo "No orders sorted by the customer care";
-}
- }
 
          //client activities
          //a function taking  $conn parameter that provides connection to the database
@@ -460,7 +380,7 @@ and stores the result in the $result variable. */
     "<br>";
       }
     }else{
-      echo "cliet yet to make an order";
+      echo "client yet to make an order";
           }
   }
 
