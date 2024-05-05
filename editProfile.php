@@ -3,9 +3,9 @@
 session_start(); 
 //estalish connnection 
 $servername="localhost";
-$username="Newton";
-$password="database@123";
-$dbname="parceldelivery";
+$username="root";
+$password="root";
+$dbname="busreservation";
 $conn=new mysqli($servername,$username,$password,$dbname); // using the php new mysqli function to establish a connection.
 
 /* Check if the connection to the database was successful usinh connect_error if there is an connect_error the error will be 
@@ -18,7 +18,7 @@ displayed and execution will be terminited by the die function. */
 $userId=$_SESSION['userId'];
 
 //get user details
-$user="select  name,mobileNumber,email,address,userName,IDNO,DtOfBth,gender
+$user="select  name,mobileNumber,email,address,userName,IDNO,DOB,gender
 from user  where  userId=$userId";
 /*executes the SQL query using the query() method of the database connection 
        object $conn. it sends the SQL query to the database server for execution.*/
@@ -32,7 +32,7 @@ $result=$conn->query($user);
       $address=$row['address'];
       $userName=$row['userName'];
       $IDNO=$row['IDNO'];
-      $DtOfBth=$row['DtOfBth'];
+      $DOB=$row['DOB'];
       $gender=$row['gender'];
        
  
@@ -58,8 +58,8 @@ $result=$conn->query($user);
           <input type="text" id="address" name="address"><br>
           <label>IDNO :<?php echo $IDNO; ?><br></label>
           <input type="text" id="IDNO" name="IDNO"><br>
-          <label>Date of Birth :<?php echo $DtOfBth; ?><br></label>
-          <input type="text" id="DtOfBth" name="DtOfBth"><br>
+          <label>Date of Birth :<?php echo $DOB; ?><br></label>
+          <input type="text" id="DOB" name="DOB"><br>
           <label>Gender :<?php echo $gender; ?></label>         
         <select name="gender" id="gender">
           <option value="Male">Male</option>
