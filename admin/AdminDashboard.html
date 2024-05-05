@@ -2,75 +2,47 @@
 session_start();
 $userId = $_SESSION['userId'];
 $userName = $_SESSION['userName']
-    ?>
+?>
 <html>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-    <link rel="stylesheet" href="../home.css">
+    <link rel="stylesheet" href="./admin.css">
 </head>
 
 <body>
     <header>
-        <section><img src="logo.png" alt="" style="height: 100px;"></section>
+        <section><img src="../user/logo.png" alt="" style="height: 100px;"></section>
         <section style=" background-color: transparent;"></section>
-        <section> Username:<?php echo $userName; ?>
+        <section style="margin-top: 2rem;"> Username:<?php echo $userName; ?>
             <br>
             ID no:<?php echo $userId; ?>
         </section>
         <!-- <section><a href="logout.php">logout</a></section> -->
     </header>
     <main>
-
-        <p style="color: black; text-align: center; position: absolute; right: 0; left: 0; font-size: 20px; color: white;">MISS THE BUS? CATCH THE FUN INSTEAD!</p>
-            <div id="slideshow">
-                <div class="slide-wrapper">
-                    <div class="slide">
-                        <img src="road1.jpeg" alt="" style="height: 100%; width: 100%;">
-                    </div>
-                    <div class="slide">
-                        <img src="photo1.jpeg" alt="" style="height: 100%; width: 100%;">
-                    </div>
-                    <div class="slide">
-                        <img src="bus2.jpeg" alt="" style="height: 100%; width: 100%;">
-                    </div>
-                    <div class="slide">
-                        <img src="bus3.jpeg" alt="" style="height: 100%; width: 100%;">
-                    </div>
-                </div>
-            </div>
-        <div id="home" class="admin-control">
-
-            <table>
-                <tr>
-                    <th colspan="3">Manage staff</th>
-                    <th colspan="3">Manage Vehicles</th>
-                    <th colspan="1">manage user</th>
-                    <th colspan="1">view reports</th>
-                    <th colspan="2">self details</th>
-
-                </tr>
-                <tr>
-                    <th><a href=" adminAddStaff.html">Add staff</a></th>
-                    <th><a href="AdmindeleteStaff.html">Delete staff</a></th>
-                    <th><a href="AdminUpdateStaff.html">update staff</a></th>
-                    <th><a href="AdminAddVehicle.html">Add vehicle</a></th>
-                    <th> <a href="AdminDeleteVehicle.html">delete vehicle</a></th>
-                    <th><a href="adminAsignDriverAVehicle.html">update vehicle</a></th>
-                    <th><a href="AdmindeleteUser.html">delete user</a></th>
-                    <th><a href="adminReporst.php">view reports </a></th>
-                    <th><a href="Profile.php">Profile</a></th>
-                    <th><a href="feedback.html">Feedback</a></th>
-                </tr>
-            </table>
-        </div>
+        <details class="dropdown">
+            <summary role="button">
+              <a class="button">Manage Staff & Vehicles</a>
+            </summary>
+            <ul>
+              <li><a href="./adminAddstaff.html">Add Staff</a></li>
+              <li><a href="./AdmindeleteStaff.html">Delete Staff</a></li>
+              <li><a href="./AdminUpdateStaff.html">Update Staff</a></li>
+              <li><a href="./AdminAddVehicle.html">Add vehicle</a></li>
+              <li><a href="./adminAsignDriverAVehicle.html">Update Vehicle</a></li>
+              <li><a href="./AdminDeleteVehicle.html">Delete Vehicle</a></li>
+              <li><a href="./AdmindeleteUser.html">Delete user</a></li>
+              <li><a href="../user/feedback.html">Feedback</a></li>
+          </ul>
+        </details>
 
 
     </main>
 
-    <footer>
+    <!-- <footer>
         <h2>Contact Us</h2>
         <p>Have questions? Contact our support team.</p>
         <address>
@@ -81,7 +53,7 @@ $userName = $_SESSION['userName']
         <div id="copy">
             &copy; 2024 Okomo Travels. All rights reserved.
         </div>
-    </footer>
+    </footer> -->
 
 </body>
 
