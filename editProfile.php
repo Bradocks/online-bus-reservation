@@ -8,17 +8,17 @@ $password="root";
 $dbname="busreservation";
 $conn=new mysqli($servername,$username,$password,$dbname); // using the php new mysqli function to establish a connection.
 
-/* Check if the connection to the database was successful usinh connect_error if there is an connect_error the error will be 
-displayed and execution will be terminited by the die function. */
+/* Check if the connection to the database was successful using connect_error if there is a connect_error the error will be 
+displayed and execution will be terminated by the die function. */
  if ($conn->connect_error)  {
-       die ("connection failled:". $conn->connect_error); // Terminate script execution if the connection fails
+       die ("connection failed:". $conn->connect_error); // Terminate script execution if the connection fails
         
 }  
 
 $userId=$_SESSION['userId'];
 
 //get user details
-$user="select  name,mobileNumber,email,address,userName,IDNO,DOB,gender
+$user="select  name,mobileNumber,email,address,userName,IdNo,DOB,gender
 from user  where  userId=$userId";
 /*executes the SQL query using the query() method of the database connection 
        object $conn. it sends the SQL query to the database server for execution.*/
@@ -31,7 +31,7 @@ $result=$conn->query($user);
       $email=$row['email'];
       $address=$row['address'];
       $userName=$row['userName'];
-      $IDNO=$row['IDNO'];
+      $IdNo=$row['IdNo'];
       $DOB=$row['DOB'];
       $gender=$row['gender'];
        
@@ -56,8 +56,8 @@ $result=$conn->query($user);
           <input type="text" id="email" name="email"><br>
           <label>Address :<?php echo $address; ?><br></label>
           <input type="text" id="address" name="address"><br>
-          <label>IDNO :<?php echo $IDNO; ?><br></label>
-          <input type="text" id="IDNO" name="IDNO"><br>
+          <label>dDNo :<?php echo $IdNo; ?><br></label>
+          <input type="text" id="IdNo" name="IdNo"><br>
           <label>Date of Birth :<?php echo $DOB; ?><br></label>
           <input type="text" id="DOB" name="DOB"><br>
           <label>Gender :<?php echo $gender; ?></label>         
