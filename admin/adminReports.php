@@ -35,24 +35,19 @@ $userName=$_SESSION['userName']
                   </tr>
                   <tr>
                       <th> <ul>
-                        <li><a href="reportTrackclientActivities.html">Track client Activities</a></li>
-                        <li><a href="reportTrackcustomerCareActivities.html">Track customer Care Activities</a></li>
-                        <li><a href="reportTrackDriverActivities.html">Track Driver Activities</a></li>
-                        <li><a href="reportTrackitemdetails.html">Track item details</a></li>
+                        <li><a href="reportpassengerActivities.html">Passenger Activities</a></li>>
+                        <li><a href="reportDriverActivities.html">Driver Activities</a></li>
                       </ul> </th>
                       <th> <ul>
-                      <li><a href="reportItembysender.html">items by sender</a></li>
-                        <li><a href="reportItemBycustomercare.html">items by customer Care</a></li>
-                        <li><a href="reportItembyvehicle.html">Items By vehicle</a></li>
-                        <li><a href="repoerItembyroute.html">items By route</a></li>
-                        <li><a href="reportItembycategory.html">items By category</a></li>
-                        <li><a href="reportItemBydeliverystate.html">items by delivery state</a></li>
-                        <li><a href="reportItembydestination.html">items by destination </a></li>
-                        <li><a href="reportItembysource.html">items by source</a></li>
-                        <li><a href="reportItemInagivendate.html">items by date</a></li>
-                        <li><a href="reportIteminagivenyear.html">items by year</a></li>
-                        <li><a href="reportItemsinagivenmonth.html">items by month</a></li>
-                        <li><a href="reportItemwherechargesaregreaterthan.html">item where charges range between</a></li>
+                      <li><a href="reportbookingbypassenger.html">booking by passenger</a></li>
+                        <li><a href="reportbookingbyvehicle.html">booking by vehicle</a></li>
+                        <li><a href="repoerbookingbyroute.html">booking By route</a></li>
+                        <li><a href="reportbookingbydestination.html">booking by destination </a></li>
+                        <li><a href="reportbookingbydeparture.html">booking by departure</a></li>
+                        <li><a href="reportbookingonagivendate.html">booking by date</a></li>
+                        <li><a href="reportbookinginagivenyear.html">booking by year</a></li>
+                        <li><a href="reportbookinginagivenmonth.html">booking by month</a></li>
+                       
                         
 
                       </ul></th>
