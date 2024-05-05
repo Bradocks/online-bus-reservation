@@ -58,30 +58,36 @@ $userName=$_SESSION['userName']
                       </ul></th>
                       <th> <ul>
                         <li>  staff:
-                        <a href="adminReportGeneration.php?type=listOfStaff">list of staff's</a>
+                        <a href="adminReportGeneration.php?type=listOfStaff">list of staffs</a>
                         <br></br>
                        </li>
                         <li> 
                         Vehicles:
-                        <a href="adminReportGeneration.php?type=listOfVehicles">list of vehicle's</a>
+                        <a href="adminReportGeneration.php?type=listOfVehicles">list of vehicles</a>
                         <br></br>
                         </li>
 
                         <li> 
                         user:
-                        <a href="adminReportGeneration.php?type=listOfUsers">list of user's</a>
+                        <a href="adminReportGeneration.php?type=listOfUsers">list of users</a>
                         <br></br>
                         </li>
                        
                         <li> 
                         passenger reports:
-                        <a href="adminReportGeneratoin.php?type=listOfSenders">list of sender's</a>
+                        <a href="adminReportGeneratoin.php?type=listOfpassengers">list of senders</a>
                         <br></br>
                         </li>
                         
                         <li> 
                         Feedback reports: 
-                        <a href="adminReportGeneration.php?type=listOfFeedbacks">list of Feedback's</a>
+                        <a href="adminReportGeneration.php?type=listOfFeedbacks">list of Feedbacks</a>
+                         
+                        </li>
+
+                          <li> 
+                        booking reports: 
+                        <a href="adminReportGeneration.php?type=listOfreports">list of reports</a>
                          
                         </li>
                       </ul> </th>                                                  
