@@ -17,12 +17,12 @@ displayed and execution will be terminated by the die function. */
    $vehicleId=$_POST['vehicleId'];
    $driverId=$_POST['driverId'];
    $state=$_POST['state'];
-   //ensure the vehicle exist
-   $confirVehicle="select vehicleId from vehicle where vehicleId=$vehicleId";
+   //ensure the vehicle exists
+   $confirVehicle=" select vehicleId from vehicle where vehicleId=$vehicleId";
    $confirresult=$conn->query($confirVehicle);
    $confirrow=$confirresult->fetch_assoc();
    if($confirrow){ 
-     //ensure the driver exist
+     //ensure the driver exists
      $checkifdriverexist="select role from user where userId=$driverId";
      $chekresult=$conn->query($checkifdriverexist);
      $checkrow=$chekresult->fetch_assoc();
@@ -50,19 +50,19 @@ $updatevehicle->bind_param("isi",$driverId,$state,$vehicleId);
 $updatevehicle->execute();
  
  if($updatevehicle) {
-       echo "updated successfully". "<br>";
-   echo  "   updated successfully, update another driver: <a href= 
-   'adminAsignDriverAVehicle.html'>add again</a>". "<br>";
-   echo  "   or back to the Dashboard: <a href='adminDashboard.php'>
+       echo "Updated ". "<br>";
+   echo  "   updated successfully <a href= 
+   'adminAsignDriverAVehicle.html'>Assign</a>". "<br>";
+   echo  "  Back to the Dashboard: <a href='adminDashboard.php'>
    Dashboard</a>". "<br>";
       }
 else{
-      echo " not updated. go and update again: <a href= 
-      'adminAsignDriverVehicle.html'>add again</a>";
+      echo " Not updated.  <a href= 
+      'adminAsignDriverVehicle.html'>Assign</a>";
 } 
  }else{
-      echo" driver has a vehicle assigned: <a href= 
-      'adminAsignDriverVehicle.html'>assign another driver</a>";
+      echo" driver assigned vehicle already: <a href= 
+      'adminAsignDriverVehicle.html'>Assign</a>";
  }
 }else{
       echo"driver doesn't exist";
