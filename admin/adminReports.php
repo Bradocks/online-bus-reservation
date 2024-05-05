@@ -21,7 +21,7 @@ $userName=$_SESSION['userName']
         </header>
         <main>
         
-              <p style="color: blue; font-size:large; text-align: center;">Buy, we deliver, likewise sell, and we will**</p>
+              <p style="color: blue; font-size:large; text-align: center;">Experience a great trip, new smart world.</p>
     
                  <div id="home" style="height: 350px; ">
                    
