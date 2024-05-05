@@ -32,14 +32,14 @@ $stmt->bind_param("i",$UserId);
        provided parameter values, returns true or false */
 $stmt->execute();
 if($stmt){
-    echo" deleted sucessfully... delete another one: <a href='AdmindeleteUser.html'>delete another</a>" . "<br>";
+    echo" User deleted<a href='AdmindeleteUser.html'>Delete user</a>" . "<br>";
       
-    echo" or go back to dashBoard: <a href='AdminDashboard.php'>Dashboard</a>". "<br>";
+    echo" Back to dashBoard: <a href='AdminDashboard.php'>Dashboard</a>". "<br>";
 }
 else{
-    echo"Not deleted: <a href='AdmindeleteUser.html'>delete again</a>". "<br>";
+    echo"Failed!: <a href='AdmindeleteUser.html'>Delete user</a>". "<br>";
 }
 }else {
-    echo" user not available for delete..go back to DashBoard: <a href='AdminDashboard.php'>Dashboard</a>". "<br>";
+    echo" User not found <a href='AdminDashboard.php'>Dashboard</a>". "<br>";
 }
 $conn->close();
