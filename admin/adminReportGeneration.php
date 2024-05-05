@@ -162,36 +162,35 @@ if($result->num_rows>0) {
 }
 }
 
-
-function list_of_bookings($conn){
-  //mysqli query to the database to select all from the staff table
- $staff="select * from bookings";
- /* executes the SQL query using the database connection represented by $conn using query mysqli method
- and stores the result in the $result variable. */
-  $result=$conn->query($staff);
- //Check  if the query result has any rows by ensuring the number of rows is more than 0 using num_rows
- if($result->num_rows>0) {
-   // setting table with a border attribute of '1'
-   echo"<a href='adminReports.php'>back</a>";
-     echo"<table border='1'>";
-     //table header row 
-     echo" <tr> <th>bookingId</th> <th>passengerId</th> <th>departure/th> <th>destination</th> 
-     <th>category</th> <th>vehicleId</th><th>charges</th> ";
-     //fetch_assoc() method is a function used in PHP to fetch a single row of result set from a MySQL database query as an associative array
-       while($row=$result->fetch_assoc()){
+ //vehicles
+ //a function taking  $conn parameter that provides connection to the database
+    function list_of_vehicles($conn){
+ //mysqli query to select all from table vehicle
+        $vehicles="select * from vehicle";
+        /* executes the SQL query using the database connection represented by $conn using query mysqli method
+and stores the result in the $result variable. */
+         $result=$conn->query($vehicles);
         
-         /* presenting the result in table data cells and each database row to a different table row using while by looping through each row 
-         of the result set returned by the SQL query. Inside the loop: */
-    echo "<tr><td>".$row['bookingId']."</td><td>".$row['passengerId']."</td><td>".$row['departure']."</td><td>". $row['destination']."</td><td>".
-    ."</td><td>".$row['category']."</td><td>". $row['vehicleId']."</td><td>".$row['charges']. "</td></tr>".
-     "<br>";
-       }
-  
- }
- }
- 
+        if($result->num_rows>0) {
+          echo"<a href='adminReports.php'>back</a>";
+             // setting table with a border attribute of '1'
+    echo"<table border='1'>";
+    //table header row 
+            echo" <tr> <th> vehicleId</th> <th>plateNo</th> <th> type</th> <th>capacity</th> <th> state</th> 
+            <th>driverId</th> </tr> ";
+            //fetch_assoc() method is a function used in PHP to fetch a single row of result set from a MySQL database query as an associative array
+              while($row=$result->fetch_assoc()){
+                /* presenting the result in table data cells and each database row to a different table row using while by looping through each row 
+        of the result set returned by the SQL query. Inside the loop: */
+           echo "<tr><td>". $row['vehicleId']."</td><td>". $row['plateNo']."</td><td>".  $row['type']."</td><td>".  
+            $row['capacity']."</td><td>". $row['state']."</td><td>". $row['driverId']. "</td></tr>".
+            "<br>";
+              }
+         
+        }
+        }
 
-//User reports
+ //User reports
 //a function taking  $conn parameter that provides connection to the database
 function list_of_users($conn){
  //mysqli query to the data base to select all from user table
@@ -221,32 +220,38 @@ and stores the result in the $result variable. */
     }
      
 
-    //a function taking  $conn parameter that provides connection to the database
-    function list_of_vehicles($conn){
- //mysqli query to select all from table vehicle
-        $vehicles="select * from vehicle";
-        /* executes the SQL query using the database connection represented by $conn using query mysqli method
-and stores the result in the $result variable. */
-         $result=$conn->query($vehicles);
+
+function list_of_bookings($conn){
+  //mysqli query to the database to select all from the staff table
+ $staff="select * from bookings";
+ /* executes the SQL query using the database connection represented by $conn using query mysqli method
+ and stores the result in the $result variable. */
+  $result=$conn->query($staff);
+ //Check  if the query result has any rows by ensuring the number of rows is more than 0 using num_rows
+ if($result->num_rows>0) {
+   // setting table with a border attribute of '1'
+   echo"<a href='adminReports.php'>back</a>";
+     echo"<table border='1'>";
+     //table header row 
+     echo" <tr> <th>bookingId</th> <th>passengerId</th> <th>departure/th> <th>destination</th> 
+     <th>category</th> <th>vehicleId</th><th>charges</th> ";
+     //fetch_assoc() method is a function used in PHP to fetch a single row of result set from a MySQL database query as an associative array
+       while($row=$result->fetch_assoc()){
         
-        if($result->num_rows>0) {
-          echo"<a href='adminReports.php'>back</a>";
-             // setting table with a border attribute of '1'
-    echo"<table border='1'>";
-    //table header row 
-            echo" <tr> <th> vehicleId</th> <th>plateNo</th> <th> type</th> <th>capacity</th> <th> state</th> 
-            <th>driverId</th> </tr> ";
-            //fetch_assoc() method is a function used in PHP to fetch a single row of result set from a MySQL database query as an associative array
-              while($row=$result->fetch_assoc()){
-                /* presenting the result in table data cells and each database row to a different table row using while by looping through each row 
-        of the result set returned by the SQL query. Inside the loop: */
-           echo "<tr><td>". $row['vehicleId']."</td><td>". $row['plateNo']."</td><td>".  $row['type']."</td><td>".  
-            $row['capacity']."</td><td>". $row['state']."</td><td>". $row['driverId']. "</td></tr>".
-            "<br>";
-              }
-         
-        }
-        }
+         /* presenting the result in table data cells and each database row to a different table row using while by looping through each row 
+         of the result set returned by the SQL query. Inside the loop: */
+    echo "<tr><td>".$row['bookingId']."</td><td>".$row['passengerId']."</td><td>".$row['departure']."</td><td>". $row['destination']."</td><td>".
+    ."</td><td>".$row['category']."</td><td>". $row['vehicleId']."</td><td>".$row['charges']. "</td></tr>".
+     "<br>";
+       }
+  
+ }
+ }
+ 
+
+
+
+    
        //a function taking  $conn parameter that provides connection to the database
         function list_of_passenger($conn){
  //mysqli query to select all from table passenger
