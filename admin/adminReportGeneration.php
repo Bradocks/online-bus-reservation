@@ -53,84 +53,6 @@ if(isset($_GET['type'])){
 
     }
 }
-/* The isset($_POST) function checks if the $_POST superglobal array contains any data.
- If data has been sent via POST, this condition evaluates to true else it evaluates to false, it's a boolean. the $_POST superglobal 
- array contains data submitted via an HTML form using the POST method, which allows PHP to access form data. */
-elseif(isset($_POST)){
-  //assigns the value of the 'category' parameter sent via POST to the variable $category.
-    $category=$_POST['category'];
-    //starts a switch statement based on the value of the 'category' parameter received via POST
-    switch($category){
-
-
-      //join reports case
-        case "booking":
-          //call the function if its==='category' parameter
-            bookingDetails($conn);
-            break;
-        case "passenger":
-          //call the function if its==='category' parameter
-            passengerActivities($conn);
-           break;
-            break;
-        case "driver":
-          //call the function if its==='category' parameter
-            DriverActivities($conn);
-            break;
-
-            
-            //filter reports case
-      
-         case "vehicleId":
-          //call the function if its==='category' parameter
-               list_of_itemByvehicleId($conn);
-              break;
-          
-         case "state": 
-          //call the function if its==='category' parameter
-                list_of_bookingBystate($conn);
-               break;
-         case "departure":
-          //call the function if its==='category' parameter
-                list_of_bookingBydeparture($conn);
-               break;
-         case "destination":
-          //call the function if its==='category' parameter
-                list_of_bookingBydestination($conn);
-               break;
-          case "category":
-            //call the function if its==='category' parameter
-                list_of_bookingBycategory($conn);
-               break;
-         case "route":
-          //call the function if its==='category' parameter
-                list_of_bookingByroute($conn);
-               break;
-         case "charges":
-          //call the function if its==='category' parameter
-                list_of_bookingBycharges($conn);
-               break;
-          case "time":
-            //call the function if its==='category' parameter
-                list_of_bookingsBytime($conn);
-               break;
-
-               //timely reports
-         case "date":
-            //call the function if its==='category' parameter
-                bookingsByDate($conn);
-               break;
-
-          case "Month":
-            //call the function if its==='category' parameter
-            bookingsByMonth($conn);
-               break;
-
-           case "Year":
-             //call the function if its==='category' parameter
-             bookingsByYear($conn);
-                break;
-    }
 
 }
 //staff  ##simple reports 
@@ -162,7 +84,7 @@ if($result->num_rows>0) {
 }
 }
 
- //vehicles
+ //vehicle reports
  //a function taking  $conn parameter that provides connection to the database
     function list_of_vehicles($conn){
  //mysqli query to select all from table vehicle
