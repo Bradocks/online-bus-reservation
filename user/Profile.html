@@ -6,7 +6,7 @@
   </head>
   <body>
     <div
-      id="frm"
+      id="form"
       style="background-color: #f3e8eb; width: 1000px; height: auto; border-radius: 30px;"
       class="profile-container"
     >
@@ -27,9 +27,9 @@
 
       <p>Username :<?php echo $userName; ?></p>
 
-      <p>National ID :<?php echo $IDNO; ?></p>
+      <p>National ID :<?php echo $IdNo; ?></p>
 
-      <p>Date of Birth :<?php echo $DtOfBth; ?></p>
+      <p>Date of Birth :<?php echo $DOB; ?></p>
 
       <p>Gender :<?php echo $gender; ?></p>
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>adminreports </title>
+        <link rel="stylesheet" href="form.css">
+    </head>
+    <body>
+     <div> 
+ 
+        <form  method="POST" action="adminReportGeneration.php" onsubmit="return NotNullAndNan ()">
+            <p style="text-align: center;">Passenger Activities</p>
+         
+        <label>Enter passenger Id</label>
+        <input type="hidden"   name="category" value="passenger">
+          <input type="text"  id="searchid" name="searchid"></textarea>
+        </br>
+
+           <button type="submit" >submit</button><br>
+           <br> 
+           <a href="adminReports.php">back</a>  
+        </form>
+                  
+     </div>
+     <script src="validate.js"></script>
+    </body>
+</html>
