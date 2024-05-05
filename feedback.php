@@ -3,19 +3,18 @@
 session_start(); 
 //estalish connnection 
 $servername="localhost";
-$username="Newton";
-$password="database@123";
-$dbname="parceldelivery";
+$username="root";
+$password="root";
+$dbname=" busreservation";
 $conn=new mysqli($servername,$username,$password,$dbname); // using the php new mysqli function to establish a connection.
 
-/* Check if the connection to the database was successful usinh connect_error if there is an connect_error the error will be 
-displayed and execution will be terminited by the die function. */
+/* Check if the connection to the database was successful using connect_error if there is an connect_error the error will be 
+displayed and execution will be terminated by the die function. */
  if ($conn->connect_error)  {
-       die ("connection failled:". $conn->connect_error); // Terminate script execution if the connection fails
+       die ("connection failed:". $conn->connect_error); // Terminate script execution if the connection fails
         
 }  
 // process  form data from the post request and set the collected data to php variable for use in the php script
-         $Domain=$_POST['Domain'];
  
        $Feedback=$_POST['Feedback'];
   //use session variable $_SESSION['userId'] to get $userID
@@ -30,9 +29,9 @@ displayed and execution will be terminited by the die function. */
        $role= $row['role'];
         if($role){ 
            // an INSERT query that inserts values using placholders ?  
-       $stmt= $conn->prepare("INSERT INTO feedback(domain,source,feedBack) VALUES (?,?,?)");
+       $stmt= $conn->prepare("INSERT INTO feedback(feedBack) VALUES (?)");
        //The bind_param() method binds variables to the placeholders in the SQL query.
-       $stmt->bind_param("sss",$Domain,$role,$Feedback);
+       $stmt->bind_param("s",$Feedback);
        /* sends the query to the database server for execution with the 
        provided parameter values, returns true or false */
        $stmt->execute();
@@ -42,13 +41,10 @@ displayed and execution will be terminited by the die function. */
             case "client":
                   /* header() function in PHP is used to send raw HTTP headers to the client,allowing 
     you to perform various tasks such as redirecting the user to anotherpage.  */
-                header("location:clientsDashboard.php");
+                header("location:passengerDashboard.php");
                 break;
                 case "driver":
-                header("location:driversDashboard.php");
-                break;
-                case "customerCare":
-                header("location:customercareDashboard.php");
+                header("location:driverDashboard.php");
                 break;
                 case "admin":
                 header("location:AdminDashboard.php");
