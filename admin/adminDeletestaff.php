@@ -32,14 +32,14 @@ $stmt->bind_param("i",$staffId);
        provided parameter values, returns true or false */
 $stmt->execute();
 if($stmt){
-    echo" deleted sucessfully... delete another one: <a href='AdmindeleteStaff.html'>delete another</a>" . "<br>";
+    echo" Staff deleted<a href='AdmindeleteStaff.html'>delete staff</a>" . "<br>";
       
-    echo" or go back to dashBoard: <a href='AdminDashboard.php'>Dashboard</a>". "<br>";
+    echo" Back to dashBoard: <a href='AdminDashboard.php'>Dashboard</a>". "<br>";
 }
 else{
-    echo"Not deleted: <a href='AdmindeleteStaff.html'>delete again</a>". "<br>";
+    echo"Failed: <a href='AdmindeleteStaff.html'>delete again</a>". "<br>";
 }
 }else {
-    echo" staff not available for delete..go back to DashBoard: <a href='AdminDashboard.php'>Dashboard</a>". "<br>";
+    echo" Staff not found <a href='AdminDashboard.php'>Dashboard</a>". "<br>";
 }
 $conn->close();
