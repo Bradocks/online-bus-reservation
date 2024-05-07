@@ -1,0 +1,129 @@
+.driver_container {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        font-size: 32px;
+    }
+
+    .passenger-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .passenger-nav-details {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 5rem;
+    }
+    
+    .nav-list {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        list-style-type: none;
+        gap: 30px;
+    }
+
+
+    .search_driver {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        button {
+            padding: 1.5rem;
+            width: 10rem;
+            border-radius: 20px;
+            border: none;
+            color: white;
+            background-color: black;
+        }
+
+        .search_img {
+            position: absolute;
+            height: 30px;
+            padding-top: .5rem;
+            padding-left: 1rem;
+            color: gray;
+        }
+
+        .icon {
+            padding: 10px;
+            min-width: 40px;
+            color: black;
+        }
+
+        #driver_id {
+            height: 3rem;
+            border-radius: 20px;
+            border: 1px solid gray;
+            width: 20rem;
+            padding-left: 3rem;
+        }
+    }
+
+    .driver_map {
+        margin-top: 4rem;
+        width: 100%;
+
+        .driver_map_image {
+            width: 100%;
+            border-radius: 30px;
+            background-size: contain;
+            height: 600px;
+        }
+    }
+
+    .driver_bus_details {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+        display: flex;
+        flex-direction: row;
+        border: 1px solid black;
+        border-radius: 20px;
+        padding: 3rem;
+        gap: 2rem;
+
+        #bus_icon {
+            height: 200px;
+            border-radius: 20px;
+        }
+
+        .bus_details {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+
+            .bus_details_header {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                h2 {
+                    margin: 0;
+                }
+            }
+
+            .car_credentials {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                height: 150px;
+                span {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
