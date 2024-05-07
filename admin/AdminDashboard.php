@@ -68,14 +68,7 @@ $userName = $_SESSION['userName']
           style="height: 900px; width: 100%"
         />
       </div>
-   <!-- <header>
-        <section><img src="../user/logo.png" alt="" style="height: 100px;"></section>
-        <section style=" background-color: rgb(143, 113, 113);"></section>
-        <section style="margin-top: 2rem;"> Username:<?php echo $userName; ?>
-            <br>
-            ID no:<?php echo $userId; ?>
-        </section>
-    </header>-->
+  
 
     <footer class="footer">
         <h2>Contact Us</h2>
