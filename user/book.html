@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>user account </title>
+  <link rel="stylesheet" href="../form.css">
+
+</head>
+
+<body>
+
+  <form method="POST" action="booking.php" onsubmit="return bookingValidation()">
+    <div class="form-book-container">
+      
+      <div class="booking-details">
+        <p style="text-align: center;">Booking details</p>
+        <label>Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Kiyotaka Ayanokoji" required><br>
+        <label>National number(ID)</label>
+        <input type="text" id="IdNo" name="IdNo" required placeholder="89034582"><br>
+        <label>MobileNumber</label>
+        <input type="text" id="mobileNumber" name="mobileNumber" placeholder="0799060221" required><br>
+        <label>Email</label>
+        <input type="text" id="email" name="email" required placeholder="newEmail@gmail.com"><br>
+        <label>Date of Departure</label>
+        <input type="text" name="date_of_departure" id="departure_date" placeholder="2024-12-03" required>
+        <label>Departure Location</label>
+        <input type="text" name="place_of_departure" id="current_location" required placeholder="Nairobi">
+        <label>Destination Location</label>
+        <input type="text" id="destination" name="destination" required placeholder="Czechia"><br>
+        <label>Time</label>
+        <select name="time" id="departure_time" required>
+          <option value="*" hidden>Select Time</option>
+          <option value="am">8 am</option>
+          <option value="pm">10 pm</option>
+        </select>      
+      </div>
+    </div>
+    <div style="text-align: center;">
+      <button type="submit">submit</button>
+    </div>
+    </div>
+
+  </form>
+
+  <script src="../js/registration.js"></script>
+</body>
+
+</html>
