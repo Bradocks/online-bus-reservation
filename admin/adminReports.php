@@ -70,7 +70,7 @@ $userName=$_SESSION['userName']
                        
                         <li> 
                         passenger reports:
-                        <a href="adminReportGeneratoin.php?type=listOfpassengers">list of senders</a>
+                        <a href="adminReportGeneration.php?type=listOfpassengers">list of senders</a>
                         <br></br>
                         </li>
                         
