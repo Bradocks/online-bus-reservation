@@ -1,0 +1,259 @@
+/*header stling */
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+}
+
+.user_auth {
+    display: flex;
+    gap: 25px;
+    height: 40px;
+}
+
+.admin-control {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    background-color: #F3E8EB;
+    height: 400px;
+    margin-top: 3rem;
+    border-radius: 30px;
+    text-transform: capitalize;
+}
+
+/*section styles */
+section {
+    padding: 20px;
+    /* Add padding inside the section with 20px */
+    border-radius: 8px;
+    /* Set border radius to create rounded corners */
+    color: black;
+    /* Set text color to white*/
+    text-align: center;
+    /* have the text aligned at the center */
+    line-height: 2rem;
+}
+
+/* Styling for elements with class contact us */
+.contact_us {
+    display: grid;
+    /* Use grid layout */
+    grid-template-columns: 1fr 1fr 1fr;
+    /* Divide the grid into 3 columns */
+    gap: 10px;
+    /* Set gap between grid items of 10px*/
+    /*padding: 10px; /* Add padding inside the element distance between the wall and thecontent */
+    height: 140px;
+    /* Set height of the element to 70px */
+
+}
+.image-item {
+    border-radius: 30px;
+    background-size: contain;
+}
+
+.dash-image-container {
+    width: 100%;
+}
+
+/* Styling for element with id reach */
+#reach {
+
+    padding: 20px;
+    /* Add padding inside the element distance between the wall and the content */
+    border-radius: 4px;
+    /* Set border radius to create rounded corners */
+    text-align: center;
+    /* Center align text */
+}
+
+/* Footer styling */
+footer {
+    color: black;
+    /* Set text color to white*/
+    text-align: center;
+    /* Center align text */
+    line-height: 1rem;
+
+
+}
+
+/* Styling for element with id copy */
+#copy {
+    color: black;
+    /* Set text color */
+
+
+}
+
+/* Body styling */
+body {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Poppins",sans-serif;
+}
+
+button {
+    background-color: #433E49;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+table {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+th,
+td {
+    border: none;
+    border-radius: 10px;
+    text-align: left;
+    color: white;
+    padding: 8px;
+}
+
+th {
+    background-color: #433E49;
+}
+
+.about_us_section {
+    padding-top: 1rem;
+    font-size: 20px;
+}
+
+address {
+    line-height: 1.5rem;
+}
+
+#slideshow {
+    overflow: hidden;
+    height: 510px;
+    width: 728px;
+    margin: 0 auto;
+}
+ 
+ 
+.slide {
+    float: left;
+    height: 510px;
+    width: 728px;
+}
+ 
+ 
+.slide-wrapper {
+    width: calc(728px * 4);
+    animation: slide 10s ease infinite;
+}
+ 
+ 
+@keyframes slide {
+     
+    20% {
+        margin-left: 0px;
+    }
+    40% {
+        margin-left: calc(-728px * 1);
+    }
+    60% {
+        margin-left: calc(-728px * 2);
+    }
+    80% {
+        margin-left: calc(-728px * 3);
+    }
+}
+
+.passenger-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.passenger-nav-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5rem;
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style-type: none;
+    gap: 30px;
+}
+
+.nav-list li a {
+    background-color: #433E49;
+    padding: 20px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.passenger_container {
+    h2 {
+        margin-top: 5rem;
+        font-size: 30px;
+        font-family: "Poppins",sans-serif;
+    }
+}
+
+.admin-control {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dropdown-toggle {
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: black;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;  /* Ensure dropdown is on top */
+  }
+  
+  .dropdown-menu li {
+    padding: 5px 10px;
+  }
+  
+  .dropdown-menu a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .admin-control table th:first-child,
+  .admin-control table th:nth-child(2),
+  .admin-control table th:nth-child(3) {
+    position: relative;
+  }
+  
