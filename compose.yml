@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./app
+    container_name: php-web-app
+    volumes:
+      - ./app:/var/www/html/
+    ports:
+      - "50000:80"
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    build:
+      context: ./db
+    container_name: mysql-db
+    volumes:
+      - ./db/db_data:/var/lib/mysql:rw
+      - ./db/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
+      - ./db/dump.sql:/data/dump.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: busreservation
+      MYSQL_USER: sample
+      MYSQL_PASSWORD: root
+    ports:
+      - "33060:3306"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db_data:
