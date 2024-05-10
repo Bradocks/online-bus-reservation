@@ -32,6 +32,20 @@ services:
     networks:
       - app-network
 
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 880:80
+    environment:
+      PMA_HOST: mysql-db
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: busreservation
+      MYSQL_USER: sample
+      MYSQL_PASSWORD: root
+    networks:
+      - app-network
+
 networks:
   app-network:
     driver: bridge

@@ -1,36 +1,31 @@
--- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: busreservation
--- ------------------------------------------------------
--- Server version	8.0.36
+-- Host: mysql-db
+-- Generation Time: May 10, 2024 at 08:54 AM
+-- Server version: 8.0.37
+-- PHP Version: 8.2.18
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */
 ;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */
 ;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */
 ;
-/*!50503 SET NAMES utf8mb4 */
+/*!40101 SET NAMES utf8mb4 */
 ;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */
-;
-/*!40103 SET TIME_ZONE='+00:00' */
-;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */
-;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */
-;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */
-;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */
-;
+--
+-- Database: `busreservation`
+--
+
+-- --------------------------------------------------------
 --
 -- Table structure for table `booking`
 --
-DROP TABLE IF EXISTS `booking`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */
-;
-/*!50503 SET character_set_client = utf8mb4 */
-;
+
 CREATE TABLE `booking` (
     `bookingid` int NOT NULL,
     `PassengerId` int DEFAULT NULL,
@@ -44,21 +39,27 @@ CREATE TABLE `booking` (
     `PaymentMethod` varchar(20) DEFAULT NULL,
     `PaymentStatement` varchar(70) DEFAULT NULL,
     `paymentDetail` varchar(20) DEFAULT NULL,
-    `ticketCode` int DEFAULT NULL,
-    PRIMARY KEY (`bookingid`),
-    KEY `passengerId` (`PassengerId`),
-    KEY `item_ibfk_2` (`vehicleId`),
-    CONSTRAINT `item_ibfk_2` FOREIGN KEY (`vehicleId`) REFERENCES `vehicle` (`vehicleId`)
+    `ticketCode` varchar(10) DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */
-;
 --
 -- Dumping data for table `booking`
 --
-LOCK TABLES `booking` WRITE;
-/*!40000 ALTER TABLE `booking` DISABLE KEYS */
-;
-INSERT INTO `booking`
+
+INSERT INTO `booking` (
+        `bookingid`,
+        `PassengerId`,
+        `vehicleId`,
+        `departure`,
+        `destination`,
+        `category`,
+        `dateTime`,
+        `route`,
+        `charges`,
+        `PaymentMethod`,
+        `PaymentStatement`,
+        `paymentDetail`,
+        `ticketCode`
+    )
 VALUES (
         1,
         2,
@@ -88,18 +89,57 @@ VALUES (
         NULL,
         'paid',
         NULL
+    ),
+    (
+        3,
+        12,
+        1,
+        'Nakuru',
+        'Narok',
+        '',
+        '2024-05-10 08:09:47',
+        'Nakuru-Narok',
+        2000,
+        'PESAPAL',
+        NULL,
+        NULL,
+        'CHf3AKK2'
+    ),
+    (
+        4,
+        12,
+        4,
+        'Nakuru',
+        'Narok',
+        NULL,
+        '2024-05-10 08:10:06',
+        'Nakuru-Narok',
+        2000,
+        'PESAPAL',
+        NULL,
+        NULL,
+        'hefkJyAx'
+    ),
+    (
+        5,
+        12,
+        4,
+        'Nakuru',
+        'Narok',
+        NULL,
+        '2024-05-10 08:11:03',
+        'Nakuru-Narok',
+        2000,
+        'PESAPAL',
+        NULL,
+        NULL,
+        'f9dmLewL'
     );
-/*!40000 ALTER TABLE `booking` ENABLE KEYS */
-;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 --
 -- Table structure for table `customer`
 --
-DROP TABLE IF EXISTS `customer`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */
-;
-/*!50503 SET character_set_client = utf8mb4 */
-;
+
 CREATE TABLE `customer` (
     `customerId` int NOT NULL,
     `customerName` varchar(50) DEFAULT NULL,
@@ -108,18 +148,22 @@ CREATE TABLE `customer` (
     `customerEmail` varchar(60) DEFAULT NULL,
     `customerLocation` text,
     `customerDOB` date DEFAULT NULL,
-    `customerGender` varchar(20) DEFAULT NULL,
-    PRIMARY KEY (`customerId`)
+    `customerGender` varchar(20) DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */
-;
 --
 -- Dumping data for table `customer`
 --
-LOCK TABLES `customer` WRITE;
-/*!40000 ALTER TABLE `customer` DISABLE KEYS */
-;
-INSERT INTO `customer`
+
+INSERT INTO `customer` (
+        `customerId`,
+        `customerName`,
+        `customerIdNo`,
+        `customerPhoneNo`,
+        `customerEmail`,
+        `customerLocation`,
+        `customerDOB`,
+        `customerGender`
+    )
 VALUES (
         1,
         'Brian',
@@ -130,82 +174,61 @@ VALUES (
         '1980-12-06',
         'Male'
     );
-/*!40000 ALTER TABLE `customer` ENABLE KEYS */
-;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 --
 -- Table structure for table `feedback`
 --
-DROP TABLE IF EXISTS `feedback`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */
-;
-/*!50503 SET character_set_client = utf8mb4 */
-;
+
 CREATE TABLE `feedback` (
-    `feedBackId` int NOT NULL AUTO_INCREMENT,
+    `feedBackId` int NOT NULL,
     `dateTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
     `source` varchar(20) DEFAULT NULL,
-    `feedBack` text,
-    PRIMARY KEY (`feedBackId`)
-) ENGINE = InnoDB AUTO_INCREMENT = 2 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */
-;
+    `feedBack` text
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 --
 -- Dumping data for table `feedback`
 --
-LOCK TABLES `feedback` WRITE;
-/*!40000 ALTER TABLE `feedback` DISABLE KEYS */
-;
-INSERT INTO `feedback`
+
+INSERT INTO `feedback` (`feedBackId`, `dateTime`, `source`, `feedBack`)
 VALUES (
         1,
         '2024-04-10 09:10:00',
         'passenger',
         'poor driving'
     );
-/*!40000 ALTER TABLE `feedback` ENABLE KEYS */
-;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 --
 -- Table structure for table `passenger`
 --
-DROP TABLE IF EXISTS `passenger`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */
-;
-/*!50503 SET character_set_client = utf8mb4 */
-;
+
 CREATE TABLE `passenger` (
     `ticketId` int NOT NULL,
     `customerId` int NOT NULL,
     `passengerId` int DEFAULT NULL,
     `passengerName` varchar(50) DEFAULT NULL,
     `passengerIdNo` int DEFAULT NULL,
-    `passengerPhoneNo` int DEFAULT NULL,
-    PRIMARY KEY (`ticketId`)
+    `passengerPhoneNo` int DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */
-;
 --
 -- Dumping data for table `passenger`
 --
-LOCK TABLES `passenger` WRITE;
-/*!40000 ALTER TABLE `passenger` DISABLE KEYS */
-;
-INSERT INTO `passenger`
+
+INSERT INTO `passenger` (
+        `ticketId`,
+        `customerId`,
+        `passengerId`,
+        `passengerName`,
+        `passengerIdNo`,
+        `passengerPhoneNo`
+    )
 VALUES (1, 1, 1, 'Brian', 39402340, 796289156);
-/*!40000 ALTER TABLE `passenger` ENABLE KEYS */
-;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 --
 -- Table structure for table `staff`
 --
-DROP TABLE IF EXISTS `staff`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */
-;
-/*!50503 SET character_set_client = utf8mb4 */
-;
+
 CREATE TABLE `staff` (
-    `staffId` int NOT NULL AUTO_INCREMENT,
+    `staffId` int NOT NULL,
     `name` varchar(40) DEFAULT NULL,
     `userName` varchar(20) DEFAULT NULL,
     `IdNO` int DEFAULT NULL,
@@ -213,18 +236,23 @@ CREATE TABLE `staff` (
     `email` varchar(50) DEFAULT NULL,
     `role` varchar(40) DEFAULT NULL,
     `gender` varchar(10) DEFAULT NULL,
-    `DOB` date DEFAULT NULL,
-    PRIMARY KEY (`staffId`)
-) ENGINE = InnoDB AUTO_INCREMENT = 11 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */
-;
+    `DOB` date DEFAULT NULL
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 --
 -- Dumping data for table `staff`
 --
-LOCK TABLES `staff` WRITE;
-/*!40000 ALTER TABLE `staff` DISABLE KEYS */
-;
-INSERT INTO `staff`
+
+INSERT INTO `staff` (
+        `staffId`,
+        `name`,
+        `userName`,
+        `IdNO`,
+        `phoneNO`,
+        `email`,
+        `role`,
+        `gender`,
+        `DOB`
+    )
 VALUES (
         1,
         'Michael',
@@ -335,68 +363,62 @@ VALUES (
         'Female',
         '1989-08-15'
     );
-/*!40000 ALTER TABLE `staff` ENABLE KEYS */
-;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 --
 -- Table structure for table `ticket`
 --
-DROP TABLE IF EXISTS `ticket`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */
-;
-/*!50503 SET character_set_client = utf8mb4 */
-;
+
 CREATE TABLE `ticket` (
     `ticketId` int NOT NULL,
     `passengerName` varchar(50) DEFAULT NULL,
     `passengerID` int DEFAULT NULL,
-    `ticketCode` int DEFAULT NULL,
-    PRIMARY KEY (`ticketId`)
+    `ticketCode` int DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */
-;
 --
 -- Dumping data for table `ticket`
 --
-LOCK TABLES `ticket` WRITE;
-/*!40000 ALTER TABLE `ticket` DISABLE KEYS */
-;
-INSERT INTO `ticket`
+
+INSERT INTO `ticket` (
+        `ticketId`,
+        `passengerName`,
+        `passengerID`,
+        `ticketCode`
+    )
 VALUES (1, 'Brian', 1, 6752),
     (4, 'Peter', 2, 6754);
-/*!40000 ALTER TABLE `ticket` ENABLE KEYS */
-;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 --
 -- Table structure for table `user`
 --
-DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */
-;
-/*!50503 SET character_set_client = utf8mb4 */
-;
+
 CREATE TABLE `user` (
-    `userId` int NOT NULL AUTO_INCREMENT,
+    `userId` int NOT NULL,
     `name` varchar(50) DEFAULT NULL,
     `mobileNumber` int DEFAULT NULL,
     `email` varchar(50) DEFAULT NULL,
     `role` varchar(50) DEFAULT NULL,
-    `userName` varchar(50) NOT NULL,
-    `password` varchar(50) DEFAULT NULL,
+    `userName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+    `password` varchar(255) DEFAULT NULL,
     `IdNO` int DEFAULT NULL,
     `DOB` varchar(20) DEFAULT NULL,
-    `gender` varchar(10) DEFAULT NULL,
-    PRIMARY KEY (`userId`)
-) ENGINE = InnoDB AUTO_INCREMENT = 11 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */
-;
+    `gender` varchar(10) DEFAULT NULL
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 --
 -- Dumping data for table `user`
 --
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */
-;
-INSERT INTO `user`
+
+INSERT INTO `user` (
+        `userId`,
+        `name`,
+        `mobileNumber`,
+        `email`,
+        `role`,
+        `userName`,
+        `password`,
+        `IdNO`,
+        `DOB`,
+        `gender`
+    )
 VALUES (
         1,
         'Brian',
@@ -516,55 +538,153 @@ VALUES (
         33410254,
         '1992-05-11',
         'Male'
+    ),
+    (
+        11,
+        'Adams IOkode',
+        702759950,
+        'adamsokode@gmail.com',
+        'Passenger',
+        NULL,
+        '$2y$10$RRhsvc4MpH2O/eHsMqUXsegOfNAk.NYv5WOeNkzBGRYI.1dGZboG6',
+        NULL,
+        '01/01/1980',
+        'Male'
+    ),
+    (
+        12,
+        'Sample sample',
+        123451351,
+        'sample@gmail.com',
+        'Passenger',
+        NULL,
+        '$2y$10$xdGAvpGNhvsextEHxujzgeGOZvurb67zotsvPZBhRuKywlN/f/L4.',
+        NULL,
+        '01/01/1980',
+        'Male'
     );
-/*!40000 ALTER TABLE `user` ENABLE KEYS */
-;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 --
 -- Table structure for table `vehicle`
 --
-DROP TABLE IF EXISTS `vehicle`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */
-;
-/*!50503 SET character_set_client = utf8mb4 */
-;
+
 CREATE TABLE `vehicle` (
-    `vehicleId` int NOT NULL AUTO_INCREMENT,
+    `vehicleId` int NOT NULL,
     `plateNo` text,
+    `brand` varchar(200) DEFAULT NULL,
+    `model` varchar(200) DEFAULT NULL,
     `capacity` decimal(10, 0) DEFAULT NULL,
-    `driverId` int DEFAULT NULL,
-    PRIMARY KEY (`vehicleId`)
-) ENGINE = InnoDB AUTO_INCREMENT = 5 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */
-;
+    `driverId` int DEFAULT NULL
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 --
 -- Dumping data for table `vehicle`
 --
-LOCK TABLES `vehicle` WRITE;
-/*!40000 ALTER TABLE `vehicle` DISABLE KEYS */
-;
-INSERT INTO `vehicle`
-VALUES (1, 'KCT 513T', 55, 2),
-    (2, 'KDD 570Q', 55, 3),
-    (3, 'KDM 008J', 55, 5),
-    (4, 'KDA 675R', 55, 7);
-/*!40000 ALTER TABLE `vehicle` ENABLE KEYS */
-;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */
-;
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */
-;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */
-;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */
-;
+
+INSERT INTO `vehicle` (
+        `vehicleId`,
+        `plateNo`,
+        `brand`,
+        `model`,
+        `capacity`,
+        `driverId`
+    )
+VALUES (1, 'KCT 513T', NULL, NULL, 55, 12),
+    (2, 'KDD 570Q', NULL, NULL, 55, 12),
+    (3, 'KDM 008J', NULL, NULL, 55, 5),
+    (4, 'KDA 675R', NULL, NULL, 55, 7);
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `booking`
+--
+ALTER TABLE `booking`
+ADD PRIMARY KEY (`bookingid`),
+    ADD KEY `passengerId` (`PassengerId`),
+    ADD KEY `item_ibfk_2` (`vehicleId`);
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+ADD PRIMARY KEY (`customerId`);
+--
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+ADD PRIMARY KEY (`feedBackId`);
+--
+-- Indexes for table `passenger`
+--
+ALTER TABLE `passenger`
+ADD PRIMARY KEY (`ticketId`);
+--
+-- Indexes for table `staff`
+--
+ALTER TABLE `staff`
+ADD PRIMARY KEY (`staffId`);
+--
+-- Indexes for table `ticket`
+--
+ALTER TABLE `ticket`
+ADD PRIMARY KEY (`ticketId`);
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+ADD PRIMARY KEY (`userId`);
+--
+-- Indexes for table `vehicle`
+--
+ALTER TABLE `vehicle`
+ADD PRIMARY KEY (`vehicleId`);
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `booking`
+--
+ALTER TABLE `booking`
+MODIFY `bookingid` int NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 6;
+--
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+MODIFY `feedBackId` int NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 2;
+--
+-- AUTO_INCREMENT for table `staff`
+--
+ALTER TABLE `staff`
+MODIFY `staffId` int NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 11;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+MODIFY `userId` int NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 13;
+--
+-- AUTO_INCREMENT for table `vehicle`
+--
+ALTER TABLE `vehicle`
+MODIFY `vehicleId` int NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 5;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `booking`
+--
+ALTER TABLE `booking`
+ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`vehicleId`) REFERENCES `vehicle` (`vehicleId`);
+COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
 ;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */
 ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */
 ;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */
-;
--- Dump completed on 2024-05-02 11:46:14

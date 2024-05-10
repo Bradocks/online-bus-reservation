@@ -8,7 +8,7 @@ function formValidation() {
   var userName = document.getElementById("userName").value;
   var password = document.getElementById("password").value;
   var confirmPassword = document.getElementById("confirmPassword").value;
-  var IDNO = document.getElementById("IDNO").value;
+  var IDNO = document.getElementById("idNo").value;
   var date_of_birth = document.getElementById("DOB").value;
   var role = document.getElementById("role").value;
   var gender = document.getElementById("gender").value;

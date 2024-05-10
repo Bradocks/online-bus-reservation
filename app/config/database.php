@@ -17,7 +17,7 @@ function connect_db()
      * displayed and execution will be terminated by the die function.
      */
     if ($conn->connect_error) {
-        echo "coection error" . $conn->connect_error; // display the connection error if it exists
+        echo "connection error" . $conn->connect_error; // display the connection error if it exists
         die("connection failed:" . $conn->connect_error); // Terminate script execution if the connection fails
     }
     return $conn;
