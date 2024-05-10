@@ -1,82 +1,43 @@
 <?php
-header("Content-Type: application/json");
-session_start();
 
-$config = array(
-    "env" => "sandbox",
-    "BusinessShortCode" => "174379",
-    "key" => "000",
-    "secret" => "00",
-    "username" => "apitest",
-    "TransactionType" => "CustomerPayBillOnline",
-    "passkey" => "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",
-    "CallBackURL" => "",
-    "AccountReference" => "SnowSnippets",
-    "TransactionDesc" => "Payment of booking done",
+require_once __DIR__ . "../../utils/integrations/Pesapal.php";
+
+$payment_details = [
+    "id" => "TESTEBO100",
+    "currency" => "KES",
+    "amount" => 100.00,
+    "description" => "Payment description goes here",
+    "callback_url" => "https://localhost:50000/user/book.php",
+    "notification_id" => "a1a6268a-4670-4045-bb8b-e03f928627ec",
+    "billing_address" => [
+        "email_address" => "john.doe@example.com",
+        "phone_number" => null,
+        "country_code" => "",
+        "first_name" => "John",
+        "middle_name" => "",
+        "last_name" => "Doe",
+        "line_1" => "",
+        "line_2" => "",
+        "city" => "",
+        "state" => "",
+        "postal_code" => null,
+        "zip_code" => null
+    ]
+];
+
+$payment_request = new PesapalAPI(
+    "qkio1BGGYAXTu2JOfm7XSXNruoZsrqEW",
+    "osGQ364R49cXKeOYSpaOnT++rHs="
 );
 
-$phone = $_POST['phone_number'];
+$payment_request->authenticate();
+$iframe = $payment_request->submit_order($payment_details)->redirect_url
+?>
 
-if (isset($_POST['submit'])) {
-    $phone = $_POST['phone_number'];
-    $amount = 1;
+<html>
 
-    # ensure that the phone number starts as 254******
-    $phone = (substr($phone, 0, 1) == "+") ? str_replace("+", "", $phone) : $phone;
-    $phone = (substr($phone, 0, 1) == "0") ? preg_replace("/^0/", "254", $phone) : $phone;
-    $phone = (substr($phone, 0, 1) == "7") ? "254{$phone}" : $phone;
+<body>
+    <iframe width="100%" height="100%" src="<?php echo $iframe ?>"></iframe>
+</body>
 
-    $access_token = ($config['env'] == "live") ? "https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials" : "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
-    $credentials = base64_encode($config['key'] . ':' . $config['secret']);
-
-    $ch = curl_init($access_token);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, ["Authorization: Basic " . $credentials]);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    $response = curl_exec($ch);
-    curl_close($ch);
-    $result = json_decode($response);
-    $token = isset($result->{'access_token'}) ? $result->{'access_token'} : "N/A";
-
-    $timestamp = date("YmdHis");
-    $password = base64_encode($config['BusinessShortCode'] . "" . $config['passkey'] . "" . $timestamp);
-
-    $curl_post_data = array(
-        "BusinessShortCode" => $config['BusinessShortCode'],
-        "Password" => $password,
-        "Timestamp" => $timestamp,
-        "TransactionType" => $config['TransactionType'],
-        "Amount" => $amount,
-        "PartyA" => $phone,
-        "PartyB" => $config['BusinessShortCode'],
-        "PhoneNumber" => $phone,
-        "CallBackURL" => $config['CallBackURL'],
-        "AccountReference" => $config['AccountReference'],
-        "TransactionDesc" => $config['TransactionDesc'],
-    );
-
-    $data_string = json_encode($curl_post_data);
-
-    $endpoint = ($config['env'] == "live") ? "https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest" : "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
-
-    $ch = curl_init($endpoint);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'Authorization: Bearer ' . $token,
-        'Content-Type: application/json'
-    ]);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    $response = curl_exec($ch);
-    curl_close($ch);
-
-    $result = json_decode($response);  #decodes the mpesa response to a json / easily readable 
-
-    $stkpushed = $result->{'ResponseCode'};
-
-
-    if ($stkpushed === "0") {
-        echo $result->{'ResponseDescription'};
-    } else {
-        echo $result->{'errorMessage'};
-    }
-}
+</html>
