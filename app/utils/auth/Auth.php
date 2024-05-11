@@ -7,12 +7,7 @@ class Auth
 
     public function __construct($conn)
     {
-
-
         session_start();  // Start the session if not already started
-
-
-
         $this->db = new BaseModel('user', $conn);  // Initialize BaseDB for the 'users' table
     }
 

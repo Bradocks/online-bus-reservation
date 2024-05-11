@@ -44,14 +44,13 @@ class BaseModel
      */
     public function get_one($id, $column = 'id')
     {
-        $sql = "SELECT * FROM {$this->table_name} WHERE {$column} = ?";
+        $sql = "SELECT * FROM `{$this->table_name}` WHERE `{$column}` = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
-
         $result = $stmt->get_result();
 
-        return $result->fetch_assoc();
+        return (object) $result->fetch_assoc();
     }
 
     private function get_param_type($params)
@@ -84,31 +83,40 @@ class BaseModel
     /**
      * @param mixed $name
      */
-    public function create($data)
+    public function create($data, $id_column = 'id')
     {
         $keys = implode(', ', array_keys($data));
         $placeholders = implode(', ', array_fill(0, count($data), '?'));
+
         $sql = "INSERT INTO {$this->table_name} ($keys) VALUES ($placeholders)";
         $stmt = $this->conn->prepare($sql);
-
-
-
         $stmt->bind_param(strtolower($this->get_param_type(array_values($data))), ...array_values($data));
-        return $stmt->execute();
+
+        if ($stmt->execute()) {
+            $id = $stmt->insert_id;  // Get the ID of the inserted record
+            return $this->get_one($id, $id_column);  // Assuming you have a method to fetch a single record by ID
+        }
+        return null;  // Return null if the insert failed
     }
 
-    public function update($id, $data)
+
+    public function update($id, $data, $id_column = 'id')
     {
         $updates = implode(', ', array_map(function ($key) {
             return "$key = ?";
         }, array_keys($data)));
 
-        $sql = "UPDATE {$this->table_name} SET $updates WHERE id = ?";
+        $sql = "UPDATE {$this->table_name} SET $updates WHERE {$id_column} = ?";
         $stmt = $this->conn->prepare($sql);
-        $data['id'] = $id; // Add id to the end of the data array for binding
-        $stmt->bind_param(str_repeat('s', count($data)), ...array_values($data));
-        return $stmt->execute();
+        $data['id'] = $id;  // Ensure 'id' is at the end of $data
+        $stmt->bind_param(strtolower($this->get_param_type(array_values($data))), ...array_values($data));
+
+        if ($stmt->execute()) {
+            return $this->get_one($id, $id_column);  // Fetch and return the updated record
+        }
+        return null;  // Return null if the update failed
     }
+
 
     public function delete($id)
     {

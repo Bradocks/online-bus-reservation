@@ -1,21 +1,33 @@
 <?php
 
+require_once __DIR__ . "/../config/database.php";
 require_once __DIR__ . "../../utils/integrations/Pesapal.php";
+require_once __DIR__ . '/../utils/orm/BaseModel.php';
+require_once __DIR__ . '/../utils/auth/Auth.php';
+
+
+$conn = connect_db();
+$session = new Auth($conn);
+
+$booking_model = new BaseModel('booking', $conn);
+$booking_id = isset($_GET['booking_id']) ? (int) $_GET['booking_id'] : null;
+$booking = $booking_model->get_one($booking_id, 'bookingid');
+
 
 $payment_details = [
-    "id" => "TESTEBO100",
+    "id" => $booking->ticketCode,
     "currency" => "KES",
-    "amount" => 100.00,
-    "description" => "Payment description goes here",
-    "callback_url" => "https://localhost:50000/user/book.php",
+    "amount" => 2,
+    "description" => "Payment for bus",
+    "callback_url" => "http://{$_SERVER['HTTP_HOST']}/user/history.php?booking_id={$booking_id}&status=PAID",
     "notification_id" => "a1a6268a-4670-4045-bb8b-e03f928627ec",
     "billing_address" => [
-        "email_address" => "john.doe@example.com",
+        "email_address" => $session->user()->email,
         "phone_number" => null,
         "country_code" => "",
-        "first_name" => "John",
+        "first_name" => $session->user()->name,
         "middle_name" => "",
-        "last_name" => "Doe",
+        "last_name" => "",
         "line_1" => "",
         "line_2" => "",
         "city" => "",
@@ -25,13 +37,20 @@ $payment_details = [
     ]
 ];
 
-$payment_request = new PesapalAPI(
-    "qkio1BGGYAXTu2JOfm7XSXNruoZsrqEW",
-    "osGQ364R49cXKeOYSpaOnT++rHs="
+$payment_request = new PesapalAPI();
+
+// Keys from https://developer.pesapal.com/api3-demo-keys.txt
+$payment_info = $payment_request->submit_order($payment_details);
+
+$booking_model->update(
+    $booking_id,
+    [
+        'PaymentStatement' => $payment_info->order_tracking_id,
+    ],
+    'bookingid'
 );
 
-$payment_request->authenticate();
-$iframe = $payment_request->submit_order($payment_details)->redirect_url
+$iframe = $payment_info->redirect_url;
 ?>
 
 <html>

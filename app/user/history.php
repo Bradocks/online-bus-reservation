@@ -1,8 +1,10 @@
 <?php
+
 // Start a session to manage the user
 require_once __DIR__ . "/../config/database.php";
 require_once __DIR__ . '/../utils/auth/Auth.php';
 require_once __DIR__ . '/../utils/orm/BaseModel.php';
+require_once __DIR__ . "../../utils/integrations/Pesapal.php";
 
 
 
@@ -11,10 +13,28 @@ $session = new Auth($conn);
 $booking_model = new BaseModel('booking', $conn);
 $row = $session->user();
 
-
 $role = $row->role;
-$bookings = $booking_model->where('PassengerId', '=', $row->userId)->get_all();
 
+
+$booking_id = isset($_GET['booking_id']) ? (int) $_GET['booking_id'] : null;
+$status = isset($_GET['status']) ? (int) $_GET['status'] : null;
+
+if (isset($booking_id) && isset($status)) {
+    $payment_request = new PesapalAPI();
+    $booking = $booking_model->get_one($booking_id, 'bookingid');
+    $payment = $payment_request->check_payment_status($_GET['OrderTrackingId']);
+    $updated_booking = $booking_model->update(
+        $booking_id,
+        [
+            'PaymentStatement' => $payment->confirmation_code,
+            'paymentDetail' => $payment->payment_status_description,
+            'PaymentMethod' => $payment->payment_method
+        ],
+        'bookingid'
+    );
+}
+
+$bookings = $booking_model->where('PassengerId', '=', $row->userId)->get_all();
 
 //set variable $role to the value of $row['role'] value
 // get history based on their roles using a switch 
@@ -34,6 +54,7 @@ switch ($role) {
             <th>charges</th>
             <th>PaymentMethod</th>
             <th>paymentDetail</th>
+            <th>X TXN Code</th>
             <th>Ticket Code</th>
             </tr>";
             /*fetch_assoc() method is a function used in PHP to fetch a single row of 
@@ -47,6 +68,7 @@ switch ($role) {
                         <td>" . $row['charges'] . " </td>
                         <td>" . $row['PaymentMethod'] . "</td>
                         <td>" . $row['paymentDetail'] . "</td>
+                        <td>" . $row['PaymentStatement'] . "</td>
                         <td>" . $row['ticketCode'] . "</td>
                     </tr>" .
                     "<br>";

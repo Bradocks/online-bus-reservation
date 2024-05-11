@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $booking_model = new BaseModel('booking', $conn);
     $vehicle_model = new BaseModel('vehicle', $conn);
 
-    $booking_model->create([
+    $booking = $booking_model->create([
         'PassengerId' => $session->user()->userId,
         'vehicleId' => $vehicle_model->random_select()->vehicleId,
         'departure' => $place_of_departure,
@@ -31,25 +31,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'charges' => 2000,
         'PaymentMethod' => 'PESAPAL',
         'ticketCode' => BaseModel::generate_id(8),
-    ]);
+    ], 'bookingid');
+
+    if (isset($booking)) {
+        header('Location: /user/payment.php?booking_id=' . $booking->bookingid);
+    } else {
+        echo "Booking did not go through";
+    }
 }
-
-
 ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>user account </title>
+    <title>Booking</title>
     <link rel="stylesheet" href="../form.css">
-
 </head>
 
 <body>
     <form method="POST" action="book.php">
         <div class="form-book-container">
-
             <div class="booking-details">
                 <p style="text-align: center;">Booking details</p>
                 <label>Full Name</label>

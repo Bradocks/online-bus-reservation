@@ -5,13 +5,14 @@ class PesapalAPI
     private $consumer_key;
     private $consumer_secret;
     private $base_url;
-    private $access_token;
+    public $access_token;
 
-    public function __construct($consumer_key, $consumer_secret, $is_sandbox = true)
+    public function __construct($consumer_key = "qkio1BGGYAXTu2JOfm7XSXNruoZsrqEW", $consumer_secret = "osGQ364R49cXKeOYSpaOnT++rHs=", $is_sandbox = true)
     {
         $this->consumer_key = $consumer_key;
         $this->consumer_secret = $consumer_secret;
         $this->base_url = $is_sandbox ? 'https://cybqa.pesapal.com/pesapalv3/' : 'https://www.pesapal.com/api/';
+        $this->authenticate();
     }
 
     public function authenticate()
@@ -103,7 +104,7 @@ class PesapalAPI
 
     public function check_payment_status($transaction_id)
     {
-        $url = $this->base_url . 'PaymentStatus/' . $transaction_id;
+        $url = "{$this->base_url}api/Transactions/GetTransactionStatus?orderTrackingId={$transaction_id}";
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $this->access_token]);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -111,6 +112,6 @@ class PesapalAPI
         if ($response === false) {
             throw new Exception('Curl error: ' . curl_error($ch));
         }
-        return json_decode($response, true);
+        return (object) json_decode($response, true);
     }
 }
