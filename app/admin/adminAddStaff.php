@@ -1,8 +1,14 @@
 <?php
 //establish connection to the database
 require_once("../config/database.php");
+require_once __DIR__ . '/../utils/orm/BaseModel.php';
+
 
 $conn = connect_db();
+$user_model = new BaseModel('user', $conn);
+$staff_model = new BaseModel('staff', $conn);
+
+
 // process  form data from the post request and set the collected data to php variable for use in the php script
 $name = $_POST['name'] . " " . $_POST['lname'];
 $mobileNumber = $_POST['mobileNumber'];
@@ -27,18 +33,34 @@ if ($count > 0) {
     echo "<p><a href='adminAddstaff.html'> choose another name</a></P>"; /* DisplayLink to direct the
        user to create an account with a different userName */
 } else {
-    //insert data about staff into database 
-    $sqladd = "INSERT INTO staff (name,userName,IdNO,phoneNO,email,role,gender,DOB)
-      VALUES (?,?,?,?,?,?,?,?)"; //QL query to insert user data into the database */
-    // a  query that inserts values using placholders ?
-    $stmt = $conn->prepare($sqladd);
-    //The bind_param() method binds variables to the placeholders in the SQL query.
-    $stmt->bind_param("ssiissss", $name, $userName, $IdNO, $mobileNumber, $email, $role, $gender, $DOB);
-    /* sends the query to the database server for execution with the 
-       provided parameter values, returns true or false */
-    $stmt->execute();
+    $password = password_hash($IdNO, PASSWORD_BCRYPT);
+
+    $staff = $staff_model->create([
+        'name' => $name,
+        'userName' => $userName,
+        'IdNO' => $IdNO,
+        'phoneNO' => $mobileNumber,  // Assuming 'phoneNO' is the key expected by the method
+        'email' => $email,
+        'role' => $role,
+        'gender' => $gender,
+        'DOB' => $DOB
+    ]);
+
+    $user = $user_model->create([
+        'name' => $name,
+        'mobileNumber' => $mobileNumber,
+        'email' => $email,
+        'role' => $role,
+        'userName' => $userName,
+        'password' => $password,    // Assuming you have a $password variable, add it here
+        'IdNO' => $IdNO,
+        'DOB' => $DOB,
+        'gender' => $gender,
+        'staff_id' => $staff->staffId     // Assuming you have a $staff_id variable, add it here
+    ]);
+
     //check if the sql query was successful by checking if it is equivalent to TRUE
-    if ($stmt) {
+    if ($staff) {
         // If the insertion is successful
         echo "Staff Added <a href='adminAddstaff.html'>Add staff</a>" . "<br>";
         echo "Back to dashBoard <a href='AdminDashboard.php'>Add staff</a>" . "<br>";
