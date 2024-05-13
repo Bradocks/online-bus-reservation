@@ -17,7 +17,7 @@ $state = $_POST['state'];
 $staff = $staff_model->update($staffId, [
     'phoneNO' => $phoneNo,
     'email' => $email,
-    'state' => $email
+    'state' => $state
 ], 'staffId');
 
 
