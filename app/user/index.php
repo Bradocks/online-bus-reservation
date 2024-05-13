@@ -36,7 +36,7 @@ if ($session->user() !== null) {
         <form method="POST" action="./login.php" onsubmit="return loginvalidate ()">
             <P style="text-align: center;">Login</P>
 
-            <label>UserName</label>
+            <label>email</label>
             <input type="text" id="userName" name="userName"><br>
 
             <label> Enter Password</label>
