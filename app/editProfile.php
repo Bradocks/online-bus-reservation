@@ -1,19 +1,8 @@
 <?php
-// Start a session to manage user
-session_start(); 
-//estalish connnection 
-$servername="localhost";
-$username="root";
-$password="root";
-$dbname="busreservation";
-$conn=new mysqli($servername,$username,$password,$dbname); // using the php new mysqli function to establish a connection.
+//establish connection to the database
+require_once("../config/database.php");
 
-/* Check if the connection to the database was successful using connect_error if there is a connect_error the error will be 
-displayed and execution will be terminated by the die function. */
- if ($conn->connect_error)  {
-       die ("connection failed:". $conn->connect_error); // Terminate script execution if the connection fails
-        
-}  
+$conn = connect_db();
 
 $userId=$_SESSION['userId'];
 

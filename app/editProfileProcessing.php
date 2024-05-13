@@ -1,19 +1,8 @@
-<?php 
-// Start a session to manage the user
-session_start(); 
+<?php
 //establish connection to the database
-$servername="localhost";
-$username="root";
-$password="root";
-$dbname="busreservation";
-$conn=new mysqli($servername,$username,$password,$dbname); // using the php new mysqli function to establish a connection.
+require_once("../config/database.php");
 
-/* Check if the connection to the database was successful using connect_error if there is a connect_error the error will be 
-displayed and execution will be terminated by the die function. */
- if ($conn->connect_error)  {
-   echo"coection error". $conn->connect_error; //display the connection error if it exists
-    die ("connection failed:". $conn->connect_error); // Terminate script execution if the connection fails
-}
+$conn = connect_db();
    // process  form data from the post request and set the collected data to php variable for use in the php script
       $name=$_POST['name'];
       $mobileNumber=$_POST['mobileNumber'];
