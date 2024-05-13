@@ -45,10 +45,7 @@ if ($session->user() !== null) {
             <select name="role" id="role">
                 <option value="Passenger">Passenger</option>
                 <option value="driver">driver</option>
-                <option value="conductor">conductor</option>
-                <option value="Cashier">Cashier</option>
                 <option value="admin">admin</option>
-                <option value="manager">manager</option>
             </select>
 
             <button type="submit">Login</button>
