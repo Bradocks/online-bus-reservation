@@ -39,7 +39,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="IDNo">ID Number</label>
-                                <input type="text" id="IDNo" name="IdNO">
+                                <input type="text" id="IdNO" name="IDNo">
                             </div>
                             <div class="form-group">
                                 <label for="mobileNumber">Mobile Number</label>
@@ -52,11 +52,11 @@
                         </div>
                         <div class="form-user-access">
                             <div class="form-group">
-                                <label for="Role">Role</label>
-                                <select name="Role" id="Role">
-                                    <option value="Passenger">Driver</option>
+                                <label for="role">Role</label>
+                                <select name="role" id="role">
+                                    <option value="Passenger">Passenger</option>
                                     <option value="Admin">Admin</option>
-                                    <option value="Driver">Customer Care</option>
+                                    <option value="Driver">driver</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -78,14 +78,78 @@
                         </div>
 
                     </div>
-                    <div style="text-align: center;">
-                        <button type="submit">Add Staff</button>
-                    </div>
-                </form>
-            </div>
 
-            <h5 style="text-align: center; color: white;"><a href="profileBack.php"
-                    style="text-decoration: none; color: black;">Back</a></h5>
+                    <div class="slideshow-container"> <!-- Container for the slideshow background -->
+                        <!-- Slides with background images -->
+                        <div class="slide fade" style="background-image: url('road1.jpeg');"></div>
+                        <div class="slide fade" style="background-image: url('photo1.jpeg');"></div>
+                        <div class="slide fade" style="background-image: url('bus2.jpeg');"></div>
+                        <div class="slide fade" style="background-image: url('bus3.jpeg');"></div>
+                        <div class="slide fade" style="background-image: url('bus4.jpeg');"></div>
+                    </div>
+
+                    <div class="form-container"> <!-- Container for the form -->
+                        <form method="POST" action="adminAddStaff.php" onsubmit="return adminAddStaff()">
+                            <h2 style="text-align: center;">Add Staff</h2>
+                            <div class="form-container-inner"> <!-- Inner container for form elements -->
+                                <div class="form-alignment">
+                                    <div class="form-group">
+                                        <label for="name">First Name</label>
+                                        <input type="text" id="name" name="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lname">Last Name</label>
+                                        <input type="text" id="lname" name="lname">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="IDNo">ID Number</label>
+                                        <input type="text" id="IDNo" name="IdNO">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="mobileNumber">Mobile Number</label>
+                                        <input type="text" id="mobileNumber" name="mobileNumber">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="text" id="email" name="email">
+                                    </div>
+                                </div>
+                                <div class="form-user-access">
+                                    <div class="form-group">
+                                        <label for="Role">Role</label>
+                                        <select name="Role" id="Role">
+                                            <option value="Passenger">Driver</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Driver">Customer Care</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="DtOfBth">Year of Birth (YYYY-MM-DD)</label>
+                                        <input type="text" id="DOB" name="DOB">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="gender">Select Gender</label>
+                                        <select name="gender" id="gender">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="userName">Username</label>
+                                        <input type="text" id="userName" name="userName">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div style="text-align: center;">
+                                <button type="submit">Add Staff</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <h5 style="text-align: center; color: white;"><a href="profileBack.php"
+                            style="text-decoration: none; color: black;">Back</a></h5>
 
 </body>
 
