@@ -21,7 +21,7 @@ if ($role) {
 
     if ($stmt) {
         switch ($role) {
-            case "client":
+            case "Passenger":
                 /* header() function in PHP is used to send raw HTTP headers to the client,allowing 
     you to perform various tasks such as redirecting the user to anotherpage.  */
                 header("location:passengerDashboard.php");
