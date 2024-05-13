@@ -24,7 +24,7 @@ $staff = $staff_model->update($staffId, [
 if ($staff) {
     echo  "updated <a href= 
    'AdminUpdateStaff.html'>Update</a>" . "<br>";
-    echo  "Back to the Dashboard: <a href='adminDashboard.php'>
+    echo  "Back to the Dashboard: <a href='index.php'>
    Dashboard</a>" . "<br>";
 } else {
     echo " Not updated: <a href= 

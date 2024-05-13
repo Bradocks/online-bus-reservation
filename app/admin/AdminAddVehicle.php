@@ -41,7 +41,7 @@ if ($checkrow) {
                 // If the insertion is successful
                 echo " Vehicle added <a href='AdminAddVehicle.html'>Add vehicle</a>";
                 "<br>";
-                echo "  Back to dashBoard <a href='AdminDashboard.php'>Dashboard </a>";
+                echo "  Back to dashBoard <a href='index.php'>Dashboard </a>";
                 "<br>";
             } else {
                 // If there's an error during insertion, display the error message by concatenating $sql variable that is the query, and the error message

@@ -23,12 +23,12 @@ $stmt->execute();
 if($stmt){
     echo" Staff deleted<a href='AdmindeleteStaff.html'>delete staff</a>" . "<br>";
       
-    echo" Back to dashBoard: <a href='AdminDashboard.php'>Dashboard</a>". "<br>";
+    echo" Back to dashBoard: <a href='index.php'>Dashboard</a>". "<br>";
 }
 else{
     echo"Failed: <a href='AdmindeleteStaff.html'>delete again</a>". "<br>";
 }
 }else {
-    echo" Staff not found <a href='AdminDashboard.php'>Dashboard</a>". "<br>";
+    echo" Staff not found <a href='index.php'>Dashboard</a>". "<br>";
 }
 $conn->close();

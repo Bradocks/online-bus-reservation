@@ -23,12 +23,12 @@ $stmt->execute();
 if($stmt){
     echo" deleted sucessfully <a href='AdminDeleteVehicle.html'>delete another</a>" . "<br>";
       
-    echo" Back to dashBoard: <a href='AdminDashboard.php'>Dashboard</a>". "<br>";
+    echo" Back to dashBoard: <a href='index.php'>Dashboard</a>". "<br>";
 }
 else{
     echo"Not deleted: <a href='AdmindeleteStaff.html'>delete</a>". "<br>";
 }
 }else {
-    echo" vehicle not available, back to DashBoard: <a href='AdminDashboard.php'>Dashboard</a>". "<br>";
+    echo" vehicle not available, back to DashBoard: <a href='index.php'>Dashboard</a>". "<br>";
 }
 $conn->close();

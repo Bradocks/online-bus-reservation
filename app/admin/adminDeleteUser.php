@@ -23,12 +23,12 @@ $stmt->execute();
 if($stmt){
     echo" User deleted<a href='AdmindeleteUser.html'>Delete user</a>" . "<br>";
       
-    echo" Back to dashBoard: <a href='AdminDashboard.php'>Dashboard</a>". "<br>";
+    echo" Back to dashBoard: <a href='index.php'>Dashboard</a>". "<br>";
 }
 else{
     echo"Failed!: <a href='AdmindeleteUser.html'>Delete user</a>". "<br>";
 }
 }else {
-    echo" User not found <a href='AdminDashboard.php'>Dashboard</a>". "<br>";
+    echo" User not found <a href='index.php'>Dashboard</a>". "<br>";
 }
 $conn->close();
