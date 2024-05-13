@@ -44,7 +44,7 @@ if ($count > 0) {
         'role' => $role,
         'gender' => $gender,
         'DOB' => $DOB
-    ]);
+    ], "staffId");
 
     $user = $user_model->create([
         'name' => $name,
@@ -57,7 +57,7 @@ if ($count > 0) {
         'DOB' => $DOB,
         'gender' => $gender,
         'staff_id' => $staff->staffId     // Assuming you have a $staff_id variable, add it here
-    ]);
+    ], "userId");
 
     //check if the sql query was successful by checking if it is equivalent to TRUE
     if ($staff) {
