@@ -51,7 +51,7 @@ $vehicle = $vehicle_model->where('driverId', '=', $driver->userId)->first();
                     <ul class="nav-list">
                         <!--Check on the list of active bookings and history of all passed bookings -->
                         <li><a href="/user/history.php">History</a></li>
-                        <li><a href="/user/Profile.html">Profile</a></li>
+                        <li><a href="/user/ProfileUI.php">Profile</a></li>
                         <li><a href="/user/feedback.html">Feedback</a></li>
                         <li><a href="/user/logout.php">logout</a></li>
                     </ul>

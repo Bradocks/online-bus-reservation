@@ -44,7 +44,7 @@ if ((!isset($_SESSION['userId']) || $_SESSION['userId'] === null) && $_SERVER['R
                     <!--Check on the list of active bookings and history of all passed bookings -->
                     <li><a href="book.php">Book</a></li>
                     <li><a href="history.php">History</a></li>
-                    <li><a href="Profile.html">Profile</a></li>
+                    <li><a href="ProfileUI.php">Profile</a></li>
                     <li><a href="feedback.html">Feedback</a></li>
                     <li><a href="logout.php">logout</a></li>
                 </ul>

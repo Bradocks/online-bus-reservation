@@ -8,13 +8,13 @@ $conn = connect_db();
       $mobileNumber=$_POST['mobileNumber'];
       $email=$_POST['email'];
       $address=$_POST['address'];
-      $IdNo=$_POST['IdNo'];
+      $IdNo=$_POST['IdNO'];
       $DOB=$_POST['DOB'];
       $gender=$_POST['gender'];
 
       $userId=$_SESSION['userId'];
        
-      $sqlupdate="UPDATE user SET name=?, mobileNumber=?, email=?, address=?,  IdNo=? ,DOB=?,gender=?
+      $sqlupdate="UPDATE user SET name=?, mobileNumber=?, email=?, address=?,  IdNO=? ,DOB=?,gender=?
       where userId=?";
       // an update query that inserts values using placeholders in the prepare function using conn object? 
     $stmt=$conn->prepare($sqlupdate);

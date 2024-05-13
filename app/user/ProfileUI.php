@@ -27,7 +27,7 @@
 
       <p>Username :<?php echo $userName; ?></p>
 
-      <p>National ID :<?php echo $IdNo; ?></p>
+      <p>National ID :<?php echo $IdNO; ?></p>
 
       <p>Date of Birth :<?php echo $DOB; ?></p>
 
@@ -35,9 +35,9 @@
 
       <div class="profile-buttons">
         <button class="edit-button">
-          <a style="color: white;" href="editProfile.php">Edit profile</a>
+          <a style="color: white;" href="/app/editProfile.php">Edit profile</a>
         </button>
-        <button class="back-button"><a style="color: white;" href="profileBack.php">Back</a></button>
+        <button class="back-button"><a style="color: white;" href="/app/user/profileBack.php">Back</a></button>
       </div>
     </div>
   </body>

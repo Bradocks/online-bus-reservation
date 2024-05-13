@@ -20,7 +20,7 @@ $result=$conn->query($user);
       $email=$row['email'];
       $address=$row['address'];
       $userName=$row['userName'];
-      $IdNo=$row['IdNo'];
+      $IdNO=$row['IdN0'];
       $DOB=$row['DOB'];
       $gender=$row['gender'];
        
@@ -46,7 +46,7 @@ $result=$conn->query($user);
           <label>Address :<?php echo $address; ?><br></label>
           <input type="text" id="address" name="address"><br>
           <label>dDNo :<?php echo $IdNo; ?><br></label>
-          <input type="text" id="IdNo" name="IdNo"><br>
+          <input type="text" id="IdNO" name="IdNO"><br>
           <label>Date of Birth :<?php echo $DOB; ?><br></label>
           <input type="text" id="DOB" name="DOB"><br>
           <label>Gender :<?php echo $gender; ?></label>         
