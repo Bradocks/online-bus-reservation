@@ -236,7 +236,7 @@ and stores the result in the $result variable. */
         while ($row = $result->fetch_assoc()) {
             /* presenting the result in table data cells and each database row to a different table row while looping through each row 
   of the result set returned by the SQL query. Inside the loop: */
-            echo "<tr><td>" . $row['feedBackId'] . $row['feedBack'] . "</td></tr>" .
+            echo "<tr><td>" . $row['feedBackId'] . "</td><td>"  . $row['feedBack'] . "</td></tr>" .
                 "<br>";
         }
     }
