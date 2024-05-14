@@ -29,34 +29,10 @@ $userName = $_SESSION['userName']
 
             <table>
                 <tr>
-                    <th colspan="1">join report</th>
-
-                    <th colspan="1">filtered reports</th>
-                    <th colspan="1">simple report</th>
+                    <th colspan="1">REPORTS</th>
 
                 </tr>
                 <tr>
-                    <th>
-                        <ul>
-                            <li><a href="reportpassengerActivities.html">Passenger Activities</a></li>>
-                            <li><a href="reportDriverActivities.html">Driver Activities</a></li>
-                        </ul>
-                    </th>
-                    <th>
-                        <ul>
-                            <li><a href="reportbookingbypassenger.html">booking by passenger</a></li>
-                            <li><a href="reportbookingbyvehicle.html">booking by vehicle</a></li>
-                            <li><a href="repoerbookingbyroute.html">booking By route</a></li>
-                            <li><a href="reportbookingbydestination.html">booking by destination </a></li>
-                            <li><a href="reportbookingbydeparture.html">booking by departure</a></li>
-                            <li><a href="reportbookingonagivendate.html">booking by date</a></li>
-                            <li><a href="reportbookinginagivenyear.html">booking by year</a></li>
-                            <li><a href="reportbookinginagivenmonth.html">booking by month</a></li>
-
-
-
-                        </ul>
-                    </th>
                     <th>
                         <ul>
                             <li> staff:
