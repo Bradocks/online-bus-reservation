@@ -19,7 +19,7 @@ $userName = $_SESSION['userName']
         <section> UserName:<?php echo $userName; ?>
             IdNO:<?php echo $userId; ?>
         </section>
-        <section><a href="logout.php">logout</a></section>
+        <section><a href="/app/user/logout.php">logout</a></section>
     </header>
     <main>
 
