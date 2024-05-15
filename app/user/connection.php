@@ -99,7 +99,7 @@ function addUser($conn)
        alert("registration successful");
        </script> ';
 
-        header("location:user");
+       header("location:/user/index.php");
     } else {
         // If there's an error during insertion, display the error message by concatenating $sql variable that is the query, and the error message
         echo "error:" . $sql . "<br>" . $conn->error;
