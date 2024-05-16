@@ -13,7 +13,7 @@ $pass = $_POST['password'];
 $role = $_POST['role'];
 $password = password_hash($pass, PASSWORD_BCRYPT); /* Hash the password for using the password_hass function by passing the password variable
       and  PASSWORD_BCRYPT as arguments */
-$IdNo = $_POST['IdNo'];
+$IdNO = $_POST['IdNO'];
 $DOB = $_POST['DOB'];
 $gender = $_POST['gender'];
 
@@ -53,6 +53,26 @@ if ($count > 0) {
     }
 }
 
+/* Initialize variables to store form data and error messages
+$password = $confirm_password = $error = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form data
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
+
+    // Check if password and confirm password match
+    if ($password !== $confirm_password) {
+        $error = "Passwords do not match!";
+    } else {
+        // Proceed with further processing, e.g., saving to database
+        // For demonstration, just showing a success message
+        echo "Passwords match. Proceed with registration!";
+    }
+}
+*/
+
+
 function addUser($conn)
 {
     // process  form data from the post request and set the collected data to php variable for use in the php script
@@ -65,17 +85,17 @@ function addUser($conn)
     $role = $_POST['role'];
     $password = password_hash($pass, PASSWORD_BCRYPT); /* Hash the password for using the password_hass function by passing the password variable
      and  PASSWORD_BCRYPT as arguments */
-    $IdNO = $_POST['IdNo'];
+    $IdNO = $_POST['IdNO'];
     $DOB = $_POST['DOB'];
     $gender = $_POST['gender'];
 
     //insert data into the database  since the user name is not used, thus creating an account for the new client, 
     // a query that inserts values using placeholders in the prepare function using conn object?
-    $sql = "INSERT INTO user (name, mobilenumber, email, role, password, IdNO, DOB, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO user (name, mobilenumber, email, password, role,  IdNO, DOB, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     $insertuserdetails = $conn->prepare($sql);
 
-    var_dump($insertuserdetails);
+    //var_dump($insertuserdetails);
 
     //The bind_param() method binds variables to the placeholders in the SQL query.
     $insertuserdetails->bind_param(
