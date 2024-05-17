@@ -58,25 +58,6 @@ $vehicle = $vehicle_model->where('driverId', '=', $driver->userId)->first();
                 </nav>
             </div>
         </header>
-        <!-- <div class="search_driver">
-       <img class="search_img" src="./assets/icons8-search.svg" alt="" />
-        <input
-          type="text"
-          name="searchDriver"
-          id="driver_id"
-          placeholder="Search"
-        />
-
-        <button>Add Driver</button>
-      </div>
-
-    <div class="driver_map">
-        <img
-          class="driver_map_image"
-          src="./assets/taxi-drivers-map-2.png"
-          alt=""
-        />
-      </div>-->
 
         <div class="driver_bus_details">
             <div class="bus_image_wrapper">

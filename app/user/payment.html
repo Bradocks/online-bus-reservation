@@ -10,7 +10,7 @@
 
   <div class="form-payment-container">
 
-    <form action="payment.php" onsubmit="return validatePaymentSelect()" method="post">
+    <form action="payment.php" onsubmit="return validatePayment()" method="post">
       <h2 style="margin-bottom: 2rem;">Payment Options</h2>
       <label>Payment Method</label>
       <select name="paymentMethod" id="paymentMethod" required>
@@ -31,7 +31,7 @@
 
       <button name="submit" value="submit">submit</button>
     </form>
-    <script src="../js/three.js"></script>
+    <script src="../js/functions.js"></script>
   </div>
 
 </body>

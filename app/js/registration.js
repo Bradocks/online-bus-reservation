@@ -299,7 +299,7 @@ function resetPasswordValidation() {
   return true;
 }
 
-//validation for edit profile
+//validation for profile edit
 function editProfileVAlidate() {
   /* Retrieving values from form fields using document.getElementById(""): This part of the statement is a 
     method call on the document object,The 'value' property is a property of input elements, such as <input>, */
@@ -409,7 +409,7 @@ function editProfileVAlidate() {
   return true;
 }
 
-//order validation
+//booking validation
 function bookingValidation() {
   /* Retrieving values from form fields using document.getElementById(""): This part of the statement is a 
     method call on the document object,The 'value' property is a property of input elements, such as <input>, */
@@ -533,33 +533,7 @@ function feedbackvalidation() {
   return true;
 }
 
-//validate customercare order sorting
-function customercareOrderSorting() {
-  /* Retrieving values from form fields using document.getElementById(""): This part of the statement is a 
-    method call on the document object,The 'value' property is a property of input elements, such as <input>, */
-  var VehicleId = document.getElementById("vehicleId").value;
-  var phoneNumber = document.getElementById("phoneNumber").value;
-  var charges = document.getElementById("charges").value;
-
-  if (VehicleId === "" || phoneNumber === "" || charges === "") {
-    alert("all fields must be filled");
-    return false;
-  }
-
-  //ensure the mobilenumber is valid
-  if (isNaN(mobileNumber) || mobileNumber.length !== 10) {
-    alert("please enter a valid Phone Number ten digits");
-    return false;
-  }
-  //checks if its null a bollean returns true if charge is empty
-  if (isNaN(charges)) {
-    alert("Charges must be a numeric value");
-    return false;
-  }
-  return true;
-}
-
-function adminAddStaff() {
+function AddStaff() {
   var name = document.getElementById("name").value;
   var lastname = document.getElementById("lname").value;
   var IDNo = document.getElementById("IDNO").value;
@@ -674,9 +648,9 @@ function adminAddStaff() {
   return true;
 }
 
-//validate admin add vehicle
+//validate add vehicle
 
-function adminAddVehicle() {
+function AddVehicle() {
   /* Retrieving values from form fields using document.getElementById(""): This part of the statement is a 
     method call on the document object,The 'value' property is a property of input elements, such as <input>, */
   var plateNO = document.getElementById("plateNO").value;
