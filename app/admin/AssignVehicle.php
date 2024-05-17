@@ -41,17 +41,13 @@ if ($confirrow) {
 
                 if ($updatevehicle) {
                     echo "Updated " . "<br>";
-                    echo  "   updated successfully <a href= 
-   'AssignDriverAVehicle.html'>Assign</a>" . "<br>";
-                    echo  "  Back to the Dashboard: <a href='index.php'>
-   Dashboard</a>" . "<br>";
+                    echo  "   updated successfully <a href= 'AssignVehicle.html'>Assign</a>" . "<br>";
+                    echo  "  Back to the Dashboard: <a href='index.php'>Dashboard</a>" . "<br>";
                 } else {
-                    echo " Not updated.  <a href= 
-      'AssignVehicle.html'>Assign</a>";
+                    echo " Not updated.  <a href= 'AssignVehicle.html'>Assign</a>";
                 }
             } else {
-                echo " driver assigned vehicle already: <a href= 
-      'AssignVehicle.html'>Assign</a>";
+                echo " driver assigned vehicle already: <a href= 'AssignVehicle.html'>Assign</a>";
             }
         } else {
             echo "driver doesn't exist";
