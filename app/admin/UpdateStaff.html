@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>update staff</title>
+        <link rel="stylesheet" href="../form.css">
+    </head>
+    <body>
+     <div> 
+        <form  method="POST" action="UpdateStaff.php" onsubmit="return updatestaff()">
+
+          <header class="header">
+            <div class="logo-container">
+                <img src="/app/driver/assets/logo.png" alt="Logo" class="logo">
+            </div>
+            
+            <p style="text-align: center;">update staff</p>
+         
+        <label>enter staffId</label>
+          <input type="text" id="staffId" name="staffId" placeholder="HVC-889" required></input>
+        </br> 
+
+        <label>enter staff phone number</label>
+        <input type="text" id="phoneNo" name="phoneNo" required placeholder="0799060221"></input>
+          
+        </br>
+        <label>enter staff email</label>
+        <input type="text" id="email" name="email" placeholder="newemail@gmail.com" required></input>
+         
+    </br>
+       
+      <label>state</label>
+        <select id="state" name="state"> 
+          <option value="*" hidden>Select state</option>
+        <option value="ON">on Duty</option>
+        <option value="OFF">off Duty</option>
+      </select></br>
+       
+    </br>
+
+           <button type="submit" >submit</button>  
+        </form>
+        <script src="../js/three.js"></script>
+     </div>
+    </body>
+</html>
