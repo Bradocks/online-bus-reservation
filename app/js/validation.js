@@ -1,12 +1,12 @@
 function NotNullAndNan (){
    var GivenId=document.getElementById("searchid").value;
    if(GivenId ==="" ){
-       alert("can not submit empyt enter the Id ");
+       alert("enter ID ");
        return false;
 
    }
    if(isNaN(GivenId)){
-       alert("Id should be a digit");
+       alert("ENTER IN NUMBER FORMAT");
        return false;
    }
    return true;
@@ -15,7 +15,7 @@ function NotNullAndNan (){
 function NotNull (){
    var GivenId=document.getElementById("searchid").value;
    if(GivenId==="" ){
-       alert("can not submit empyt enter the Id ");
+       alert("enter ID ");
        return false;
    }
    
@@ -29,7 +29,7 @@ function validateDate() {
      datesplit() method is used to split a string into an array of 
      substrings based on a specified separator */
      if(GivenId=== ""){
-      alert("can not submit empty");
+      alert("ENTER ID");
       return false;
      }
 
@@ -37,23 +37,23 @@ function validateDate() {
     
      // Check if the date string contains three parts (year, month, )
      if (parts.length !== 3) {
-         alert("enter a valide year of birth in YYYY-MM-DD format");
+         alert("enter a valid year in YYYY-MM-DD format");
          return false;
      }
      
-     // Parse day, month, and year as integers
+     // Pass day, month, and year as integers
      var year =parts[0];
      var month =parts[1];
      var day = parts[2];
      // Check if year month and day are valid numbers
      if (isNaN(year) || isNaN(month) || isNaN(day)) {
-         alert("enter a valide year of birth in YYYY-MM-DD format");
+         alert("enter a valid year YYYY-MM-DD format");
          return false;
      }
      
      // Check if month is within valid range (1-12)
      if (month < 1 || month > 12) {
-         alert("enter a valide year of birth in YYYY-MM-DD format");
+         alert("enter a valid year YYYY-MM-DD format");
          return false;
      }
      
@@ -79,12 +79,12 @@ function validateDate() {
         }
      }
      if (day < 1 || day > daysInMonth) {
-         alert("enter a valide date in the year of birth");
+         alert("enter a valid date");
          return false;
      }
       // Check if year is within a reasonable range (e.g., between 1900 and 2100)
-      if (year < 1900 || year > 2024) {
-         alert("enter a valide and realistic year of birth in YYYY-MM-DD format");
+      if (year < 1950 || year > 2007) {
+         alert("enter a valid year of birth in YYYY-MM-DD format");
          return false;
      }   
    
@@ -98,15 +98,15 @@ function validatemonth() {
     var secId=document.getElementById("search").value; 
     
       if(GivenId=== "" || secId===""){
-       alert("can not submit empty");
+       alert("ENTER ID");
        return false;
       }
       if(isNaN(GivenId) || isNaN(secId)){
-        alert("enter in numbers");
+        alert("ENTER IN NUMBER FORMAT");
         return false;
        }
-       if(GivenId<1900 || GivenId>2024){
-        alert("enter a valid year between 1900 and 2024");
+       if(GivenId<1950 || GivenId>2024){
+        alert("enter a valid year");
         return false;
        }
        if(secId<1 || secId>12){
@@ -126,15 +126,15 @@ function validatemonth() {
     var state=document.getElementById("state").value;
 
    if( staffId==="" || phoneNo==="" || email==="" || state===""){
-    alert("all field must be filled");
+    alert("Fill all fields");
     return false;
    }
    if(isNaN(staffId)){
-    alert("staffId should be a digit");
+    alert("ID in number format");
     return false;
 }
 if(email.indexOf("@") === -1|| email.indexOf(".") === -1){
-    alert("Please enter a valid email address");
+    alert("enter a valid email address");
     return false;
 }
 
@@ -146,7 +146,7 @@ if(email.indexOf("@") === -1|| email.indexOf(".") === -1){
     var paymentStatement=document.getElementById("paymenStatement").value;
 
    if(paymentStatement==="" || paymentMethod===""){
-    alert("all fields must be field");
+    alert("Fill all fields");
     return false;
    }
     return  true;
@@ -158,12 +158,12 @@ if(email.indexOf("@") === -1|| email.indexOf(".") === -1){
     var state= document.getElementById("state").value;
     
     if(vehicleId==="" || driverId==="" || state===""){
-        alert("all fields must be filled");
+        alert("Fill all fields");
         return false;
     }
 
     if(isNaN(vehicleId) || isNaN(driverId)){
-        alert("Both driverId and VehicleId should be digits");
+        alert("ID in number format");
         return false;
     }
 

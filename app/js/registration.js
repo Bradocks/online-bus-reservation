@@ -8,7 +8,7 @@ function formValidation() {
   var userName = document.getElementById("userName").value;
   var password = document.getElementById("password").value;
   var confirmPassword = document.getElementById("confirmPassword").value;
-  var IDNO = document.getElementById("idNo").value;
+  var IDNO = document.getElementById("IDNO").value;
   var date_of_birth = document.getElementById("DOB").value;
   var role = document.getElementById("role").value;
   var gender = document.getElementById("gender").value;
@@ -27,7 +27,7 @@ function formValidation() {
     role === "" ||
     gender == ""
   ) {
-    alert("All fields must be filled");
+    alert("FILL ALL FIELDS!");
     return false;
   }
   //ensure the email is valid
@@ -60,7 +60,7 @@ function formValidation() {
 
   // Check if the date string contains three parts (year, month, )
   if (parts.length !== 3) {
-    alert("enter a valide year of birth in YYYY-MM-DD format");
+    alert("enter a valid year of birth in YYYY-MM-DD format");
     return false;
   }
 
@@ -70,13 +70,13 @@ function formValidation() {
   var day = parts[2];
   // Check if year month and day are valid numbers
   if (isNaN(year) || isNaN(month) || isNaN(day)) {
-    alert("enter a valide year of birth in YYYY-MM-DD format");
+    alert("enter a valid year of birth in YYYY-MM-DD format");
     return false;
   }
 
   // Check if month is within valid range (1-12)
   if (month < 1 || month > 12) {
-    alert("enter a valide year of birth in YYYY-MM-DD format");
+    alert("enter a valid year of birth in YYYY-MM-DD format");
     return false;
   }
 
@@ -102,19 +102,19 @@ function formValidation() {
     }
   }
   if (day < 1 || day > daysInMonth) {
-    alert("enter a valide date in the year of birth");
+    alert("enter valid date ");
     return false;
   }
   // Check if year is within a reasonable range (e.g., between 1900 and 2100)
-  if (year < 1900 || year > 2006) {
-    alert("enter a valide and realistic year of birth in YYYY-MM-DD format");
+  if (year < 1950 || year > 2006) {
+    alert("enter a valid year of birth in YYYY-MM-DD format");
     return false;
   }
 
   // ensure the password is strong and password and confirm password much
   //ensure the password is more than 8
   if (password.length < 8) {
-    alert("password should be greater than 8");
+    alert("enter a strong password");
     return false;
   }
   //ensure the password has a special character
@@ -130,7 +130,7 @@ function formValidation() {
   }
 
   if (special === false) {
-    alert("enter a strong password with a special character");
+    alert("enter a strong password");
     return false;
   }
   // Loop through each character in the password
@@ -170,16 +170,16 @@ function formValidation() {
   }
   //check for uppercharacter lower character and digit
   if (Uppercase === false) {
-    alert("enter a strong password with a uppercase character  ");
+    alert("enter a strong password  ");
     return false;
   }
 
   if (lower === false) {
-    alert("enter a strong password with a lowercase characters ");
+    alert("enter a strong password ");
     return false;
   }
   if (Digit === false) {
-    alert("enter a strong password with digit");
+    alert("enter a strong password");
     return false;
   }
 
@@ -201,7 +201,7 @@ function loginvalidate() {
 
   //ensure the inputs have a value
   if (userName === "" || password === "" || role === "") {
-    alert("all field must be filled");
+    alert("Fill all fields");
     return false;
   }
   return true;
@@ -222,7 +222,7 @@ function resetPasswordValidation() {
   // ensure the password is strong and password and confirm password much
   //ensure the password is more than 8
   if (password.length < 8) {
-    alert("password should be greater than 8");
+    alert("weak password");
     return false;
   }
   //ensure the password has a special character
@@ -238,7 +238,7 @@ function resetPasswordValidation() {
   }
 
   if (special === false) {
-    alert("enter a strong password with a special");
+    alert("weak password");
     return false;
   }
   // Loop through each character in the password
@@ -278,16 +278,16 @@ function resetPasswordValidation() {
   }
   //check for uppercharacter lower character and digit
   if (Uppercase === false) {
-    alert("enter a strong password with a uppercase character  ");
+    alert("enter a strong password");
     return false;
   }
 
   if (lower === false) {
-    alert("enter a strong password with a lowercase characters ");
+    alert("enter a strong password ");
     return false;
   }
   if (Digit === false) {
-    alert("enter a strong password with digit");
+    alert("enter a strong password");
     return false;
   }
 
@@ -308,7 +308,7 @@ function editProfileVAlidate() {
   var email = document.getElementById("email").value;
   var address = document.getElementById("address").value;
   var IDNO = document.getElementById("IDNO").value;
-  var DtOfBth = document.getElementById("DOB").value;
+  var DOB = document.getElementById("DOB").value;
   var gender = document.getElementById("gender").value;
 
   //ensure all fields are filled
@@ -318,10 +318,10 @@ function editProfileVAlidate() {
     email === "" ||
     address === "" ||
     IDNO === "" ||
-    DtOfBth === "" ||
+    DOB === "" ||
     gender === ""
   ) {
-    alert("all fields must be filled");
+    alert("fill all fields");
     return false;
   }
 
@@ -330,19 +330,19 @@ function editProfileVAlidate() {
   /*indexOf() method is used to find the index of the first occurrence of a
    specified value within a string*/
   if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
-    alert("Please enter a valid email address");
+    alert("enter a valid email address");
     return false;
   }
   //ensure the ID number is valid
 
   if (isNaN(IDNO) || IDNO.length !== 8) {
-    alert("please enter a valid ID number");
+    alert("enter a valid ID number");
     return false;
   }
 
   //ensure the mobilenumber is valid
   if (isNaN(mobileNumber) || mobileNumber.length !== 10) {
-    alert("please enter a valid Phone Number ten digits");
+    alert("enter a valid Phone Number with ten digits");
     return false;
   }
 
@@ -351,11 +351,11 @@ function editProfileVAlidate() {
   /* Split the date string by '/' character to get year, month, and
      datesplit() method is used to split a string into an array of 
      substrings based on a specified separator */
-  var parts = DtOfBth.split("-");
+  var parts = DOB.split("-");
 
   // Check if the date string contains three parts (year, month, )
   if (parts.length !== 3) {
-    alert("enter a valide year of birth in YYYY-MM-DD format");
+    alert("enter a valid year of birth in YYYY-MM-DD format");
     return false;
   }
 
@@ -365,13 +365,13 @@ function editProfileVAlidate() {
   var day = parts[2];
   // Check if year month and day are valid numbers
   if (isNaN(year) || isNaN(month) || isNaN(day)) {
-    alert("enter a valide year of birth in YYYY-MM-DD format");
+    alert("enter a valid year of birth in YYYY-MM-DD format");
     return false;
   }
 
   // Check if month is within valid range (1-12)
   if (month < 1 || month > 12) {
-    alert("enter a valide year of birth in YYYY-MM-DD format");
+    alert("enter a valid year in YYYY-MM-DD format");
     return false;
   }
 
@@ -397,12 +397,12 @@ function editProfileVAlidate() {
     }
   }
   if (day < 1 || day > daysInMonth) {
-    alert("enter a valide date in the year of birth");
+    alert("enter valid date");
     return false;
   }
   // Check if year is within a reasonable range (e.g., between 1900 and 2100)
-  if (year < 1900 || year > 2006) {
-    alert("enter a valide and realistic year of birth in YYYY-MM-DD format");
+  if (year < 1950 || year > 2007) {
+    alert("enter a valid year of birth in YYYY-MM-DD format");
     return false;
   }
 
@@ -414,7 +414,7 @@ function bookingValidation() {
   /* Retrieving values from form fields using document.getElementById(""): This part of the statement is a 
     method call on the document object,The 'value' property is a property of input elements, such as <input>, */
   var name = document.getElementById("name").value;
-  var IdNo = document.getElementById("IdNo").value;
+  var IDNO = document.getElementById("IDNO").value;
   var mobileNumber = document.getElementById("mobileNumber").value;
   var email = document.getElementById("email").value;
   var destination = document.getElementById("destination").value;
@@ -425,7 +425,7 @@ function bookingValidation() {
   // ensure all fields are filled
   if (
     name === "" ||
-    IdNo === "" ||
+    IDNO === "" ||
     mobileNumber === "" ||
     email === "" ||
     destination === "" ||
@@ -441,19 +441,19 @@ function bookingValidation() {
   /*indexOf() method is used to find the index of the first occurrence of a
    specified value within a string*/
   if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
-    alert("Please enter a valid email address");
+    alert("enter a valid email address");
     return false;
   }
   //ensure the ID number is valid
 
-  if (isNaN(IdNo) || IdNo.length !== 10) {
-    alert("please enter a valid ID number");
+  if (isNaN(IDNO) || IdNo.length !== 10) {
+    alert(" enter a valid ID number");
     return false;
   }
 
   //ensure the mobilenumber is valid
   if (isNaN(mobileNumber) || mobileNumber.length <= 10) {
-    alert("please enter a valid Phone Number ten digits");
+    alert("enter a valid Phone Number ten digits");
     return false;
   }
   //ensure the year of birth is valid
@@ -465,7 +465,7 @@ function bookingValidation() {
 
   // Check if the date string contains three parts (year, month, )
   if (parts.length !== 3) {
-    alert("enter a valide year of birth in YYYY-MM-DD format");
+    alert("enter a valid year in YYYY-MM-DD format");
     return false;
   }
 
@@ -475,13 +475,13 @@ function bookingValidation() {
   var day = parts[2];
   // Check if year month and day are valid numbers
   if (isNaN(year) || isNaN(month) || isNaN(day)) {
-    alert("enter a valide year of birth in YYYY-MM-DD format");
+    alert("enter a valid year of birth in YYYY-MM-DD format");
     return false;
   }
 
   // Check if month is within valid range (1-12)
   if (month < 1 || month > 12) {
-    alert("enter a valide year of birth in YYYY-MM-DD format");
+    alert("enter a valid year of birth in YYYY-MM-DD format");
     return false;
   }
 
@@ -507,12 +507,12 @@ function bookingValidation() {
     }
   }
   if (day < 1 || day > daysInMonth) {
-    alert("enter a valide date in the year of birth");
+    alert("enter a valid date in the year of birth");
     return false;
   }
-  // Check if year is within a reasonable range (e.g., between 1900 and 2100)
+  // Check if year is within a reasonable range 
   if (year < 2024 || year > 2024) {
-    alert("enter a valide and realistic year of birth in YYYY-MM-DD format");
+    alert("enter a valid year of birth in YYYY-MM-DD format");
     return false;
   }
 
@@ -526,7 +526,7 @@ function feedbackvalidation() {
   var Feedback = document.getElementById("Feedback").value;
 
   if (Feedback === "") {
-    alert("all fields must be filled");
+    alert("FILL ALL FIELDS");
     return false;
   }
 
@@ -536,14 +536,12 @@ function feedbackvalidation() {
 function AddStaff() {
   var name = document.getElementById("name").value;
   var lastname = document.getElementById("lname").value;
-  var IDNo = document.getElementById("IDNO").value;
+  var IDNO = document.getElementById("IDNO").value;
   var mobileNumber = document.getElementById("mobileNumber").value;
   var email = document.getElementById("email").value;
-  var salary = document.getElementById("salary").value;
   var position = document.getElementById("position").value;
   var state = document.getElementById("state").value;
-  var DtOfBth = document.getElementById("DOB").value;
-  var mode = document.getElementById("mode").value;
+  var DOB = document.getElementById("DOB").value;
   var gender = document.getElementById("gender").value;
   var userName = document.getElementById("userName").value;
 
@@ -552,17 +550,16 @@ function AddStaff() {
     name === "" ||
     userName === "" ||
     lastname === "" ||
-    IDNo === "" ||
+    IDNO === "" ||
     mobileNumber === "" ||
     email === "" ||
-    salary === "" ||
     position === "" ||
     state === "" ||
-    DtOfBth === "" ||
-    mode === "" ||
+    DOB === "" ||
+   
     gender === ""
   ) {
-    alert("please fill all the fields");
+    alert("FILL ALL FIELDS");
     return false;
   }
   //ensure the email is valid
@@ -570,19 +567,19 @@ function AddStaff() {
   /*indexOf() method is used to find the index of the first occurrence of a
    specified value within a string*/
   if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
-    alert("Please enter a valid email address");
+    alert("enter a valid email address");
     return false;
   }
   //ensure the ID number is valid
 
-  if (isNaN(IDNo) || IDNo.length !== 8) {
+  if (isNaN(IDNO) || IDNo.length !== 8) {
     alert("please enter a valid ID number");
     return false;
   }
 
   //ensure the mobilenumber is valid
   if (isNaN(mobileNumber) || mobileNumber.length !== 10) {
-    alert("please enter a valid Phone Number ten digits");
+    alert("enter a valid Phone Number with ten digits");
     return false;
   }
   //ensure the dates of birth is valid
@@ -590,11 +587,11 @@ function AddStaff() {
   /* Split the date string by '/' character to get year, month, and
      datesplit() method is used to split a string into an array of 
      substrings based on a specified separator */
-  var parts = DtOfBth.split("-");
+  var parts = DOB.split("-");
 
   // Check if the date string contains three parts (year, month, )
   if (parts.length !== 3) {
-    alert("enter a valide year of birth in YYYY-MM-DD format");
+    alert("enter a valid year in YYYY-MM-DD format");
     return false;
   }
 
@@ -604,13 +601,13 @@ function AddStaff() {
   var day = parts[2];
   // Check if year month and day are valid numbers
   if (isNaN(year) || isNaN(month) || isNaN(day)) {
-    alert("enter a valide year of birth in YYYY-MM-DD format");
+    alert("enter a valid year YYYY-MM-DD format");
     return false;
   }
 
   // Check if month is within valid range (1-12)
   if (month < 1 || month > 12) {
-    alert("enter a valide year of birth in YYYY-MM-DD format");
+    alert("enter a valid year in YYYY-MM-DD format");
     return false;
   }
 
@@ -636,12 +633,12 @@ function AddStaff() {
     }
   }
   if (day < 1 || day > daysInMonth) {
-    alert("enter a valide date in the year of birth");
+    alert("enter a valid date");
     return false;
   }
   // Check if year is within a reasonable range (e.g., between 1900 and 2100)
-  if (year < 1900 || year > 2006) {
-    alert("enter a valide and realistic year of birth in YYYY-MM-DD format");
+  if (year < 1950 || year > 2007) {
+    alert("enter a valid year of birth in YYYY-MM-DD format");
     return false;
   }
 
@@ -659,12 +656,12 @@ function AddVehicle() {
 
   //ensure all fields are filled
   if (plateNO === "" || capacity === "" || state === "") {
-    alert("please fill all the fields");
+    alert("FILL ALL FIELDS");
     return false;
   }
   // ensure that capacity is in digits
   if (isNaN(capacity)) {
-    alert("please enter capacity in numbers");
+    alert("ENTER IN NUMBER FORMAT");
     return false;
   }
   return true;

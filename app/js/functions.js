@@ -5,11 +5,11 @@ function updatestaff() {
     var state=document.getElementById("state").value;
 
    if( staffId==="" || phoneNo==="" || email==="" || state==="" ){
-    alert("all field must be filled");
+    alert("Fill all fields!");
     return false;
    }
    if(isNaN(staffId)){
-    alert("staffId should be a digit");
+    alert("ID should be in number form!");
     return false;
 }
 if(email.indexOf("@") === -1|| email.indexOf(".") === -1){
@@ -26,12 +26,12 @@ if(email.indexOf("@") === -1|| email.indexOf(".") === -1){
     var state= document.getElementById("state").value;
     
     if(vehicleId==="" || driverId==="" || state===""){
-        alert("all fields must be filled");
+        alert("Fill all fields!");
         return false;
     }
 
     if(isNaN(vehicleId) || isNaN(driverId)){
-        alert("Both driverId and VehicleId should be digits");
+        alert("ID in number form!");
         return false;
     }
 
@@ -43,7 +43,7 @@ if(email.indexOf("@") === -1|| email.indexOf(".") === -1){
     var paymentStatement=document.getElementById("paymenStatement").value;
 
    if(paymentStatement==="" || paymentMethod===""){
-    alert("all fields must be field");
+    alert("Fill all fields!");
     return false;
    }
     return  true;
