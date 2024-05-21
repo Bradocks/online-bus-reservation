@@ -74,9 +74,10 @@ $userName = $_SESSION['userName']
                 </tr>
             </table>
         </div>
-
+        <br><h5><a href="index.php" style="text-decoration: none; color: black;">Back</a></h5><br>
 
     </main>
+    
 
     <footer>
         <h2>Contact Us</h2>

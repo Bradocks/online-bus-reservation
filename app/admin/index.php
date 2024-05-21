@@ -46,7 +46,7 @@ if ((!isset($_SESSION['userId']) || $_SESSION['userId'] === null) && $_SERVER['R
                             <li><a href="./DeleteStaff.html">Delete Staff</a></li>
                             <li><a href="./UpdateStaff.html">Update Staff</a></li>
                             <li><a href="./AddVehicle.html">Add vehicle</a></li>
-                            <li><a href="./AssignVehicle.html">Update Vehicle</a></li>
+                            <li><a href="./AssignVehicle.html">Assign Vehicle</a></li>
                             <li><a href="./DeleteVehicle.html">Delete Vehicle</a></li>
                             <li><a href="adminReports.php">Reports</a></li>
                             <li><a href="./DeleteUser.html">Delete user</a></li>

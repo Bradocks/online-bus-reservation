@@ -7,6 +7,13 @@
 </head>
 
 <body>
+
+  <style>
+    body {
+      background-image: url('/photo1.jpeg');
+    }
+    </style>
+
   <div>
     <form method="POST" action="AssignVehicle.php" onsubmit="return updateVehicle()">
 
@@ -15,7 +22,7 @@
             <img src="/driver/assets/logo.png" alt="Logo" class="logo">
         </div>
 
-      <p style="text-align: center;">update vehicle</p>
+      <p style="text-align: center;">Assign Vehicle</p>
 
       <label>Enter vehicleId</label>
       <input type="text" id="vehicleId" name="vehicleId" placeholder="V-H7789" required></input>
@@ -33,6 +40,7 @@
       </br>
 
       <button type="submit">submit</button>
+      <br><h5><a href="index.php" style="text-decoration: none; color: black;">Back</a></h5><br>
     </form>
     <script src="../js/functions.js"></script>
   </div>
