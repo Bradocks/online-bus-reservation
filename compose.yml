@@ -8,7 +8,7 @@ services:
     volumes:
       - ./app:/var/www/html/
     ports:
-      - "50000:80"
+      - "57000:80"
     depends_on:
       - db
     networks:
@@ -28,7 +28,7 @@ services:
       MYSQL_USER: sample
       MYSQL_PASSWORD: root
     ports:
-      - "33060:3306"
+      - "37060:3306"
     networks:
       - app-network
 

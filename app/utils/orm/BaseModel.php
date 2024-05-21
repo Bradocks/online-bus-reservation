@@ -5,7 +5,7 @@ class BaseModel
     protected $conn;
     protected $conditions = [];
 
-    public function __construct($table_name, $conn)
+    public function __construct($table_name, $conn) //initializes the BaseModel with the table name and database connection.
     {
         $this->table_name = $table_name;
         $this->conn = $conn;
@@ -28,7 +28,7 @@ class BaseModel
         return $this; // Return $this for method chaining
     }
 
-    public function get_all()
+    public function get_all() //Retrieves all records from the table.
     {
         $sql = "SELECT * FROM {$this->table_name}";
         if (!empty($this->conditions)) {
@@ -42,7 +42,7 @@ class BaseModel
      * @param mixed $id
      * @param string $column
      */
-    public function get_one($id, $column = 'id')
+    public function get_one($id, $column = 'id') //Retrieves a single record by its ID.
     {
         $sql = "SELECT * FROM `{$this->table_name}` WHERE `{$column}` = ?";
         $stmt = $this->conn->prepare($sql);
@@ -53,7 +53,7 @@ class BaseModel
         return (object) $result->fetch_assoc();
     }
 
-    private function get_param_type($params)
+    private function get_param_type($params) //Determines the parameter types for bind_param() based on the values' data types.
     {
         $types = '';
         foreach ($params as $param) {
@@ -83,7 +83,7 @@ class BaseModel
     /**
      * @param mixed $name
      */
-    public function create($data, $id_column = 'id')
+    public function create($data, $id_column = 'id') //Prepares an INSERT SQL statement with placeholders, Uses get_param_type() to determine the parameter types, Binds the parameters to the statement using bind_param()
     {
         $keys = implode(', ', array_keys($data));
         $placeholders = implode(', ', array_fill(0, count($data), '?'));
@@ -100,7 +100,7 @@ class BaseModel
     }
 
 
-    public function update($id, $data, $id_column = 'id')
+    public function update($id, $data, $id_column = 'id') //Prepares an UPDATE SQL statement with placeholders, Uses get_param_type() to determine the parameter types, appending 'i' for the ID parameter, Binds the parameters to the statement using bind_param().
     {
         $updates = implode(', ', array_map(function ($key) {
             return "$key = ?";
@@ -118,7 +118,7 @@ class BaseModel
     }
 
 
-    public function delete($id)
+    public function delete($id) //Deletes a record by its ID.
     {
         $sql = "DELETE FROM {$this->table_name} WHERE id = ?";
         $stmt = $this->conn->prepare($sql);

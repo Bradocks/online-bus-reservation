@@ -40,7 +40,7 @@ if ($session->user() !== null) {
             <input type="text" id="userName" name="userName"><br>
 
             <label> Enter Password</label>
-            <input type="text" id="password" name="password"><br>
+            <input type="password" id="password" name="password"><br>
             <label>Role</label>
             <select name="role" id="role">
                 <option value="Passenger">Passenger</option>

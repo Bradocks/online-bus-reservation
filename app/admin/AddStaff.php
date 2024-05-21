@@ -63,7 +63,7 @@ if ($count > 0) {
     if ($staff) {
         // If the insertion is successful
         echo "Staff Added <a href='Addstaff.html'>Add staff</a>" . "<br>";
-        echo "Back to dashBoard <a href='index.php'>Add staff</a>" . "<br>";
+        echo "Back to dashBoard <a href='/app/admin/index.php'>Add staff</a>" . "<br>";
     } else {
         // If there's an error during insertion, display the error message by concatenating $sql variable that is the query, and the error message
         echo " Failed!: <a href='Addstaff.html'>Add staff</a>" . "<br>";

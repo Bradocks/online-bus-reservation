@@ -49,7 +49,7 @@ if ($result) {
             }
             exit;
         } else {
-            echo "please enter your supposed role at <a href='index.html'> login</a>";
+            echo "please enter your supposed role at <a href='/app/user/index.php'> login</a>";
         }
     } else {
         // If password is incorrect, display error message

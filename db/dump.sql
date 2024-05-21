@@ -573,7 +573,7 @@ CREATE TABLE `vehicle` (
     `plateNo` text,
     `brand` varchar(200) DEFAULT NULL,
     `model` varchar(200) DEFAULT NULL,
-    `capacity` decimal(10, 0) DEFAULT NULL,
+    `capacity` int NOT NULL,
     `driverId` int DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 --
