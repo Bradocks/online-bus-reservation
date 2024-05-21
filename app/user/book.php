@@ -50,6 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
+
+<style>
+        body {
+          background-image: url('/photo1.jpeg');
+        }
+        </style>
+
     <form method="POST" action="book.php">
         <div class="form-book-container">
             <div class="booking-details">
