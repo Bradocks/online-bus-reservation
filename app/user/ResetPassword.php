@@ -30,7 +30,7 @@ if($updateUserCredentials)
 {
       echo '<script> alert("updated")</script>';
 //redirect to login page
-header("location:login.html");
+header("location:index.php");
 }
 else{
       //if the query was not sucessful display the meassage and allow the user to the user to redu the reset
@@ -40,7 +40,7 @@ else{
       }
 else{
       //if the query was not sucessful display the meassage and allow the user to the user to redu the reset
-      echo"userName does not exist please create an account or provide a varied userName"."</br>".'';
+      echo"userName does not exist please create an account "."</br>".'';
       echo"<a href='userRegistrationForm.html'>create an account </a>"."</br>".'';
       echo"<a href='resetPassword.html'>try again to resert password</a>"."</br>".'';
 }

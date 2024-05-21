@@ -42,14 +42,14 @@ if ((!isset($_SESSION['userId']) || $_SESSION['userId'] === null) && $_SERVER['R
                             <a class="button">Manage Staff & Vehicles</a>
                         </summary>
                         <ul>
-                            <li><a href="./adminAddstaff.html">Add Staff</a></li>
-                            <li><a href="./AdmindeleteStaff.html">Delete Staff</a></li>
-                            <li><a href="./AdminUpdateStaff.html">Update Staff</a></li>
-                            <li><a href="./AdminAddVehicle.html">Add vehicle</a></li>
-                            <li><a href="./adminAssignDriverVehicle.html">Update Vehicle</a></li>
-                            <li><a href="./AdminDeleteVehicle.html">Delete Vehicle</a></li>
+                            <li><a href="./Addstaff.html">Add Staff</a></li>
+                            <li><a href="./DeleteStaff.html">Delete Staff</a></li>
+                            <li><a href="./UpdateStaff.html">Update Staff</a></li>
+                            <li><a href="./AddVehicle.html">Add vehicle</a></li>
+                            <li><a href="./AssignVehicle.html">Update Vehicle</a></li>
+                            <li><a href="./DeleteVehicle.html">Delete Vehicle</a></li>
                             <li><a href="adminReports.php">Reports</a></li>
-                            <li><a href="./AdmindeleteUser.html">Delete user</a></li>
+                            <li><a href="./DeleteUser.html">Delete user</a></li>
                             <li><a href="../user/feedback.html">Feedback</a></li>
                         </ul>
                     </details>

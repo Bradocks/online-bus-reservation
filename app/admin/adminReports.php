@@ -14,7 +14,7 @@ $userName = $_SESSION['userName']
 
 <body>
     <header>
-        <section><img src="logo.png" alt="" style="width: 80px; height: 30px;"></section>
+        <section><img src="/driver/assets/logo.png" alt="" style="width: 100px; height: 100px;"></section>
         <section style=" background-color: transparent;"></section>
         <section> UserName:<?php echo $userName; ?>
             IdNO:<?php echo $userId; ?>
