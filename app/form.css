@@ -18,7 +18,6 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("/app/photo1.jpeg");
 }
 
 /* Styling for the form container */

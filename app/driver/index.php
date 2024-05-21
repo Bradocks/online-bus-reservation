@@ -66,7 +66,6 @@ $vehicle = $vehicle_model->where('driverId', '=', $driver->userId)->first();
             <div class="bus_details">
                 <div class="bus_details_header">
                     <h2><?php echo $vehicle->plateNo; ?></h2>
-                    <a href="">Edit</a>
                 </div>
                 <div class="car_credentials">
                     <p>Driver name: <span> <?php echo $driver->name; ?></span></p>

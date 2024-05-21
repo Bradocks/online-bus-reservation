@@ -9,10 +9,21 @@ $userName = $_SESSION['userName']
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="/app/home.css">
 </head>
 
 <body>
+
+    <style>
+        body {
+            background-image: url('/user/assets/bus10.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+
+        }
+    </style>
+
     <header>
         <section><img src="/driver/assets/logo.png" alt="" style="width: 100px; height: 100px;"></section>
         <section style=" background-color: transparent;"></section>
@@ -74,10 +85,11 @@ $userName = $_SESSION['userName']
                 </tr>
             </table>
         </div>
-        <br><h5><a href="index.php" style="text-decoration: none; color: black;">Back</a></h5><br>
+        <br>
+        <h5><a href="index.php" style="text-decoration: none; color: black;">Back</a></h5><br>
 
     </main>
-    
+
 
     <footer>
         <h2>Contact Us</h2>
