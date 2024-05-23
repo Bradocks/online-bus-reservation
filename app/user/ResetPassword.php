@@ -28,7 +28,7 @@ $updateUserCredentials->execute();
 //check if the sql query was succesfful by checking if it is equivalent to TRUE
 if($updateUserCredentials)
 {
-      echo '<script> alert("updated")</script>';
+     // echo '<script> alert("updated")</script>';
 //redirect to login page
 header("location:index.php");
 }
