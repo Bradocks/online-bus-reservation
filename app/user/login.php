@@ -8,9 +8,7 @@ $conn = connect_db();
 
 // process  form data from the post request and set the collected data to php variable for use in the php script
 $username = $_POST['userName'];
-
 $password = $_POST['password'];
-
 $userRole = $_POST['role'];
 
 
@@ -26,6 +24,13 @@ if ($result) {
 
     // Fetch the user details using the php fetch_assoc() function  and set the details to variable $row
     $row = $result->fetch_assoc();
+
+
+
+    // Define the session timeout duration (in seconds)
+
+
+    // Update the last activity timestamp
 
 
     // Verify password using password_verify function check if $row has data and the provided password resembles the one in the database

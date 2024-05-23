@@ -8,6 +8,22 @@ class Auth
     public function __construct($conn)
     {
         session_start();  // Start the session if not already started
+        $timeout_duration = 1800;
+        // Check if the last activity timestamp is set
+        if (isset($_SESSION['last_activity'])) {
+            // Calculate the session lifetime
+            $elapsed_time = time() - $_SESSION['last_activity'];
+
+            // If the session has expired
+            if ($elapsed_time >= $timeout_duration) {
+                // Destroy the session and redirect to the login page or another appropriate page
+                $this->logout();
+                session_start(); // Start a new session if needed
+                header("Location: /user"); // Adjust the redirection path as necessary
+                exit();
+            }
+        }
+        $_SESSION['last_activity'] = time();
         $this->db = new BaseModel('user', $conn);  // Initialize BaseDB for the 'users' table
     }
 
