@@ -98,7 +98,7 @@ function addUser($conn)
 
     //The bind_param() method binds variables to the placeholders in the SQL query.
     $insertuserdetails->bind_param(
-        'sisssiss',  // Type string corrected
+        'sisssisss',  // Type string corrected
         $name,
         $mobileNumber,
         $email,
