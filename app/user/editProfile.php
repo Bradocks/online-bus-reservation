@@ -42,7 +42,7 @@ $user = $session->user();
 
             <button type="submit">submit</button>
             <br>
-            <h5><a href="profile.php">Back</a></h5><br>
+            <h5><a href="ProfileUI.php">Back</a></h5><br>
         </form>
     </div>
     <script src="registration.js"></script>
