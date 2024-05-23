@@ -90,7 +90,7 @@ function addUser($conn)
 
     //insert data into the database  since the user name is not used, thus creating an account for the new client, 
     // a query that inserts values using placeholders in the prepare function using conn object?
-    $sql = "INSERT INTO user (name, mobileNumber, email, role, password,  IdNO, DOB, gender, userName) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO user (name, mobileNumber, email, role, password,  IdNO, DOB, gender, userName) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $insertuserdetails = $conn->prepare($sql);
 
