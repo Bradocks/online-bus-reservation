@@ -90,7 +90,7 @@ function addUser($conn)
 
     //insert data into the database  since the user name is not used, thus creating an account for the new client, 
     // a query that inserts values using placeholders in the prepare function using conn object?
-    $sql = "INSERT INTO user (name, mobilenumber, email, password, role,  IdNO, DOB, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO user (name, mobileNumber, email, role, password,  IdNO, DOB, gender, userName) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     $insertuserdetails = $conn->prepare($sql);
 
@@ -106,7 +106,8 @@ function addUser($conn)
         $password,
         $IdNO,       // Make sure this matches your database field name (case-sensitive in some cases)
         $DOB,
-        $gender
+        $gender,
+        $username
     );
     /* sends the query to the database server for execution with the 
        provided parameter values, returns true or false */
@@ -114,11 +115,8 @@ function addUser($conn)
     //check if the sql query was successful by checking if it is equivalent to TRUE
     if ($insertuserdetails->execute()) {
         // If the insertion is successful, redirect the user to the login page using php header function   
-        echo '<script>
-       alert("registration successful");
-       </script> ';
 
-        header("location:/user/index.php");
+        header("location:/user");
     } else {
         // If there's an error during insertion, display the error message by concatenating $sql variable that is the query, and the error message
         echo "error:" . $sql . "<br>" . $conn->error;

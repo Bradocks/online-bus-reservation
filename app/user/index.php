@@ -5,6 +5,7 @@ require_once __DIR__ . '/../utils/auth/Auth.php';
 $conn = connect_db();
 $session = new Auth($conn);
 
+echo $session->user()->role;
 if ($session->user() !== null) {
     switch ($session->user()->role) {
         case "Passenger":
