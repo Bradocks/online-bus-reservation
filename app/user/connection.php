@@ -18,6 +18,21 @@ $DOB = $_POST['DOB'];
 $gender = $_POST['gender'];
 
 
+/* 
+* Initialize variables to store form data and error messages
+*/
+
+if ($pass) {
+    // Retrieve form data
+    $confirm_password = $_POST['confirmPassword'];
+    // Check if password and confirm password match
+    if ($pass !== $confirm_password) {
+        $error = "Passwords do not match!";
+        echo $error;
+        return;
+    }
+}
+
 //check if the username is already used in the database
 $sql_chekUserName = " select * from user where email='$email'"; /*SQL query to select from user where the  user name is 
       the username used for registration */
@@ -53,24 +68,8 @@ if ($count > 0) {
     }
 }
 
-/* Initialize variables to store form data and error messages
-$password = $confirm_password = $error = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
 
-    // Check if password and confirm password match
-    if ($password !== $confirm_password) {
-        $error = "Passwords do not match!";
-    } else {
-        // Proceed with further processing, e.g., saving to database
-        // For demonstration, just showing a success message
-        echo "Passwords match. Proceed with registration!";
-    }
-}
-*/
 
 
 function addUser($conn)
@@ -119,7 +118,7 @@ function addUser($conn)
        alert("registration successful");
        </script> ';
 
-       header("location:/user/index.php");
+        header("location:/user/index.php");
     } else {
         // If there's an error during insertion, display the error message by concatenating $sql variable that is the query, and the error message
         echo "error:" . $sql . "<br>" . $conn->error;

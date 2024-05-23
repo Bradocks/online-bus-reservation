@@ -107,8 +107,10 @@ class BaseModel
         }, array_keys($data)));
 
         $sql = "UPDATE {$this->table_name} SET $updates WHERE {$id_column} = ?";
+
+
         $stmt = $this->conn->prepare($sql);
-        $data['id'] = $id;  // Ensure 'id' is at the end of $data
+        $data[$id_column] = $id;  // Ensure 'id' is at the end of $data
         $stmt->bind_param(strtolower($this->get_param_type(array_values($data))), ...array_values($data));
 
         if ($stmt->execute()) {

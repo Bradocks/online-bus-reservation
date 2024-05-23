@@ -1,44 +1,54 @@
+<?php
+// Start a session to manage the user
+require_once __DIR__ . "/../config/database.php";
+require_once __DIR__ . '/../utils/auth/Auth.php';
+
+$conn = connect_db();
+$session = new Auth($conn);
+$user = $session->user();
+?>
+
+
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>user account</title>
     <link rel="stylesheet" href="../form.css" />
-  </head>
-  <body>
-    <div
-      id="form"
-      style="background-color: #f3e8eb; width: 1000px; height: auto; border-radius: 30px;"
-      class="profile-container"
-    >
-      <h5 class="profile-title">profile</h5>
-      <p>
-        Name :
-        <?php echo $name; ?>
-      </p>
+</head>
 
-      <p>
-        MobileNumber:
-        <?php echo $mobileNumber; ?>
-      </p>
+<body>
+    <div id="form" style="background-color: #f3e8eb; width: 1000px; height: auto; border-radius: 30px;" class="profile-container">
+        <h5 class="profile-title">profile</h5>
+        <p>
+            Name :
+            <?php echo $user->name; ?>
+        </p>
 
-      <p>
-        Email :<?php echo  $email ; ?>
-      </p>
+        <p>
+            MobileNumber:
+            <?php echo $user->mobileNumber; ?>
+        </p>
 
-      <p>Username :<?php echo $userName; ?></p>
+        <p>
+            Email : <?php echo $user->email; ?>
+        </p>
 
-      <p>National ID :<?php echo $IdNO; ?></p>
+        <p>Username : <?php echo $user->userName; ?></p>
 
-      <p>Date of Birth :<?php echo $DOB; ?></p>
+        <p>National ID : <?php echo $user->IdNO; ?></p>
 
-      <p>Gender :<?php echo $gender; ?></p>
+        <p>Date of Birth : <?php echo $user->DOB; ?></p>
 
-      <div class="profile-buttons">
-        <button class="edit-button">
-          <a style="color: white;" href="/app/editProfile.php">Edit profile</a>
-        </button>
-        <button class="back-button"><a style="color: white;" href="/app/user/profileBack.php">Back</a></button>
-      </div>
+        <p>Gender : <?php echo $user->gender; ?></p>
+
+        <div class="profile-buttons">
+            <button class="edit-button">
+                <a style="color: white;" href="editProfile.php">Edit profile</a>
+            </button>
+            <button class="back-button"><a style="color: white;" href="/user">Back</a></button>
+        </div>
     </div>
-  </body>
+</body>
+
 </html>
