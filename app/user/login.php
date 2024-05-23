@@ -26,6 +26,8 @@ if ($result) {
 
     // Fetch the user details using the php fetch_assoc() function  and set the details to variable $row
     $row = $result->fetch_assoc();
+
+
     // Verify password using password_verify function check if $row has data and the provided password resembles the one in the database
     if ($row && password_verify($password, $row['password'])) {
         $_SESSION['userId'] = $row['userId']; //set variable $_session['userid'] to row  value $row['userid']
@@ -49,7 +51,7 @@ if ($result) {
             }
             exit;
         } else {
-            echo "please enter your supposed role at <a href='/app/user/index.php'> login</a>";
+            echo "please enter your supposed role at <a href='/user/index.php'> login</a>";
         }
     } else {
         // If password is incorrect, display error message

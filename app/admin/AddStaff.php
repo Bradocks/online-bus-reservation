@@ -43,7 +43,7 @@ if ($count > 0) {
         'email' => $email,
         'role' => $role,
         'gender' => $gender,
-        'DOB' => $DOB
+        'DOB' => $DtOfBth
     ], "staffId");
 
     $user = $user_model->create([
@@ -54,7 +54,7 @@ if ($count > 0) {
         'userName' => $userName,
         'password' => $password,    // Assuming you have a $password variable, add it here
         'IdNO' => $IdNO,
-        'DOB' => $DOB,
+        'DOB' => $DtOfBth,
         'gender' => $gender,
         'staff_id' => $staff->staffId     // Assuming you have a $staff_id variable, add it here
     ], "userId");
@@ -63,7 +63,7 @@ if ($count > 0) {
     if ($staff) {
         // If the insertion is successful
         echo "Staff Added <a href='Addstaff.html'>Add staff</a>" . "<br>";
-        echo "Back to dashBoard <a href='/app/admin/index.php'>Add staff</a>" . "<br>";
+        echo "Back to dashBoard <a href='/admin/index.php'>Add staff</a>" . "<br>";
     } else {
         // If there's an error during insertion, display the error message by concatenating $sql variable that is the query, and the error message
         echo " Failed!: <a href='Addstaff.html'>Add staff</a>" . "<br>";
