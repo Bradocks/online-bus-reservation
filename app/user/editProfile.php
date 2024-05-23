@@ -54,7 +54,7 @@ $user = $session->user();
             <input type="text" id="email" name="email" value="<?php echo $user->email; ?>"><br>
             <label>Address :<?php echo $user->address; ?><br></label>
             <input type="text" id="address" name="address" value="<?php echo $user->address; ?>"><br>
-            <label>dDNo :<?php echo $user->IdNo; ?><br></label>
+            <label>IDNo :<?php echo $user->IdNo; ?><br></label>
             <input type="text" id="IdNO" name="IdNO" value="<?php echo $user->IdNo; ?>"><br>
             <label>Date of Birth :<?php echo $user->DOB; ?><br></label>
             <input type="text" id="DOB" name="DOB" value="<?php echo $user->DOB; ?>"><br>

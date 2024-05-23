@@ -18,6 +18,14 @@ $user = $session->user();
 </head>
 
 <body>
+
+<style>
+        body {
+          background-image: url('/photo1.jpeg');
+        }
+        </style>
+
+
     <div id="form" style="background-color: #f3e8eb; width: 1000px; height: auto; border-radius: 30px;" class="profile-container">
         <h5 class="profile-title">profile</h5>
         <p>
