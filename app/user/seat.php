@@ -5,14 +5,14 @@ require_once __DIR__ . '/../utils/orm/BaseModel.php';
 
 
 // Fetch seat data from the database
-$sql = "SELECT * FROM bus_seats ORDER BY bus_id, row, position";
+$sql = "SELECT * FROM bus_seats ORDER BY vehicleId, row, position";
 $result = $conn->query($sql);
 
 // Create an array to store seat data for multiple buses
 $buses = [];
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $buses[$row['bus_id']][$row['row']][$row['position']] = $row;
+        $buses[$row['vehicleId']][$row['row']][$row['position']] = $row;
     }
 } else {
     echo "No seats data found.";
@@ -60,9 +60,9 @@ $conn->close();
 
 <body>
     <h1>Bus Reservation System</h1>
-    <?php foreach ($buses as $bus_id => $seats) : ?>
+    <?php foreach ($buses as $vehicleId => $seats) : ?>
         <div class="bus">
-            <h2>Bus <?= $bus_id ?></h2>
+            <h2>Bus <?= $vehicleId?></h2>
             <?php foreach ($seats as $row => $positions) : ?>
                 <div class="row">
                     <?php foreach ($positions as $position => $seat) : ?>
