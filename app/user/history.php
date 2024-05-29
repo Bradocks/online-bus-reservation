@@ -32,6 +32,8 @@ if (isset($booking_id) && isset($status)) {
         ],
         'bookingid'
     );
+
+    header('Location: /user/seat.php?bookingid=' . $booking_id);
 }
 
 $bookings = $booking_model->where('PassengerId', '=', $row->userId)->get_all();
@@ -69,7 +71,7 @@ switch ($role) {
                         <td>" . $row['PaymentMethod'] . "</td>
                         <td>" . $row['paymentDetail'] . "</td>
                         <td>" . $row['PaymentStatement'] . "</td>
-                        <td>" . $row['ticketCode'] . "</td>
+                        <td><a href=/user/ticket.php?bookingid=" . $row['bookingid'] . ">" . $row['ticketCode'] . "</a></td>
                     </tr>" .
                     "<br>";
             }

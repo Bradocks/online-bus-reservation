@@ -6,7 +6,30 @@ require_once __DIR__ . '/../utils/orm/BaseModel.php';
 $conn = connect_db();
 $session = new Auth($conn);
 
+// Fetch vehicles
+$vehicle_model = new BaseModel('vehicle', $conn);
+$vehicles = $vehicle_model->get_all();
+
+// Fetch routes
+$routes_model = new BaseModel('routes', $conn);
+$routes = $routes_model
+    ->select([
+        'routes.route_id',
+        'routes.place_of_departure',
+        'routes.destination',
+        'v.vehicleId',
+        'v.plateNo AS vehicle_name',
+        'COUNT(bs.id) AS available_seats'
+    ])
+    ->join('vehicle v', 'v.route_id = routes.route_id')
+    ->join('bus_seats bs', 'bs.vehicleId = v.vehicleId')
+    ->where('bs.status', '=', 'available')
+    ->groupBy(['routes.route_id', 'v.vehicleId'])
+    ->get_all();
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
     $name = $_POST['name'];
     $mobileNumber = $_POST['mobileNumber'];
     $email = $_POST['email'];
@@ -15,15 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $place_of_departure = $_POST['place_of_departure'];
     $destination = $_POST['destination'];
     $category = $_POST['category'];
-
+    $vehicleId = $_POST['vehicle_id'];
 
 
     $booking_model = new BaseModel('booking', $conn);
-    $vehicle_model = new BaseModel('vehicle', $conn);
 
     $booking = $booking_model->create([
         'PassengerId' => $session->user()->userId,
-        'vehicleId' => $vehicle_model->random_select()->vehicleId,
+        'vehicleId' => $vehicleId,
         'departure' => $place_of_departure,
         'route' => $place_of_departure . '-' . $destination,
         'destination' => $destination,
@@ -41,23 +63,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <title>Booking</title>
     <link rel="stylesheet" href="../form.css">
+    <style>
+        body {
+            background-image: url('/photo1.jpeg');
+        }
+    </style>
 </head>
 
 <body>
 
-<style>
-        body {
-          background-image: url('/photo1.jpeg');
-        }
-        </style>
-
-    <form method="POST" action="book.php">
+    <form method="POST" action="book.php" class="container">
         <div class="form-book-container">
             <div class="booking-details">
                 <p style="text-align: center;">Booking details</p>
@@ -71,10 +94,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="text" id="email" name="email" value="<?php echo $session->user()->email ?>" required placeholder="newEmail@gmail.com"><br>
                 <label>Date of Departure</label>
                 <input type="text" name="date_of_departure" id="departure_date" placeholder="2024-12-03" required>
+
+                <label>Bus</label>
+                <select name="vehicle_id" id="vehicle_id" required onchange="populateRouteDetails()">
+                    <option value="" hidden>Select Route</option>
+                    <?php foreach ($routes as $route) : ?>
+                        <option value="<?php echo $route['vehicleId']; ?>" data-departure="<?php echo $route['place_of_departure']; ?>" data-destination="<?php echo $route['destination']; ?>">
+                            <?php echo $route['place_of_departure'] . ' - ' . $route['destination'] . ' Bus (' . $route['vehicle_name'] . ') (' . $route['available_seats'] . ' Seats available)'; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+
                 <label>Departure Location</label>
-                <input type="text" name="place_of_departure" id="current_location" required placeholder="Nairobi">
+                <input type="text" name="place_of_departure" id="place_of_departure" required placeholder="Nairobi" readonly>
                 <label>Destination Location</label>
-                <input type="text" id="destination" name="destination" required placeholder="Czechia"><br>
+                <input type="text" id="destination" name="destination" required placeholder="Czechia" readonly><br>
                 <label>Time</label>
                 <select name="time" id="departure_time" required>
                     <option value="*" hidden>Select Time</option>
@@ -86,11 +120,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div style="text-align: center;">
             <button type="submit">submit</button>
         </div>
-        </div>
-
     </form>
 
-    <script src="../js/registration.js"></script>
+    <script>
+        function populateRouteDetails() {
+            const routeSelect = document.getElementById('vehicle_id');
+            const selectedOption = routeSelect.options[routeSelect.selectedIndex];
+            const departure = selectedOption.getAttribute('data-departure');
+            const destination = selectedOption.getAttribute('data-destination');
+
+            document.getElementById('place_of_departure').value = departure;
+            document.getElementById('destination').value = destination;
+        }
+    </script>
 </body>
 
 </html>
