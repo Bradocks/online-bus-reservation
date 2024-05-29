@@ -4,33 +4,31 @@ require_once __DIR__ . "/../config/database.php";
 require_once __DIR__ . '/../utils/auth/Auth.php';
 require_once __DIR__ . '/../utils/orm/BaseModel.php';
 
+$conn = connect_db();
 // Assume booking_id is passed via GET or POST
-$booking_id = $_GET['bookingid'] ?? null;
+$booking_model = new BaseModel('booking', $conn);
+$booking_id = isset($_GET['bookingid']) ? (int) $_GET['bookingid'] : null;
 
-if (!$bookingid) {
+if (!isset($booking_id)) {
     die("Booking ID is required.");
 }
 
-// Fetch booking details
-$sql = "SELECT * FROM booking WHERE bookingid = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $bookingid);
-$stmt->execute();
-$result = $stmt->get_result();
+// Fetch booking deta
+$booking = $booking_model->get_one($booking_id, 'bookingid');
 
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
+if (isset($booking)) {
+    $row = $booking;
 
-    $name = htmlspecialchars($row['name']);
-    $mobileNumber = htmlspecialchars($row['mobileNumber']);
-    $email = htmlspecialchars($row['email']);
-    $IdNO = htmlspecialchars($row['IdNo']);
-    $date_of_departure = htmlspecialchars($row['date_of_departure']);
-    $place_of_departure = htmlspecialchars($row['place_of_departure']);
-    $destination = htmlspecialchars($row['destination']);
-    $category = htmlspecialchars($row['category']);
-    $seat = htmlspecialchars($row['seat_reserved']);
-    $amount = htmlspecialchars($row['amount']);
+    $name = htmlspecialchars($row->name);
+    $mobileNumber = htmlspecialchars($row->mobileNumber);
+    $email = htmlspecialchars($row->email);
+    $IdNO = htmlspecialchars($row->IdNo);
+    $date_of_departure = htmlspecialchars($row->date_of_departure);
+    $place_of_departure = htmlspecialchars($row->place_of_departure);
+    $destination = htmlspecialchars($row->destination);
+    $category = htmlspecialchars($row->category);
+    $seat = htmlspecialchars($row->seat_reserved);
+    $amount = htmlspecialchars($row->amount);
 } else {
     die("Booking not found.");
 }
@@ -40,6 +38,7 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Booking Ticket</title>
@@ -53,6 +52,7 @@ $conn->close();
             height: 100vh;
             margin: 0;
         }
+
         .ticket {
             background-color: #fff;
             padding: 20px;
@@ -61,14 +61,17 @@ $conn->close();
             width: 400px;
             text-align: center;
         }
+
         .ticket h2 {
             margin-top: 0;
             color: #333;
         }
+
         .ticket p {
             margin: 10px 0;
             color: #555;
         }
+
         .ticket .amount {
             font-size: 20px;
             font-weight: bold;
@@ -76,6 +79,7 @@ $conn->close();
         }
     </style>
 </head>
+
 <body>
     <div class="ticket">
         <h2>Booking Confirmation</h2>
@@ -91,4 +95,5 @@ $conn->close();
         <p class="amount"><strong>Amount:</strong> $<?php echo $amount; ?></p>
     </div>
 </body>
+
 </html>

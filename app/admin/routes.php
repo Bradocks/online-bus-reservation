@@ -5,8 +5,13 @@ require_once __DIR__ . "/../config/database.php";
 require_once __DIR__ . '/../utils/auth/Auth.php';
 require_once __DIR__ . '/../utils/orm/BaseModel.php';
 
+$conn = connect_db();
+// Assume booking_id is passed via GET or POST
+$route_model = new BaseModel('routes', $conn);
+
 // Function to add a route
-function addRoute($conn, $route_name, $departure, $destination) {
+function addRoute($conn, $route_name, $departure, $destination)
+{
     // Check if the route already exists
     $stmt = $conn->prepare("SELECT * FROM routes WHERE route_name = ? AND place_of_departure = ? AND destination = ?");
     $stmt->bind_param("sss", $route_name, $departure, $destination);
@@ -24,7 +29,7 @@ function addRoute($conn, $route_name, $departure, $destination) {
     $stmt = $conn->prepare("INSERT INTO routes (route_name, place_of_departure, destination) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $route_name, $departure, $destination);
     if ($stmt->execute()) {
-        header("Location: index.php");
+        header("Location: routes.php");
         exit();
     } else {
         echo "Error: " . $stmt->error;
@@ -33,7 +38,8 @@ function addRoute($conn, $route_name, $departure, $destination) {
 }
 
 // Function to delete a route
-function deleteRoute($conn, $route_id) {
+function deleteRoute($conn, $route_id)
+{
     // Check if the route exists
     $stmt = $conn->prepare("SELECT * FROM routes WHERE route_id = ?");
     $stmt->bind_param("i", $route_id);
@@ -51,7 +57,7 @@ function deleteRoute($conn, $route_id) {
     $stmt = $conn->prepare("DELETE FROM routes WHERE route_id = ?");
     $stmt->bind_param("i", $route_id);
     if ($stmt->execute()) {
-        header("Location: index.php");
+        header("Location: routes.php");
         exit();
     } else {
         echo "Error: " . $stmt->error;
@@ -81,6 +87,7 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Manage Routes</title>
@@ -91,19 +98,24 @@ $conn->close();
             margin: 0;
             padding: 20px;
         }
-        h1, h2 {
+
+        h1,
+        h2 {
             color: #333;
         }
+
         form {
             background: #fff;
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         label {
             display: block;
             margin-top: 10px;
         }
+
         input[type="text"] {
             width: 100%;
             padding: 8px;
@@ -111,6 +123,7 @@ $conn->close();
             margin-bottom: 10px;
             box-sizing: border-box;
         }
+
         input[type="submit"] {
             background-color: #4CAF50;
             color: white;
@@ -119,21 +132,29 @@ $conn->close();
             cursor: pointer;
             margin-top: 10px;
         }
+
         input[type="submit"]:hover {
             background-color: #45a049;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
         }
-        th, td {
+
+        th,
+        td {
             padding: 10px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
-        tr:hover {background-color: #f5f5f5;}
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
     </style>
 </head>
+
 <body>
     <h1>Manage Routes</h1>
 
@@ -149,7 +170,9 @@ $conn->close();
         <label for="destination">Destination:</label>
         <input type="text" id="destination" name="destination" required>
         <br>
-        <input type="submit" name="add_route" value="Add Route">
+        <input type="hidden" name="add_route" value="true" required>
+
+        <input type="submit" value="Add Route">
     </form>
 
     <!-- Display existing routes with options to delete -->
@@ -162,8 +185,8 @@ $conn->close();
             <th>Destination</th>
             <th>Action</th>
         </tr>
-        <?php if ($result->num_rows > 0): ?>
-            <?php while($row = $result->fetch_assoc()): ?>
+        <?php if ($result->num_rows > 0) : ?>
+            <?php while ($row = $result->fetch_assoc()) : ?>
                 <tr>
                     <td><?= htmlspecialchars($row['route_id']) ?></td>
                     <td><?= htmlspecialchars($row['route_name']) ?></td>
@@ -177,11 +200,12 @@ $conn->close();
                     </td>
                 </tr>
             <?php endwhile; ?>
-        <?php else: ?>
+        <?php else : ?>
             <tr>
                 <td colspan="5">No routes available.</td>
             </tr>
         <?php endif; ?>
     </table>
 </body>
+
 </html>

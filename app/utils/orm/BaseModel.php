@@ -4,67 +4,120 @@ class BaseModel
     protected $table_name;
     protected $conn;
     protected $conditions = [];
+    protected $joins = [];
+    protected $selects = ['*'];
+    protected $group_by = [];
 
-    public function __construct($table_name, $conn) //initializes the BaseModel with the table name and database connection.
+    public function __construct($table_name, $conn)
     {
         $this->table_name = $table_name;
         $this->conn = $conn;
     }
 
+    public function select($fields)
+    {
+        if (is_array($fields)) {
+            $this->selects = $fields;
+        } else {
+            $this->selects = func_get_args();
+        }
+        return $this;
+    }
+
     public function first()
     {
-        $sql = "SELECT * FROM {$this->table_name}";
+        $sql = "SELECT " . implode(', ', $this->selects) . " FROM {$this->table_name}";
+        if (!empty($this->joins)) {
+            $sql .= ' ' . implode(' ', $this->joins);
+        }
         if (!empty($this->conditions)) {
             $sql .= " WHERE " . implode(' AND ', $this->conditions);
         }
-        $sql .= " LIMIT 1"; // Limit the results to only 1
+        if (!empty($this->group_by)) {
+            $sql .= " GROUP BY " . implode(', ', $this->group_by);
+        }
+        $sql .= " LIMIT 1";
         $result = $this->conn->query($sql);
-        return (object) $result->fetch_assoc(); // Fetch and return the first row
+        if (!$result) {
+            throw new Exception("Database Query Failed: " . $this->conn->error);
+        }
+        return (object) $result->fetch_assoc();
     }
 
     public function where($field, $operator, $value)
     {
         $this->conditions[] = sprintf("%s %s '%s'", $field, $operator, $this->conn->real_escape_string($value));
-        return $this; // Return $this for method chaining
+        return $this;
     }
 
-    public function get_all() //Retrieves all records from the table.
+    public function join($table, $condition, $type = 'INNER')
     {
-        $sql = "SELECT * FROM {$this->table_name}";
+        $this->joins[] = sprintf("%s JOIN %s ON %s", strtoupper($type), $table, $condition);
+        return $this;
+    }
+
+    public function groupBy($fields)
+    {
+        if (is_array($fields)) {
+            $this->group_by = $fields;
+        } else {
+            $this->group_by = func_get_args();
+        }
+        return $this;
+    }
+
+    public function get_all()
+    {
+        $sql = "SELECT " . implode(', ', $this->selects) . " FROM {$this->table_name}";
+        if (!empty($this->joins)) {
+            $sql .= ' ' . implode(' ', $this->joins);
+        }
         if (!empty($this->conditions)) {
             $sql .= " WHERE " . implode(' AND ', $this->conditions);
         }
+        if (!empty($this->group_by)) {
+            $sql .= " GROUP BY " . implode(', ', $this->group_by);
+        }
+
         $result = $this->conn->query($sql);
+        if (!$result) {
+            throw new Exception("Database Query Failed: " . $this->conn->error);
+        }
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    /**
-     * @param mixed $id
-     * @param string $column
-     */
-    public function get_one($id, $column = 'id') //Retrieves a single record by its ID.
+    public function get_one($id, $column = 'id')
     {
-        $sql = "SELECT * FROM `{$this->table_name}` WHERE `{$column}` = ?";
+        $sql = "SELECT " . implode(', ', $this->selects) . " FROM `{$this->table_name}`";
+        if (!empty($this->joins)) {
+            $sql .= ' ' . implode(' ', $this->joins);
+        }
+        $sql .= " WHERE `{$this->table_name}`.`{$column}` = ?";
         $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            throw new Exception("Database Prepare Failed: " . $this->conn->error);
+        }
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
-
+        if (!$result) {
+            throw new Exception("Database Query Failed: " . $this->conn->error);
+        }
         return (object) $result->fetch_assoc();
     }
 
-    private function get_param_type($params) //Determines the parameter types for bind_param() based on the values' data types.
+    private function get_param_type($params)
     {
         $types = '';
         foreach ($params as $param) {
             if (is_int($param)) {
-                $types .= 'i';  // Type integer
+                $types .= 'i';
             } elseif (is_float($param)) {
-                $types .= 'd';  // Type double
+                $types .= 'd';
             } elseif (is_string($param)) {
-                $types .= 's';  // Type string
+                $types .= 's';
             } else {
-                $types .= 'b';  // Type blob or default to blob
+                $types .= 'b';
             }
         }
         return $types;
@@ -73,57 +126,58 @@ class BaseModel
     private function debug_query($query, $params)
     {
         foreach ($params as $param) {
-            // Assuming all parameters are strings here, adjust as necessary for real types
             $param = is_numeric($param) ? $param : "'" . addslashes($param) . "'";
             $query = preg_replace('/\?/', $param, $query, 1);
         }
         return $query;
     }
 
-    /**
-     * @param mixed $name
-     */
-    public function create($data, $id_column = 'id') //Prepares an INSERT SQL statement with placeholders, Uses get_param_type() to determine the parameter types, Binds the parameters to the statement using bind_param()
+    public function create($data, $id_column = 'id')
     {
         $keys = implode(', ', array_keys($data));
         $placeholders = implode(', ', array_fill(0, count($data), '?'));
 
         $sql = "INSERT INTO {$this->table_name} ($keys) VALUES ($placeholders)";
         $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            throw new Exception("Database Prepare Failed: " . $this->conn->error);
+        }
         $stmt->bind_param(strtolower($this->get_param_type(array_values($data))), ...array_values($data));
 
         if ($stmt->execute()) {
-            $id = $stmt->insert_id;  // Get the ID of the inserted record
-            return $this->get_one($id, $id_column);  // Assuming you have a method to fetch a single record by ID
+            $id = $stmt->insert_id;
+            return $this->get_one($id, $id_column);
         }
-        return null;  // Return null if the insert failed
+        return null;
     }
 
-
-    public function update($id, $data, $id_column = 'id') //Prepares an UPDATE SQL statement with placeholders, Uses get_param_type() to determine the parameter types, appending 'i' for the ID parameter, Binds the parameters to the statement using bind_param().
+    public function update($id, $data, $id_column = 'id')
     {
         $updates = implode(', ', array_map(function ($key) {
             return "$key = ?";
         }, array_keys($data)));
 
         $sql = "UPDATE {$this->table_name} SET $updates WHERE {$id_column} = ?";
-
-
         $stmt = $this->conn->prepare($sql);
-        $data[$id_column] = $id;  // Ensure 'id' is at the end of $data
+        if (!$stmt) {
+            throw new Exception("Database Prepare Failed: " . $this->conn->error);
+        }
+        $data[$id_column] = $id;
         $stmt->bind_param(strtolower($this->get_param_type(array_values($data))), ...array_values($data));
 
         if ($stmt->execute()) {
-            return $this->get_one($id, $id_column);  // Fetch and return the updated record
+            return $this->get_one($id, $id_column);
         }
-        return null;  // Return null if the update failed
+        return null;
     }
 
-
-    public function delete($id) //Deletes a record by its ID.
+    public function delete($id)
     {
         $sql = "DELETE FROM {$this->table_name} WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            throw new Exception("Database Prepare Failed: " . $this->conn->error);
+        }
         $stmt->bind_param("i", $id);
         return $stmt->execute();
     }
@@ -131,23 +185,34 @@ class BaseModel
     public function paginate($page = 1, $perPage = 10)
     {
         $offset = ($page - 1) * $perPage;
-        $sql = "SELECT * FROM {$this->table_name} LIMIT ? OFFSET ?";
+        $sql = "SELECT " . implode(', ', $this->selects) . " FROM {$this->table_name} LIMIT ? OFFSET ?";
         $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            throw new Exception("Database Prepare Failed: " . $this->conn->error);
+        }
         $stmt->bind_param("ii", $perPage, $offset);
         $stmt->execute();
         $result = $stmt->get_result();
+        if (!$result) {
+            throw new Exception("Database Query Failed: " . $this->conn->error);
+        }
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function random_select()
     {
-        $sql = "SELECT * FROM {$this->table_name} ORDER BY RAND() LIMIT 1;";
+        $sql = "SELECT * FROM {$this->table_name} ORDER BY RAND() LIMIT 1";
         $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            throw new Exception("Database Prepare Failed: " . $this->conn->error);
+        }
         $stmt->execute();
         $result = $stmt->get_result();
+        if (!$result) {
+            throw new Exception("Database Query Failed: " . $this->conn->error);
+        }
         return (object) $result->fetch_assoc();
     }
-
 
     public static function generate_id($length = 10)
     {
