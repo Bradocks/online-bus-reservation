@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql-db
--- Generation Time: May 29, 2024 at 09:55 AM
+-- Generation Time: May 29, 2024 at 07:11 PM
 -- Server version: 8.0.37
 -- PHP Version: 8.2.18
 
@@ -40,23 +40,29 @@ CREATE TABLE `booking` (
   `PaymentMethod` varchar(20) DEFAULT NULL,
   `PaymentStatement` varchar(70) DEFAULT NULL,
   `paymentDetail` varchar(20) DEFAULT NULL,
-  `ticketCode` varchar(10) DEFAULT NULL
+  `ticketCode` varchar(10) DEFAULT NULL,
+  `seatId` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`bookingid`, `PassengerId`, `vehicleId`, `departure`, `destination`, `category`, `dateTime`, `route`, `charges`, `PaymentMethod`, `PaymentStatement`, `paymentDetail`, `ticketCode`) VALUES
-(1, 2, 3, 'Nairobi', 'Kampala', 'coach', '2024-05-01 07:10:30', 'Bungoma', 1800, 'Mpesa', 'DNK6543', 'paid', NULL),
-(2, 1, 2, 'Kisumu', 'Nairobi', 'firstclass', '2024-05-10 07:40:00', 'Nakuru', 1200, 'cash', NULL, 'paid', NULL),
-(3, 12, 1, 'Nakuru', 'Narok', '', '2024-05-10 08:09:47', 'Nakuru-Narok', 2000, 'PESAPAL', NULL, NULL, 'CHf3AKK2'),
-(4, 12, 4, 'Nakuru', 'Narok', NULL, '2024-05-10 08:10:06', 'Nakuru-Narok', 2000, 'PESAPAL', NULL, NULL, 'hefkJyAx'),
-(5, 12, 4, 'Nakuru', 'Narok', NULL, '2024-05-10 08:11:03', 'Nakuru-Narok', 2000, 'PESAPAL', NULL, NULL, 'f9dmLewL'),
-(6, 12, NULL, 'Kisumu', 'Malaba', NULL, '2024-05-29 09:11:22', 'Kisumu-Malaba', 2000, 'PESAPAL', NULL, NULL, 'ZOUW9PX8'),
-(7, 12, NULL, 'Kisumu', 'Malaba', NULL, '2024-05-29 09:12:39', 'Kisumu-Malaba', 2000, 'PESAPAL', 'e6c7d5c6-f7e9-4036-8488-dd2d80592bec', NULL, '9SQ6KFSK'),
-(8, 12, NULL, 'Kisumu', 'Malaba', NULL, '2024-05-29 09:48:28', 'Kisumu-Malaba', 2000, 'PESAPAL', '12e5b851-c0d8-4370-80b5-dd2d3c02ace7', NULL, '25BXZXKM'),
-(9, 12, 1, 'Kisumu', 'Malaba', NULL, '2024-05-29 09:49:32', 'Kisumu-Malaba', 2000, 'PESAPAL', '36be5593-8f65-4fd0-9ed5-dd2d08def0ca', NULL, 'S5NLJP6D');
+INSERT INTO `booking` (`bookingid`, `PassengerId`, `vehicleId`, `departure`, `destination`, `category`, `dateTime`, `route`, `charges`, `PaymentMethod`, `PaymentStatement`, `paymentDetail`, `ticketCode`, `seatId`) VALUES
+(1, 2, 3, 'Nairobi', 'Kampala', 'coach', '2024-05-01 07:10:30', 'Bungoma', 1800, 'Mpesa', 'DNK6543', 'paid', NULL, NULL),
+(2, 1, 2, 'Kisumu', 'Nairobi', 'firstclass', '2024-05-10 07:40:00', 'Nakuru', 1200, 'cash', NULL, 'paid', NULL, NULL),
+(3, 12, 1, 'Nakuru', 'Narok', '', '2024-05-10 08:09:47', 'Nakuru-Narok', 2000, 'PESAPAL', NULL, NULL, 'CHf3AKK2', NULL),
+(4, 12, 4, 'Nakuru', 'Narok', NULL, '2024-05-10 08:10:06', 'Nakuru-Narok', 2000, 'PESAPAL', NULL, NULL, 'hefkJyAx', NULL),
+(5, 12, 4, 'Nakuru', 'Narok', NULL, '2024-05-10 08:11:03', 'Nakuru-Narok', 2000, 'PESAPAL', NULL, NULL, 'f9dmLewL', NULL),
+(6, 12, NULL, 'Kisumu', 'Malaba', NULL, '2024-05-29 09:11:22', 'Kisumu-Malaba', 2000, 'PESAPAL', NULL, NULL, 'ZOUW9PX8', NULL),
+(7, 12, NULL, 'Kisumu', 'Malaba', NULL, '2024-05-29 09:12:39', 'Kisumu-Malaba', 2000, 'PESAPAL', 'e6c7d5c6-f7e9-4036-8488-dd2d80592bec', NULL, '9SQ6KFSK', NULL),
+(8, 12, NULL, 'Kisumu', 'Malaba', NULL, '2024-05-29 09:48:28', 'Kisumu-Malaba', 2000, 'PESAPAL', '12e5b851-c0d8-4370-80b5-dd2d3c02ace7', NULL, '25BXZXKM', NULL),
+(9, 12, 1, 'Kisumu', 'Malaba', NULL, '2024-05-29 09:49:32', 'Kisumu-Malaba', 2000, 'PESAPAL', '36be5593-8f65-4fd0-9ed5-dd2d08def0ca', NULL, 'S5NLJP6D', 16),
+(10, 12, 2, 'Kisumu', 'Malaba', NULL, '2024-05-29 18:31:01', 'Kisumu-Malaba', 2000, 'PESAPAL', '94b5e5fc-698c-4b2c-bbbb-dd2d4d0dfa3f', NULL, 'O02B3OI4', NULL),
+(11, 12, 1, 'Kisumu', 'Malaba', NULL, '2024-05-29 18:32:09', 'Kisumu-Malaba', 2000, 'PESAPAL', NULL, NULL, 'SMGLU78F', NULL),
+(12, 12, 2, 'Kisumu', 'Malaba', NULL, '2024-05-29 19:03:08', 'Kisumu-Malaba', 2000, 'PESAPAL', NULL, NULL, 'HRXRMHSK', NULL),
+(13, 12, 1, 'Kisumu', 'Malaba', NULL, '2024-05-29 19:03:52', 'Kisumu-Malaba', 2000, 'PESAPAL', NULL, NULL, 'WB84JRBN', NULL),
+(14, 12, 1, 'Kisumu', 'Malaba', NULL, '2024-05-29 19:05:02', 'Kisumu-Malaba', 2000, 'PESAPAL', NULL, NULL, 'XTD63IWN', 19);
 
 -- --------------------------------------------------------
 
@@ -78,61 +84,61 @@ CREATE TABLE `bus_seats` (
 --
 
 INSERT INTO `bus_seats` (`id`, `vehicleId`, `seat_id`, `row`, `position`, `status`) VALUES
-(1, 1, 'A1', 1, 1, 'available'),
-(2, 1, 'A2', 1, 2, 'available'),
+(1, 1, 'A1', 1, 1, 'booked'),
+(2, 1, 'A2', 1, 2, 'booked'),
 (3, 1, 'A3', 1, 3, 'booked'),
-(4, 1, 'A4', 1, 4, 'available'),
-(5, 1, 'A5', 1, 5, 'available'),
-(6, 1, 'B1', 2, 1, 'available'),
+(4, 1, 'A4', 1, 4, 'booked'),
+(5, 1, 'A5', 1, 5, 'booked'),
+(6, 1, 'B1', 2, 1, 'booked'),
 (7, 1, 'B2', 2, 2, 'booked'),
-(8, 1, 'B3', 2, 3, 'available'),
-(9, 1, 'B4', 2, 4, 'available'),
-(10, 1, 'B5', 2, 5, 'available'),
-(11, 1, 'C1', 3, 1, 'available'),
-(12, 1, 'C2', 3, 2, 'available'),
+(8, 1, 'B3', 2, 3, 'booked'),
+(9, 1, 'B4', 2, 4, 'booked'),
+(10, 1, 'B5', 2, 5, 'booked'),
+(11, 1, 'C1', 3, 1, 'booked'),
+(12, 1, 'C2', 3, 2, 'booked'),
 (13, 1, 'C3', 3, 3, 'booked'),
-(14, 1, 'C4', 3, 4, 'available'),
-(15, 1, 'C5', 3, 5, 'available'),
-(16, 1, 'D1', 4, 1, 'available'),
-(17, 1, 'D2', 4, 2, 'available'),
+(14, 1, 'C4', 3, 4, 'booked'),
+(15, 1, 'C5', 3, 5, 'booked'),
+(16, 1, 'D1', 4, 1, 'booked'),
+(17, 1, 'D2', 4, 2, 'booked'),
 (18, 1, 'D3', 4, 3, 'booked'),
-(19, 1, 'D4', 4, 4, 'available'),
-(20, 2, 'D5', 4, 5, 'available'),
+(19, 1, 'D4', 4, 4, 'booked'),
+(20, 2, 'D5', 4, 5, 'booked'),
 (21, 2, 'E1', 5, 1, 'available'),
-(22, 1, 'E2', 5, 2, 'booked'),
+(22, 1, 'E2', 5, 2, 'available'),
 (23, 1, 'E3', 5, 3, 'available'),
-(24, 1, 'E4', 5, 4, 'available'),
-(25, 1, 'E5', 5, 5, 'available'),
-(26, 1, 'F1', 6, 1, 'available'),
-(27, 1, 'F2', 6, 2, 'available'),
+(24, 1, 'E4', 5, 4, 'booked'),
+(25, 1, 'E5', 5, 5, 'booked'),
+(26, 1, 'F1', 6, 1, 'booked'),
+(27, 1, 'F2', 6, 2, 'booked'),
 (28, 1, 'F3', 6, 3, 'booked'),
-(29, 1, 'F4', 6, 4, 'available'),
-(30, 1, 'F5', 6, 5, 'available'),
-(31, 1, 'G1', 7, 1, 'available'),
+(29, 1, 'F4', 6, 4, 'booked'),
+(30, 1, 'F5', 6, 5, 'booked'),
+(31, 1, 'G1', 7, 1, 'booked'),
 (32, 1, 'G2', 7, 2, 'booked'),
-(33, 1, 'G3', 7, 3, 'available'),
-(34, 1, 'G4', 7, 4, 'available'),
-(35, 1, 'G5', 7, 5, 'available'),
-(36, 1, 'H1', 8, 1, 'available'),
-(37, 1, 'H2', 8, 2, 'available'),
+(33, 1, 'G3', 7, 3, 'booked'),
+(34, 1, 'G4', 7, 4, 'booked'),
+(35, 1, 'G5', 7, 5, 'booked'),
+(36, 1, 'H1', 8, 1, 'booked'),
+(37, 1, 'H2', 8, 2, 'booked'),
 (38, 1, 'H3', 8, 3, 'booked'),
-(39, 1, 'H4', 8, 4, 'available'),
-(40, 1, 'H5', 8, 5, 'available'),
-(41, 1, 'I1', 9, 1, 'available'),
-(42, 1, 'I2', 9, 2, 'available'),
+(39, 1, 'H4', 8, 4, 'booked'),
+(40, 1, 'H5', 8, 5, 'booked'),
+(41, 1, 'I1', 9, 1, 'booked'),
+(42, 1, 'I2', 9, 2, 'booked'),
 (43, 1, 'I3', 9, 3, 'booked'),
-(44, 1, 'I4', 9, 4, 'available'),
-(45, 1, 'I5', 9, 5, 'available'),
-(46, 1, 'J1', 10, 1, 'available'),
-(47, 1, 'J2', 10, 2, 'available'),
+(44, 1, 'I4', 9, 4, 'booked'),
+(45, 1, 'I5', 9, 5, 'booked'),
+(46, 1, 'J1', 10, 1, 'booked'),
+(47, 1, 'J2', 10, 2, 'booked'),
 (48, 1, 'J3', 10, 3, 'booked'),
-(49, 1, 'J4', 10, 4, 'available'),
-(50, 1, 'J5', 10, 5, 'available'),
-(51, 1, 'K1', 11, 1, 'available'),
-(52, 1, 'K2', 11, 2, 'available'),
-(53, 1, 'K3', 11, 3, 'available'),
-(54, 1, 'K4', 11, 4, 'available'),
-(55, 1, 'K5', 11, 5, 'available');
+(49, 1, 'J4', 10, 4, 'booked'),
+(50, 1, 'J5', 10, 5, 'booked'),
+(51, 1, 'K1', 11, 1, 'booked'),
+(52, 1, 'K2', 11, 2, 'booked'),
+(53, 1, 'K3', 11, 3, 'booked'),
+(54, 1, 'K4', 11, 4, 'booked'),
+(55, 1, 'K5', 11, 5, 'booked');
 
 -- --------------------------------------------------------
 
@@ -427,7 +433,7 @@ ALTER TABLE `vehicle`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `bookingid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `bookingid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `feedback`
