@@ -32,8 +32,6 @@ if (isset($booking_id) && isset($status)) {
         ],
         'bookingid'
     );
-
-    header('Location: /user/seat.php?bookingid=' . $booking_id);
 }
 
 $bookings = $booking_model->where('PassengerId', '=', $row->userId)->get_all();

@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ], 'bookingid');
 
     if (isset($booking)) {
-        header('Location: /user/payment.php?booking_id=' . $booking->bookingid);
+        header('Location: /user/seat.php?booking_id=' . $booking->bookingid);
     } else {
         echo "Booking did not go through";
     }
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label>Email</label>
                 <input type="text" id="email" name="email" value="<?php echo $session->user()->email ?>" required placeholder="newEmail@gmail.com"><br>
                 <label>Date of Departure</label>
-                <input type="text" name="date_of_departure" id="departure_date" placeholder="2024-12-03" required>
+                <input type="text" name="date_of_departure" id="departure_date" placeholder="2024-12-03" value="<?php echo date('Y-m-d') ?>" required>
 
                 <label>Bus</label>
                 <select name="vehicle_id" id="vehicle_id" required onchange="populateRouteDetails()">
