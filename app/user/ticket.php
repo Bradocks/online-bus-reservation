@@ -1,73 +1,94 @@
 <?php
-session_start();
-if (isset($_GET['ticket'])) {
 
-    require_once __DIR__ . "/../config/database.php";
-    require_once __DIR__ . '/../utils/auth/Auth.php';
-    require_once __DIR__ . '/../utils/orm/BaseModel.php';
-    $order_ref = $_GET['ticket'];
+require_once __DIR__ . "/../config/database.php";
+require_once __DIR__ . '/../utils/auth/Auth.php';
+require_once __DIR__ . '/../utils/orm/BaseModel.php';
 
-    if (empty($order_ref)) {
-        $order_ref = $_SESSION['ORDERREF'];
-    };
-    $data = mysqli_query($conn, "SELECT * FROM booking WHERE order_ref='$order_ref'");
-    if (($data) && (mysqli_num_rows($data) > 0)) { ?>
-        <html>
-        <style>
-            .ticketbox {
+// Assume booking_id is passed via GET or POST
+$booking_id = $_GET['bookingid'] ?? null;
 
-                border: 2px dashed grey;
-                font-family: tahoma;
-                font-size: 14px;
-                display: inline-block;
-                width: 330px;
-                height: auto;
-                border-radius: 7px;
-                padding: 21px;
-                color: grey;
-
-            }
-
-            .ref {
-                font-family: inherit;
-                font-weight: bold;
-                color: green;
-            }
-        </style>
-
-        <body>
-    <?php
-
-
-        //generating fields
-        $row = mysqli_fetch_assoc($data);     
-        $name = $row['name'];
-        $mobileNumber = $row['mobileNumber'];
-        $email = $row['email'];
-        $IdNO = $row['IdNo'];
-        $date_of_departure = $row['date_of_departure'];
-        $place_of_departure = $row['place_of_departure'];
-        $destination = $row['destination'];
-        $category = $row['category'];
-        $seats = $row['seats_reserved'];
-        $amount = $row['amount'];
-    
-        mysqli_close($conn);
-        while ($seats > 0) {
-            echo ("<div class='ticketbox'>");
-            echo ("<a> ORDER REF:</a> <span class='ref'>$order_ref</span>");
-            echo ("<ul><li>TICKET OWNER: " . $fullname . "</li>
-<li>DESTINATION: " . $destination . "</li>
-<li>DATE OF TRAVEL: " . $date_of_departure . "</li>
-<li>TRAVEL CLASS: " .  $category . "</li>
-<li>SEAT ID: " . $seats . " of " . $all . "</li>
-<li>AMOUNT PAYING: " . $amount .  "</li>
-</ul>");
-            echo ("</div>");
-            $seats--;
-        }
-        echo ("</body></html>");
-    }
+if (!$bookingid) {
+    die("Booking ID is required.");
 }
 
-    ?>
+// Fetch booking details
+$sql = "SELECT * FROM booking WHERE bookingid = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $bookingid);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+
+    $name = htmlspecialchars($row['name']);
+    $mobileNumber = htmlspecialchars($row['mobileNumber']);
+    $email = htmlspecialchars($row['email']);
+    $IdNO = htmlspecialchars($row['IdNo']);
+    $date_of_departure = htmlspecialchars($row['date_of_departure']);
+    $place_of_departure = htmlspecialchars($row['place_of_departure']);
+    $destination = htmlspecialchars($row['destination']);
+    $category = htmlspecialchars($row['category']);
+    $seat = htmlspecialchars($row['seat_reserved']);
+    $amount = htmlspecialchars($row['amount']);
+} else {
+    die("Booking not found.");
+}
+
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Ticket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .ticket {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        .ticket h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .ticket p {
+            margin: 10px 0;
+            color: #555;
+        }
+        .ticket .amount {
+            font-size: 20px;
+            font-weight: bold;
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+    <div class="ticket">
+        <h2>Booking Confirmation</h2>
+        <p><strong>Name:</strong> <?php echo $name; ?></p>
+        <p><strong>Mobile Number:</strong> <?php echo $mobileNumber; ?></p>
+        <p><strong>Email:</strong> <?php echo $email; ?></p>
+        <p><strong>ID Number:</strong> <?php echo $IdNO; ?></p>
+        <p><strong>Date of Departure:</strong> <?php echo $date_of_departure; ?></p>
+        <p><strong>Place of Departure:</strong> <?php echo $place_of_departure; ?></p>
+        <p><strong>Destination:</strong> <?php echo $destination; ?></p>
+        <p><strong>Category:</strong> <?php echo $category; ?></p>
+        <p><strong>Seat Reserved:</strong> <?php echo $seat; ?></p>
+        <p class="amount"><strong>Amount:</strong> $<?php echo $amount; ?></p>
+    </div>
+</body>
+</html>

@@ -25,7 +25,7 @@ $conn->close();
 
 <head>
     <meta charset="UTF-8">
-    <title>Bus Reservation System</title>
+    <title>seat reservation System</title>
     <style>
         .seat {
             display: inline-block;
