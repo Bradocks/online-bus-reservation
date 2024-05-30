@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if booking exists
     $sql = "SELECT * FROM booking WHERE bookingid = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $bookingid);
+    $stmt->bind_param("i", $booking_id);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -25,10 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Update the PaymentStatement and other details
         $update_sql = "UPDATE booking SET PaymentMethod = ?, charges = ?, PaymentStatement = ? WHERE bookingid = ?";
         $update_stmt = $conn->prepare($update_sql);
-        $update_stmt->bind_param("sisi", $paymentMethod, $charges, $paymenStatement, $bookingid);
+        $update_stmt->bind_param("sisi", $paymentMethod, $charges, $paymenStatement, $booking_id);
 
         if ($update_stmt->execute()) {
-            echo "Booking updated successfully. Redirecting...";
             header("Refresh: 2; URL=index.php"); // Redirect to index.php after 2 seconds
         } else {
             echo "Error updating booking: " . $conn->error;
@@ -39,4 +38,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $conn->close();
-?>

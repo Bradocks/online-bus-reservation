@@ -18,19 +18,18 @@ if ($result->num_rows > 0) {
                 <th>Destination</th>
                 <th>Action</th>
             </tr>";
-    
+
     while ($row = $result->fetch_assoc()) {
         echo "<tr>
                 <td>" . htmlspecialchars($row['bookingid']) . "</td>
                 <td>" . htmlspecialchars($row['destination']) . "</td>
-                <td><a href='payment.html?bookingid=" . htmlspecialchars($row['bookingid']) . "'>Complete Payment</a></td>
+                <td><a href='payment.php?bookingid=" . htmlspecialchars($row['bookingid']) . "'>Complete Payment</a></td>
               </tr>";
     }
-    
+
     echo "</table>";
 } else {
     echo "No unsuccessful bookings found.";
 }
 
 $conn->close();
-?>
