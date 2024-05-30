@@ -7,6 +7,7 @@ class BaseModel
     protected $joins = [];
     protected $selects = ['*'];
     protected $group_by = [];
+    protected $havings = [];
 
     public function __construct($table_name, $conn)
     {
@@ -106,6 +107,11 @@ class BaseModel
         return (object) $result->fetch_assoc();
     }
 
+    public function having($column, $operator, $value) {
+        $this->havings[] = "$column $operator '$value'";
+        return $this;
+    }
+    
     private function get_param_type($params)
     {
         $types = '';
