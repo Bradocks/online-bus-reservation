@@ -19,6 +19,14 @@ body {
     background-color: white;*/
 }
 
+.admin_dropdown_item {
+  background-color: transparent !important;
+}
+
+.admin_dropdown_item:hover {
+  color: black !important;
+  background: var(--button-background) !important;
+}
 /* Boring button styles */
 a.button {
   /* Frame */

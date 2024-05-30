@@ -26,8 +26,8 @@ $user = $session->user();
         </style>
 
 
-    <div id="form" style="background-color: #f3e8eb; width: 400px; height: auto; border-radius: 30px;" class="profile-container">
-        <h5 class="profile-title">profile</h5>
+    <div id="form" style="background-color: #f3e8eb; width: 400px; height: auto; border-radius: 30px; color: black;" class="profile-container">
+        <h5 class="profile-title" style="text-align: center;">profile</h5>
         <p>
             Name :
             <?php echo $user->name; ?>

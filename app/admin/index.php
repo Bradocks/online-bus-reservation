@@ -24,44 +24,41 @@ if ((!isset($_SESSION['userId']) || $_SESSION['userId'] === null) && $_SERVER['R
             <img src="/driver/assets/logo.png" alt=" Logo" class="logo" style="height: 100px" />
         </div>
         <div class="passenger-nav-details">
-            <div class="user-info">
-                <p class="userName">
-                    Welcome
-                    <?php echo $userName; ?>
-                </p>
-                <p class="userId">
-                    ID:
-                    <?php echo $userId; ?>
-                </p>
-            </div>
             <nav class="navigation">
                 `
                 <ul class="nav-list">
+                    <div class="user-info" style="margin-right: 6rem;">
+                        <p class="userName">
+                            Welcome
+                            <?php echo $userName; ?>
+                        </p>
+                        <p class="userId">
+                            ID:
+                            <?php echo $userId; ?>
+                        </p>
+                    </div>
                     <details class="dropdown">
                         <summary role="button">
                             <a class="button">System Management</a>
                         </summary>
                         <ul>
-                            <li><a href="./Addstaff.html">Add Staff</a></li>
-                            <li><a href="./DeleteStaff.html">Delete Staff</a></li>
-                            <li><a href="./UpdateStaff.html">Update Staff</a></li>
-                            <li><a href="./AddVehicle.html">Add vehicle</a></li>
-                            <li><a href="./AssignVehicle.html">Assign Vehicle</a></li>
-                            <li><a href="./DeleteVehicle.html">Delete Vehicle</a></li>
-                            <li><a href="./routes.php">routes</a></li>
-                            <li><a href="./check_bookings.php">Failed Bookings</a></li>
-                            <li><a href="adminReports.php">Reports</a></li>
-                            <li><a href="./DeleteUser.html">Delete user</a></li>
-                            <li><a href="../user/feedback.html">Feedback</a></li>
+                            <li><a class="admin_dropdown_item" href="./Addstaff.html">Add Staff</a></li>
+                            <li><a class="admin_dropdown_item" href="./DeleteStaff.html">Delete Staff</a></li>
+                            <li><a class="admin_dropdown_item" href="./UpdateStaff.html">Update Staff</a></li>
+                            <li><a class="admin_dropdown_item" href="./AddVehicle.html">Add vehicle</a></li>
+                            <li><a class="admin_dropdown_item" href="./AssignVehicle.html">Assign Vehicle</a></li>
+                            <li><a class="admin_dropdown_item" href="./DeleteVehicle.html">Delete Vehicle</a></li>
+                            <li><a class="admin_dropdown_item" href="./routes.php">routes</a></li>
+                            <li><a class="admin_dropdown_item" href="./check_bookings.php">Failed Bookings</a></li>
+                            <li><a class="admin_dropdown_item" href="adminReports.php">Reports</a></li>
+                            <li><a class="admin_dropdown_item" href="./DeleteUser.html">Delete user</a></li>
+                            <li><a class="admin_dropdown_item" href="../user/feedback.html">Feedback</a></li>
                         </ul>
                     </details>
                     <!--Check on the list of active bookings and history of all passed bookings -->
                     <li><a href="/user/ProfileUI.php">Profile</a></li>
                     <li><a href="/user/feedback.html">Feedback</a></li>
                     <li><a href="/user/logout.php">logout</a></li>
-
-
-
                 </ul>
             </nav>
         </div>
