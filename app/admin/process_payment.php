@@ -9,15 +9,15 @@ $session = new Auth($conn);
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $booking_id = $_POST['booking_id'];
+    $booking_id = $_POST['bookingid'];
     $paymentMethod = $_POST['paymentMethod'];
     $amount = $_POST['charges'];
     $paymenStatement = $_POST['paymenStatement'];
 
     // Check if booking exists
-    $sql = "SELECT * FROM booking WHERE booking_id = ?";
+    $sql = "SELECT * FROM booking WHERE bookingid = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $booking_id);
+    $stmt->bind_param("i", $bookingid);
     $stmt->execute();
     $result = $stmt->get_result();
 
