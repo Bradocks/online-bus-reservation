@@ -36,7 +36,7 @@ $vehicle = $vehicle_model->where('driverId', '=', $driver->userId)->first();
                 <img src="/driver/assets/logo.png" alt=" Logo" class="logo" style="height: 100px;">
             </div>
             <div class="passenger-nav-details">
-                <div class="user-info">
+                <div class="user-info" style="color:white; font-size:20px;">
                     <p class="userName">
                         Welcome
                         <?php echo $driver->name; ?>
@@ -59,7 +59,7 @@ $vehicle = $vehicle_model->where('driverId', '=', $driver->userId)->first();
             </div>
         </header>
 
-        <div class="driver_bus_details">
+        <div class="driver_bus_details" style="background-color: white;">
             <div class="bus_image_wrapper">
                 <img src="/driver/assets/driver.jpg" alt="" id="bus_icon" />
             </div>
@@ -78,7 +78,7 @@ $vehicle = $vehicle_model->where('driverId', '=', $driver->userId)->first();
             </div>
         </div>
     </div>
-    <footer class="footer">
+    <footer class="footer" style="color:white;">
         <h2>Contact Us</h2>
         <p>Have a question?</p>
         <address>
