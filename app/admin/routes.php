@@ -206,6 +206,7 @@ $conn->close();
             </tr>
         <?php endif; ?>
     </table>
+    <h5><a href="index.php" style="text-decoration: none; color: black;">Back</a></h5>
 </body>
 
 </html>

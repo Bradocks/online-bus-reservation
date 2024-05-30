@@ -61,7 +61,7 @@ $fully_booked_buses_on_route = $routes_model
     ->where('bs.status', '=', 'booked')
     ->where('routes.route_id', '=', $given_route_id)
     ->groupBy(['routes.route_id', 'v.vehicleId'])
-    ->having('total_seats', '>=', '55')
+    ->having('total_seats', '>=', '20')
     ->get_all();
 ?>
 <!DOCTYPE html>

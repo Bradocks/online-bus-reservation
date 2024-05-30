@@ -30,9 +30,10 @@ $userName = $_SESSION['userName']
         />
       </section>
       <section style="background-color: transparent"></section>
-      <section style="margin-right: 4rem;">
-        UserName:
-        <?php echo $userName; ?>
+      <section style="margin-left: 100rem;">
+      <section style="color:black; font-size:20px;">
+       UserName:
+        <?php echo $userName; ?><br>
         ID:
         <?php echo $userId; ?>
       </section>
@@ -75,6 +76,12 @@ $userName = $_SESSION['userName']
             <li>
               <a style="color: white;" href="adminReportGeneration.php?type=listOfFeedbacks"
                 >FEEDBACK REPORTS</a
+              >
+            </li>
+
+            <li>
+              <a style="color: white;" href="/admin/SeatReports.php"
+                >SEAT REPORTS</a
               >
             </li>
 
