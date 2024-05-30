@@ -3,8 +3,10 @@ require_once __DIR__ . "/../config/database.php";
 require_once __DIR__ . '/../utils/auth/Auth.php';
 require_once __DIR__ . '/../utils/orm/BaseModel.php';
 
+$conn = connect_db();
 // Fetch vacant seats
 $routes_model = new BaseModel('routes', $conn);
+
 $vacant_seats = $routes_model
     ->select([
         'routes.route_id',
@@ -23,6 +25,7 @@ $vacant_seats = $routes_model
     ->groupBy(['routes.route_id', 'v.vehicleId', 'bs.id'])
     ->get_all();
 
+$routes_model = new BaseModel('routes', $conn);
 // Fetch fully booked buses
 $fully_booked_buses = $routes_model
     ->select([
@@ -37,11 +40,13 @@ $fully_booked_buses = $routes_model
     ->join('bus_seats bs', 'bs.vehicleId = v.vehicleId')
     ->where('bs.status', '=', 'booked')
     ->groupBy(['routes.route_id', 'v.vehicleId'])
-    ->having('total_seats', '>=', '55') // Assuming a bus has 55 seats
+    ->having('total_seats', '>=', '55')
+    // Assuming a bus has 55 seats
     ->get_all();
 
+$routes_model = new BaseModel('routes', $conn);
 // Fetch fully booked buses on a given route
-$given_route_id = 1; 
+$given_route_id = 1;
 $fully_booked_buses_on_route = $routes_model
     ->select([
         'routes.route_id',
@@ -56,11 +61,12 @@ $fully_booked_buses_on_route = $routes_model
     ->where('bs.status', '=', 'booked')
     ->where('routes.route_id', '=', $given_route_id)
     ->groupBy(['routes.route_id', 'v.vehicleId'])
-    ->having('total_seats', '>=', '55') 
+    ->having('total_seats', '>=', '55')
     ->get_all();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Bus Seats Availability</title>
@@ -72,29 +78,39 @@ $fully_booked_buses_on_route = $routes_model
             min-height: 100vh;
             margin: 0;
         }
+
         .container {
             flex: 1;
             padding: 20px;
             text-align: center;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
         }
-        table, th, td {
+
+        table,
+        th,
+        td {
             border: 1px solid #ddd;
         }
-        th, td {
+
+        th,
+        td {
             padding: 12px;
             text-align: left;
         }
+
         th {
             background-color: #f2f2f2;
         }
+
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+
         .footer {
             text-align: center;
             margin-top: auto;
@@ -102,12 +118,14 @@ $fully_booked_buses_on_route = $routes_model
             background: #f1f1f1;
             width: 100%;
         }
+
         a {
             text-decoration: none;
             color: black;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h2>Vacant Seats in Buses</h2>
@@ -212,4 +230,5 @@ $fully_booked_buses_on_route = $routes_model
         <br>
     </div>
 </body>
+
 </html>
