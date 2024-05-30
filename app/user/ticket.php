@@ -90,6 +90,7 @@ $conn->close();
         <p><strong>charges:</strong><?php echo $charges; ?></p>
         <p><strong>vehicleId:</strong><?php echo $vehicleId; ?></p>
     </div>
+    <br><h5><a href="index.php" style="text-decoration: none; color: black;">Back</a></h5><br>
 </body>
 
 </html>
