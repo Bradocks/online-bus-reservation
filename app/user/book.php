@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ], 'bookingid');
 
     if (isset($booking)) {
-        header('Location: /user/seat.php?booking_id=' . $booking->bookingid);
+        header('Location: /user/seat.php?booking_id=' . $booking->bookingid . '&payment_method=' . $_POST['payment_method']);
     } else {
         echo "Booking did not go through";
     }
@@ -114,6 +114,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <option value="*" hidden>Select Time</option>
                     <option value="am">8 am</option>
                     <option value="pm">10 pm</option>
+                </select>
+                <label>Payment Method</label>
+                <select name="payment_method" id="paymentMethod" required>
+                    <option value="*" hidden>Select option</option>
+                    <option value="Cash">Cash</option>
+                    <option value="PesaPal">PesaPal</option>
                 </select>
             </div>
         </div>

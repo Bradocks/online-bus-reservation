@@ -28,7 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $update_stmt->bind_param("sisi", $paymentMethod, $charges, $paymenStatement, $booking_id);
 
         if ($update_stmt->execute()) {
-            header("Refresh: 2; URL=index.php"); // Redirect to index.php after 2 seconds
+            if ($session->user()->role == 'Passenger') {
+                header("Refresh: 2; URL=/user/index.php");
+            } else {
+                header("Refresh: 2; URL=index.php");
+            }
+            // Redirect to index.php after 2 seconds
         } else {
             echo "Error updating booking: " . $conn->error;
         }

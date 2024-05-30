@@ -9,6 +9,7 @@ $seats_model = new BaseModel('bus_seats', $conn);
 $booking_model = new BaseModel('booking', $conn);
 
 $booking_id = isset($_GET['booking_id']) ? (int) $_GET['booking_id'] : null;
+$payment_method = isset($_GET['payment_method']) ? $_GET['payment_method'] : null;
 
 // Handle AJAX request to book a seat
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['seat_id'])) {
@@ -131,7 +132,12 @@ function break_into_rows($seats, $row_size = 4)
                             const seatElement = document.getElementById('seat-' + seatId);
                             seatElement.classList.remove('available');
                             seatElement.classList.add('booked');
-                            window.location.href = '<?= "/user/payment.php?bookingid=" . $booking->bookingid ?>';
+
+                            if ("<?= $payment_method ?>" == 'PesaPal') {
+                                window.location.href = '<?= "/user/payment.php?bookingid=" . $booking->bookingid ?>';
+                            } else {
+                                window.location.href = '<?= "/admin/payment.php?bookingid=" . $booking->bookingid ?>';
+                            }
                         } else {
                             alert('Failed to book seat.');
                         }
