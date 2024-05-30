@@ -19,16 +19,15 @@ $booking = $booking_model->get_one($booking_id, 'bookingid');
 if (isset($booking)) {
     $row = $booking;
 
-    $name = htmlspecialchars($row->name);
-    $mobileNumber = htmlspecialchars($row->mobileNumber);
-    $email = htmlspecialchars($row->email);
-    $IdNO = htmlspecialchars($row->IdNo);
-    $date_of_departure = htmlspecialchars($row->date_of_departure);
-    $place_of_departure = htmlspecialchars($row->place_of_departure);
+    //$name = htmlspecialchars($row->name);
+    $PassengerId = htmlspecialchars($row->PassengerId );
+   // $IdNO = htmlspecialchars($row->IdNo);
+    $date_of_departure = htmlspecialchars($row->dateTime);
+    $place_of_departure = htmlspecialchars($row->departure);
     $destination = htmlspecialchars($row->destination);
-    $category = htmlspecialchars($row->category);
-    $seat = htmlspecialchars($row->seat_reserved);
-    $amount = htmlspecialchars($row->amount);
+    $seatId = htmlspecialchars($row->seatId);
+    $charges = htmlspecialchars($row->charges);
+    $vehicleId = htmlspecialchars($row->vehicleId);
 } else {
     die("Booking not found.");
 }
@@ -83,16 +82,13 @@ $conn->close();
 <body>
     <div class="ticket">
         <h2>Booking Confirmation</h2>
-        <p><strong>Name:</strong> <?php echo $name; ?></p>
-        <p><strong>Mobile Number:</strong> <?php echo $mobileNumber; ?></p>
-        <p><strong>Email:</strong> <?php echo $email; ?></p>
-        <p><strong>ID Number:</strong> <?php echo $IdNO; ?></p>
-        <p><strong>Date of Departure:</strong> <?php echo $date_of_departure; ?></p>
+        <p><strong>Passenger ID:</strong> <?php echo $PassengerId ; ?></p>
+        <p><strong>Date & Time:</strong> <?php echo $date_of_departure; ?></p>
         <p><strong>Place of Departure:</strong> <?php echo $place_of_departure; ?></p>
         <p><strong>Destination:</strong> <?php echo $destination; ?></p>
-        <p><strong>Category:</strong> <?php echo $category; ?></p>
-        <p><strong>Seat Reserved:</strong> <?php echo $seat; ?></p>
-        <p class="amount"><strong>Amount:</strong> $<?php echo $amount; ?></p>
+        <p><strong>Seat Reserved:</strong> <?php echo $seatId; ?></p>
+        <p><strong>charges:</strong><?php echo $charges; ?></p>
+        <p><strong>vehicleId:</strong><?php echo $vehicleId; ?></p>
     </div>
 </body>
 
