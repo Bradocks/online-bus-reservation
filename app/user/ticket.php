@@ -79,7 +79,7 @@ $conn->close();
     </style>
 </head>
 
-<body>
+<body style="display: flex; flex-direction: column;">
     <div class="ticket">
         <h2>Booking Confirmation</h2>
         <p><strong>Passenger ID:</strong> <?php echo $PassengerId ; ?></p>
@@ -90,7 +90,7 @@ $conn->close();
         <p><strong>charges:</strong><?php echo $charges; ?></p>
         <p><strong>vehicleId:</strong><?php echo $vehicleId; ?></p>
     </div>
-    <br><h5><a href="index.php" style="text-decoration: none; color: black;">Back</a></h5><br>
+    <h5><a href="index.php" style="text-decoration: none; color: black;">Back</a></h5>
 </body>
 
 </html>

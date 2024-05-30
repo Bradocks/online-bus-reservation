@@ -13,6 +13,7 @@ body {
   background-color: white;
   margin: 0;
   padding: 0;
+  color: white;
   text-transform: capitalize;
   height: 100vh;
   background-size: cover;
@@ -22,7 +23,7 @@ body {
 
 /* Styling for the form container */
 form {
-  background-color: #e2e2e2;
+  background-color: #788585;
   padding: 40px;
   width: 500px;
   height: max;
@@ -88,7 +89,7 @@ label {
   margin-bottom: 10px;
   font-weight: bold;
   text-align: left;
-  color: black;
+  color: white;
 }
 
 input[type="text"],
@@ -123,7 +124,7 @@ button {
 
 a {
   text-decoration: none;
-  color: black;
+  color: white !important;
 }
 
 button:hover {
