@@ -39,7 +39,7 @@ if ((!isset($_SESSION['userId']) || $_SESSION['userId'] === null) && $_SERVER['R
                 <ul class="nav-list">
                     <details class="dropdown">
                         <summary role="button">
-                            <a class="button">Manage Staff & Vehicles</a>
+                            <a class="button">System Management</a>
                         </summary>
                         <ul>
                             <li><a href="./Addstaff.html">Add Staff</a></li>

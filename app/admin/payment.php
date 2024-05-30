@@ -8,11 +8,17 @@
 
 <body>
 
+<style>
+            body {
+              background-image: url('/photo1.jpeg');
+            }
+            </style>
+
     <div class="form-payment-container">
 
         <form action="process_payment.php" onsubmit="return validatePayment()"  method="POST">
             <input type="hidden" name="bookingid" value="<?php echo htmlspecialchars($_GET['bookingid']); ?>">
-            <h2 style="margin-bottom: 2rem;">Payment Options</h2>
+            <h2 style="margin-bottom: 2rem;">Payment</h2>
             <label>Payment Method</label>
             <select name="paymentMethod" id="paymentMethod" required>
                 <option value="*" hidden>Select option</option>
