@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Update the PaymentStatement and other details
         $update_sql = "UPDATE booking SET PaymentMethod = ?, charges = ?, PaymentStatement = ? WHERE bookingid = ?";
         $update_stmt = $conn->prepare($update_sql);
-        $update_stmt->bind_param("sssi", $paymentMethod, $charges, $paymenStatement, $bookingid);
+        $update_stmt->bind_param("sisi", $paymentMethod, $charges, $paymenStatement, $bookingid);
 
         if ($update_stmt->execute()) {
             echo "Booking updated successfully. Redirecting...";
