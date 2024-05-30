@@ -28,13 +28,11 @@ $userName = $_SESSION['userName']
         <section><img src="/driver/assets/logo.png" alt="" style="width: 100px; height: 100px;"></section>
         <section style=" background-color: transparent;"></section>
         <section> UserName:<?php echo $userName; ?>
-            IdNO:<?php echo $userId; ?>
+            ID:<?php echo $userId; ?>
         </section>
         <section><a href="/user/logout.php">logout</a></section>
     </header>
     <main>
-
-        <p style="color: blue; font-size:large; text-align: center;">Experience a great trip, new smart world.</p>
 
         <div id="home" style="height: 350px; ">
 
@@ -46,37 +44,37 @@ $userName = $_SESSION['userName']
                 <tr>
                     <th>
                         <ul>
-                            <li> staff:
-                                <a href="adminReportGeneration.php?type=listOfStaff">list of staffs</a>
+                            <li> 
+                                <a href="adminReportGeneration.php?type=listOfStaff">STAFF REPORTS</a>
                                 <br></br>
                             </li>
                             <li>
-                                Vehicles:
-                                <a href="adminReportGeneration.php?type=listOfVehicles">list of vehicles</a>
-                                <br></br>
-                            </li>
-
-                            <li>
-                                user:
-                                <a href="adminReportGeneration.php?type=listOfUsers">list of users</a>
+                                
+                                <a href="adminReportGeneration.php?type=listOfVehicles">VEHICLE REPORTS</a>
                                 <br></br>
                             </li>
 
                             <li>
-                                passenger reports:
-                                <a href="adminReportGeneration.php?type=listOfpassengers">list of passengers</a>
+                               
+                                <a href="adminReportGeneration.php?type=listOfUsers">USER REPORTS</a>
                                 <br></br>
                             </li>
 
                             <li>
-                                Feedback reports:
-                                <a href="adminReportGeneration.php?type=listOfFeedbacks">list of Feedbacks</a>
+                                
+                                <a href="adminReportGeneration.php?type=listOfpassengers">PASSENGER REPORTS</a>
+                                <br></br>
+                            </li>
+
+                            <li>
+                               
+                                <a href="adminReportGeneration.php?type=listOfFeedbacks">FEEDBACK REPORTS</a>
 
                             </li>
 
                             <li>
-                                booking reports:
-                                <a href="adminReportGeneration.php?type=listOfbookings">list of bookings</a>
+                                
+                                <a href="adminReportGeneration.php?type=listOfbookings">BOOKINGS' REPORTS</a>
 
                             </li>
                         </ul>
@@ -89,20 +87,6 @@ $userName = $_SESSION['userName']
         <h5><a href="index.php" style="text-decoration: none; color: black;">Back</a></h5><br>
 
     </main>
-
-
-    <footer>
-        <h2>Contact Us</h2>
-        <p>Have questions? Contact our support team.</p>
-        <address>
-            Email: alluretravels@gmail.com<br>
-            Phone: 0710371315
-        </address>
-
-        <div id="copy">
-            &copy; 2024. All rights reserved.
-        </div>
-    </footer>
 
 </body>
 
