@@ -79,7 +79,7 @@ function addUser($conn)
     $username = $_POST['userName'];
     $pass = $_POST['password'];
     $role = $_POST['role'];
-    $password = password_hash($pass, PASSWORD_BCRYPT); /* Hash the password for using the password_hass function by passing the password variable
+    $password = password_hash($pass, PASSWORD_BCRYPT); /* Hash the password for using the password_hash function by passing the password variable
      and  PASSWORD_BCRYPT as arguments */
     $IdNO = $_POST['IdNO'];
     $DOB = $_POST['DOB'];
@@ -95,13 +95,13 @@ function addUser($conn)
 
     //The bind_param() method binds variables to the placeholders in the SQL query.
     $insertuserdetails->bind_param(
-        'sisssisss',  // Type string corrected
+        'sisssisss',  
         $name,
         $mobileNumber,
         $email,
         $role,
         $password,
-        $IdNO,       // Make sure this matches your database field name (case-sensitive in some cases)
+        $IdNO,       
         $DOB,
         $gender,
         $username
