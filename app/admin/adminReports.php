@@ -80,12 +80,6 @@ $userName = $_SESSION['userName']
             </li>
 
             <li>
-              <a style="color: white;" href="/admin/SeatReports.php"
-                >SEAT REPORTS</a
-              >
-            </li>
-
-            <li>
               <a style="color: white;" href="adminReportGeneration.php?type=listOfbookings"
                 >BOOKINGS' REPORTS</a
               >
