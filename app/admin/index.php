@@ -46,7 +46,6 @@ if ((!isset($_SESSION['userId']) || $_SESSION['userId'] === null) && $_SERVER['R
                             <li><a class="admin_dropdown_item" href="./DeleteStaff.html">Delete Staff</a></li>
                             <li><a class="admin_dropdown_item" href="./UpdateStaff.html">Update Staff</a></li>
                             <li><a class="admin_dropdown_item" href="./AddVehicle.html">Add vehicle</a></li>
-                            <li><a class="admin_dropdown_item" href="./AssignVehicle.html">Assign Vehicle</a></li>
                             <li><a class="admin_dropdown_item" href="./DeleteVehicle.html">Delete Vehicle</a></li>
                             <li><a class="admin_dropdown_item" href="./routes.php">routes</a></li>
                             <li><a class="admin_dropdown_item" href="./check_bookings.php">Failed Bookings</a></li>
