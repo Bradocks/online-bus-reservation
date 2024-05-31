@@ -36,5 +36,5 @@ if ($stmt) {
 } else {
     /*If there's an error in the update, display the error message by concatenating $sql variable that is the query 
    and the error message */
-    echo "update unsuccessful. redo at <a href='ProfileUI.php'>Back</a>" . "<br>";
+    echo "update unsuccessful <a href='ProfileUI.php'>Back</a>" . "<br>";
 }

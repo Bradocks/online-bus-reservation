@@ -39,14 +39,12 @@ $sql_chekUserName = " select * from user where email='$email'"; /*SQL query to s
 $result_userName = $conn->query($sql_chekUserName); // set the result of the query to $result_userName variable
 $count = mysqli_num_rows($result_userName); // use mysqli_num_rows function to check the number of rows picked
 
-/* if the number of rows exceeds 0 the user name is  used thus requesting the client to use another user to create an account 
+/* if the number of rows exceeds 0 the user name is  used thus requesting the passenger to use another user to create an account 
       else if there is no row picked the user name is not used thus creating the account in the database*/
 if ($count > 0) {
-    echo "user name already used set another userName";
-    echo "<p><a href='userRegistrationform.html'> use another userName to register</a></P>"; /* display link to direct the
-          user to create an account with a different username */
+    echo "user name already TAKEN set another userName";
+    echo "<p><a href='userRegistrationform.html'> use another userName to register</a></P>"; 
 } else {
-    // Ensure users registering as staff are official staff
     if ($role != 'Passenger') {
         $sql = "select * from staff where email='$email' and position='$role' ";
         $user = $conn->query($sql);
@@ -56,8 +54,7 @@ if ($count > 0) {
         if ($cout > 0 || $role === 'Passenger') {
             addUser($conn);
         } else {
-            echo "for one to register as staff they have to be registered withUs 
-      and assigned official userNames.";
+            echo "NOT registered .";
             echo "<br>";
             echo "register as a passenger <a href='userRegistrationForm.html'>register</a>";
         }

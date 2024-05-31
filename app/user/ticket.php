@@ -5,7 +5,7 @@ require_once __DIR__ . '/../utils/auth/Auth.php';
 require_once __DIR__ . '/../utils/orm/BaseModel.php';
 
 $conn = connect_db();
-// Assume booking_id is passed via GET or POST
+//booking_id is passed via GET or POST
 $booking_model = new BaseModel('booking', $conn);
 $booking_id = isset($_GET['bookingid']) ? (int) $_GET['bookingid'] : null;
 
