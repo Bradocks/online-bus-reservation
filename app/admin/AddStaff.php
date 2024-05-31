@@ -14,7 +14,7 @@ $name = $_POST['name'] . " " . $_POST['lname'];
 $mobileNumber = $_POST['mobileNumber'];
 $email = $_POST['email'];
 $IdNO = $_POST['IdNO'];
-$DtOfBth = $_POST['DOB'];
+$DOB = $_POST['DOB'];
 $gender = $_POST['gender'];
 $role = $_POST['role'];
 $userName = $_POST['userName'];
@@ -26,12 +26,10 @@ $sql_chekUserName = " select * from staff where userName='$userName'"; /*sql que
 $result_userName = $conn->query($sql_chekUserName); // set the result of the query to $result_userName variable
 $count = mysqli_num_rows($result_userName); // use mysqli_num_rows function to check the number of rows picked
 
-/* if the number of rows exceeds 0 the user name is  used, requesting the client to use another username to create an account 
-   else if there is no row picked the user name is not used, creating the account in the database*/
+/* if the number of rows exceeds 0 the user name is  used */
 if ($count > 0) {
     echo "user name taken";
-    echo "<p><a href='Addstaff.html'>Pick another name</a></P>"; /* DisplayLink to direct the
-       user to create an account with a different userName */
+    echo "<p><a href='Addstaff.html'>Pick another name</a></P>";
 } else {
     $password = password_hash($IdNO, PASSWORD_BCRYPT);
 
@@ -39,11 +37,11 @@ if ($count > 0) {
         'name' => $name,
         'userName' => $userName,
         'IdNO' => $IdNO,
-        'phoneNO' => $mobileNumber,  // Assuming 'phoneNO' is the key expected by the method
+        'phoneNO' => $mobileNumber,  
         'email' => $email,
         'role' => $role,
         'gender' => $gender,
-        'DOB' => $DtOfBth
+        'DOB' => $DOB
     ], "staffId");
 
     $user = $user_model->create([
@@ -52,11 +50,11 @@ if ($count > 0) {
         'email' => $email,
         'role' => $role,
         'userName' => $userName,
-        'password' => $password,    // Assuming you have a $password variable, add it here
+        'password' => $password,    
         'IdNO' => $IdNO,
-        'DOB' => $DtOfBth,
+        'DOB' => $DOB,
         'gender' => $gender,
-        'staff_id' => $staff->staffId     // Assuming you have a $staff_id variable, add it here
+        'staff_id' => $staff->staffId    
     ], "userId");
 
     //check if the sql query was successful by checking if it is equivalent to TRUE
@@ -71,5 +69,5 @@ if ($count > 0) {
 }
 
 
-//close the connection to the database using the $conn variables used to open the connection by invoking the close() function
+//close the connection to the database using the $conn variables used to open the connection by using the close() function
 $conn->close();
