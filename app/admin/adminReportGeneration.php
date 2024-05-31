@@ -3,12 +3,57 @@
 require_once("../config/database.php");
 require_once("../utils/reports/Generator.php");
 $conn = connect_db();
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <style>
+        /* CSS Styles */
+        body {
+            background-image: url('/photo1.jpeg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            background-color: rgba(255, 255, 255, 0.8);
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<?php
+
 //check if the type is set as a query parameter
 /**
  * isset($_GET['type']): This checks if the 'type' parameter is set in the GET request. $_GET is a superglobal array in PHP
  * that contains variables passed to the current script via the URL parameters (GET method).
  * This condition ensures that the 'type' parameter is present in the URL. its a bollean returns true if it is present
  */
+
 if (isset($_GET['type'])) {
     // assigns 'type' parameter to the variable $type.
     $type = $_GET['type'];
