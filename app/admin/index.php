@@ -54,7 +54,6 @@ if ((!isset($_SESSION['userId']) || $_SESSION['userId'] === null) && $_SERVER['R
                             <li><a class="admin_dropdown_item" href="../user/feedback.html">Feedback</a></li>
                         </ul>
                     </details>
-                    <!--Check on the list of active bookings and history of all passed bookings -->
                     <li><a href="/user/ProfileUI.php">Profile</a></li>
                     <li><a href="/user/feedback.html">Feedback</a></li>
                     <li><a href="/user/logout.php">logout</a></li>

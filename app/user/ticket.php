@@ -19,9 +19,7 @@ $booking = $booking_model->get_one($booking_id, 'bookingid');
 if (isset($booking)) {
     $row = $booking;
 
-    //$name = htmlspecialchars($row->name);
     $PassengerId = htmlspecialchars($row->PassengerId );
-   // $IdNO = htmlspecialchars($row->IdNo);
     $date_of_departure = htmlspecialchars($row->dateTime);
     $place_of_departure = htmlspecialchars($row->departure);
     $destination = htmlspecialchars($row->destination);
