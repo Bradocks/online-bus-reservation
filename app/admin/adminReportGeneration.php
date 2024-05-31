@@ -115,8 +115,8 @@ function list_of_staff_query($result)
 {
     while ($row = $result->fetch_assoc()) {
         /** of the result set returned by the SQL query. Inside the loop: */
-        echo "<tr><td>" . $row['staffId'] . "</td><td>" . $row['name'] . "</td><td>" . $row['userName'] . "</td><td>" .  $row['IdNo'] . "</td><td>" .  $row['phoneNO'] . "</td><td>" .
-            $row['email'] . "</td><td>" . $row['position'] . "</td><td>" .  $row['state'] . "</td><td>" .
+        echo "<tr><td>" . $row['staffId'] . "</td><td>" . $row['name'] . "</td><td>" . $row['userName'] . "</td><td>" .  $row['IdNO'] . "</td><td>" .  $row['phoneNO'] . "</td><td>" .
+            $row['email'] . "</td><td>" . $row['role'] . "</td><td>" .  $row['state'] . "</td><td>" .
             $row['gender'] . "</td><td>" . $row['DOB'] . "</td><td>" .
             "<br>";
     }
@@ -137,14 +137,14 @@ and stores the result in the $result variable. */
         // setting table with a border attribute of '1'
         echo "<table border='1'>";
         //table header row 
-        echo " <tr> <th> vehicleId</th> <th>plateNo</th> <th> type</th> <th>capacity</th> <th> state</th> 
+        echo " <tr> <th>vehicleId</th> <th>plateNo</th> <th>brand</th> <th>capacity</th> 
             <th>driverId</th> </tr> ";
         //fetch_assoc() method is a function used in PHP to fetch a single row of result set from a MySQL database query as an associative array
         while ($row = $result->fetch_assoc()) {
             /* presenting the result in table data cells and each database row to a different table row using while by looping through each row 
         of the result set returned by the SQL query. Inside the loop: */
-            echo "<tr><td>" . $row['vehicleId'] . "</td><td>" . $row['plateNo'] . "</td><td>" .  $row['type'] . "</td><td>" .
-                $row['capacity'] . "</td><td>" . $row['state'] . "</td><td>" . $row['driverId'] . "</td></tr>" .
+            echo "<tr><td>" . $row['vehicleId'] . "</td><td>" . $row['plateNo'] . "</td><td>" .  $row['brand'] . "</td><td>" .
+                $row['capacity'] . "</td><td>" . $row['driverId'] . "</td></tr>" .
                 "<br>";
         }
     }
@@ -202,7 +202,7 @@ function list_of_bookings($conn)
         //table header row 
         echo "
         <thead>
-            <th>bookingId</th> 
+            <th>bookingid</th> 
             <th>passengerId</th>
             <th>departure</th> 
             <th>destination</th> 
@@ -215,7 +215,7 @@ function list_of_bookings($conn)
             /* presenting the result in table data cells and each database row to a different table row using while by looping through each row 
          of the result set returned by the SQL query. Inside the loop: */
             echo "<tr>
-            <td>" . $row['bookingId'] . "</td>
+            <td>" . $row['bookingid'] . "</td>
             <td>" . $row['passengerId'] . "</td>
             <td>" . $row['departure'] . "</td>
             <td>" . $row['destination'] . "</td>
@@ -248,15 +248,13 @@ and stores the result in the $result variable. */
         // setting table with a border attribute of '1'
         echo "<table border='1'>";
         //table header row 
-        echo " <tr> <th>passengerId</th> <th>passenger Name</th> <th> passengerIdNo</th> <th>passengerPhoneNo</th> <th> passengerEmail</th> 
-       <th>passengerDOB</th> <th>passengerGender</th>  </tr> ";
+        echo " <tr> <th>passengerId</th> <th>passenger Name</th> <th> passengerIdNo</th> <th>passengerPhoneNo</th> </tr> ";
         //fetch_assoc() method is a function used in PHP to fetch a single row of result set from a MySQL database query as an associative array
         while ($row = $result->fetch_assoc()) {
             /* presenting the result in table data cells and each database row to a different table row using while by looping through each row 
         of the result set returned by the SQL query. Inside the loop: */
             echo "<tr><td>" . $row['passengerId'] . "</td><td>" . $row['passengerName'] . "</td><td>" .  $row['passengerIdNo'] . "</td><td>" .
-                $row['passengerPhoneNo'] . "</td><td>" . $row['passengerEmail'] . "</td><td>" . "</td><td>" .
-                $row['passengerDOB'] . "</td><td>" .  $row['passegerGender'] . "</td><?tr>" .
+                $row['passengerPhoneNo'] . "</td><?tr>" .
                 "<br>";
         }
     }
