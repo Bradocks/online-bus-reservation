@@ -4,7 +4,7 @@ require_once("../config/database.php");
 require_once __DIR__ . '/../utils/orm/BaseModel.php';
 
 
-$conn = connect_db();
+$conn = connect_db($db_config);
 $user_model = new BaseModel('user', $conn);
 $staff_model = new BaseModel('staff', $conn);
 

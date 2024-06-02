@@ -1,24 +1,28 @@
 <?php
-//estalish connnection to the database
 // Database configuration settings
-define('DB_HOST', 'mysql-db');
-define('DB_USERNAME', 'sample');
-define('DB_PASSWORD', 'root');
-define('DB_NAME', 'busreservation');
-define('DB_PORT', 3306);
+$db_config = [
+    'host' => 'mysql-db',
+    'username' => 'sample',
+    'password' => 'root',
+    'dbname' => 'busreservation',
+    'port' => 3306
+];
 
 // Connecting to the database
-function connect_db()
+function connect_db($config)
 {
-    $conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT);
+    $conn = new mysqli($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 
-    /**
-     * Check if the connection to the database was successful using connect_error if there is a connect_error the error will be 
-     * displayed and execution will be terminated by the die function.
-     */
+    // Check if the connection to the database was successful
     if ($conn->connect_error) {
-        echo "connection error" . $conn->connect_error; // display the connection error if it exists
-        die("connection failed:" . $conn->connect_error); // Terminate script execution if the connection fails
+        echo "Connection error: " . $conn->connect_error; // Display the connection error if it exists
+        die("Connection failed: " . $conn->connect_error); // Terminate script execution if the connection fails
     }
     return $conn;
 }
+
+// Establish the connection using the configuration array
+$conn = connect_db($db_config);
+
+// Now you can use $conn for your database operations
+?>

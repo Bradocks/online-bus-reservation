@@ -3,7 +3,7 @@
  all session data stored on the server, including session variables and session cookies.*/
 require_once __DIR__ . "/../config/database.php";
 require_once __DIR__ . '/../utils/auth/Auth.php';
-$conn = connect_db();
+$conn = connect_db($db_config);
 $session = new Auth($conn);
 $session->logout();
 header("Location: /user");

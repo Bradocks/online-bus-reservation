@@ -2,7 +2,7 @@
 //estalish connnection to the database
 require_once("../config/database.php");
 require_once("../utils/reports/Generator.php");
-$conn = connect_db();
+$conn = connect_db($db_config);
 
 ?>
 

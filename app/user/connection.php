@@ -3,7 +3,7 @@
 //estalish connnection 
 require_once("../config/database.php");
 
-$conn = connect_db();
+$conn = connect_db($db_config);
 // process  form data from the post request and set the collected data to php variable for use in the php script
 $name = $_POST['name'] . " " . $_POST['lname'];
 $mobileNumber = $_POST['mobileNumber'];

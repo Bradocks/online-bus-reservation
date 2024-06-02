@@ -3,7 +3,7 @@ require_once __DIR__ . "/../config/database.php";
 require_once __DIR__ . '/../utils/auth/Auth.php';
 require_once __DIR__ . '/../utils/orm/BaseModel.php';
 
-$conn = connect_db();
+$conn = connect_db($db_config);
 $session = new Auth($conn);
 $seats_model = new BaseModel('bus_seats', $conn);
 $booking_model = new BaseModel('booking', $conn);

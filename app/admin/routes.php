@@ -5,7 +5,7 @@ require_once __DIR__ . "/../config/database.php";
 require_once __DIR__ . '/../utils/auth/Auth.php';
 require_once __DIR__ . '/../utils/orm/BaseModel.php';
 
-$conn = connect_db();
+$conn = connect_db($db_config);
 // Assume booking_id is passed via GET or POST
 $route_model = new BaseModel('routes', $conn);
 

@@ -8,7 +8,7 @@ require_once __DIR__ . "../../utils/integrations/Pesapal.php";
 
 
 
-$conn = connect_db();
+$conn = connect_db($db_config);
 $session = new Auth($conn);
 $booking_model = new BaseModel('booking', $conn);
 $row = $session->user();
