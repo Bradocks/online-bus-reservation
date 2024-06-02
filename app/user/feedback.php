@@ -24,13 +24,13 @@ if ($role) {
             case "Passenger":
                 /* header() function in PHP is used to send raw HTTP headers to the client,allowing 
     you to perform various tasks such as redirecting the user to anotherpage.  */
-                header("location:passengerDashboard.php");
+                header("location:/../passengerdashboard.php");
                 break;
             case "driver":
-                header("location:driverDashboard.php");
+                header("location:./../../driver/index.php");
                 break;
             case "admin":
-                header("location:AdminDashboard.php");
+                header("location:./../../admin/index.php");
                 break;
         }
     }

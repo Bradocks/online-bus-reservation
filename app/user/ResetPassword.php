@@ -40,9 +40,9 @@ else{
       }
 else{
       //if the query was not sucessful display the meassage and allow the user to the user to redu the reset
-      echo"userName does not exist please create an account "."</br>".'';
-      echo"<a href='userRegistrationForm.html'>create an account </a>"."</br>".'';
-      echo"<a href='resetPassword.html'>try again to resert password</a>"."</br>".'';
+      echo"User does not exist.Create an account "."</br>".'';
+      echo"<a href='userRegistrationForm.html'>CREATE ACCOUNT</a>"."</br>".'';
+      echo"<a href='resetPassword.html'>RESET AGAIN?</a>"."</br>".'';
 }
  //close the connection to the database using the $conn variables used to open the connection by invoking the close() function
 $conn->close();

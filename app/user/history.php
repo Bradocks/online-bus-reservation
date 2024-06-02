@@ -85,10 +85,10 @@ switch ($role) {
         $vehicle = $row['vehicleId'];
 
 
-        $history = "select bookingId,vehicleId,departure,destination,passengerName,passengerEmail 
+        $history = "select bookingid,vehicleId,departure,destination,passengerName,passengerEmail 
       from booking  
-      join passenger ON ticketid= bookingNId
-      where vehicleId=$vehicle and destination='sucessfull'";
+      join passenger ON ticketid= bookingid
+      where vehicleId=$vehicle and destination='successfull'";
         /* executes the SQL query using the database connection represented by $conn using query mysqli method
 and stores the result in the $result variable. */
         $result = $conn->query($history);
@@ -98,12 +98,12 @@ and stores the result in the $result variable. */
             echo '<a href="profileBack.php">back</a>';
             echo "<table border='1'>";
             //table header row
-            echo "<tr><th>bookingId</th> <th>vehicleId</th> <th>departure</th> <th>destination</th>
+            echo "<tr><th>bookingid</th> <th>vehicleId</th> <th>departure</th> <th>destination</th>
              <th>passengerName</th> <th> passengerEmail</th></tr>";
             /*fetch_assoc() method is a function used in PHP to fetch a single row of result set from a MySQL database query 
          as an associative array*/
             while ($row = $result->fetch_assoc()) {
-                echo "<tr><td>" . $row['bookingId'] . " </td><td>" . $row['vehicleId'] . "</td><td>" . $row['departure'] . "</td><td>" . $row['destination'] . "</td>><td>" . $row['passengerName'] . "</td><td>" . $row['passengerEmail'] . "</td></tr>" . "<br>";
+                echo "<tr><td>" . $row['bookingid'] . " </td><td>" . $row['vehicleId'] . "</td><td>" . $row['departure'] . "</td><td>" . $row['destination'] . "</td>><td>" . $row['passengerName'] . "</td><td>" . $row['passengerEmail'] . "</td></tr>" . "<br>";
             }
             echo '<br>';
         } else {
