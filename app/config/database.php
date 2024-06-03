@@ -1,6 +1,6 @@
 <?php
-// Database configuration settings
-$db_config = [
+// Database configuration setting
+$db_config = [ 
     'host' => 'mysql-db',
     'username' => 'sample',
     'password' => 'root',
@@ -15,7 +15,7 @@ function connect_db($config)
 
     // Check if the connection to the database was successful
     if ($conn->connect_error) {
-        echo "Connection error: " . $conn->connect_error; // Display the connection error if it exists
+       // echo "Connection error: " . $conn->connect_error; 
         die("Connection failed: " . $conn->connect_error); // Terminate script execution if the connection fails
     }
     return $conn;
