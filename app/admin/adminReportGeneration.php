@@ -15,7 +15,7 @@ $conn = connect_db($db_config);
     <style>
         /* CSS Styles */
         body {
-            background-image: url('/photo1.jpeg');
+            background-image: url('/user/assets/bus10.jpg');
             background-size: cover;
             font-family: Arial, sans-serif;
         }
