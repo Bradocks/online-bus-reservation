@@ -77,6 +77,10 @@ $fully_booked_buses_on_route = $routes_model
             flex-direction: column;
             min-height: 100vh;
             margin: 0;
+            background-image: url('/user/assets/bus10.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
         }
 
         .container {
@@ -105,10 +109,6 @@ $fully_booked_buses_on_route = $routes_model
 
         th {
             background-color: #f2f2f2;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
         }
 
         .footer {
