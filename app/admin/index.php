@@ -1,13 +1,4 @@
-<?php
-session_start();
-$userId = $_SESSION['userId'];
-$userName = $_SESSION['userName'];
 
-if ((!isset($_SESSION['userId']) || $_SESSION['userId'] === null) && $_SERVER['REQUEST_URI'] != '/user') {
-    header("Location: /user");
-    exit;
-}
-?>
 <html>
 
 <head>

@@ -1,38 +1,3 @@
-<?php
-
-require_once __DIR__ . "/../config/database.php";
-require_once __DIR__ . '/../utils/auth/Auth.php';
-require_once __DIR__ . '/../utils/orm/BaseModel.php';
-
-$conn = connect_db($db_config);
-//booking_id is passed via GET or POST
-$booking_model = new BaseModel('booking', $conn);
-$booking_id = isset($_GET['bookingid']) ? (int) $_GET['bookingid'] : null;
-
-if (!isset($booking_id)) {
-    die("Booking ID is required.");
-}
-
-// Fetch booking deta
-$booking = $booking_model->get_one($booking_id, 'bookingid');
-
-if (isset($booking)) {
-    $row = $booking;
-
-    $PassengerId = htmlspecialchars($row->PassengerId );
-    $date_of_departure = htmlspecialchars($row->dateTime);
-    $place_of_departure = htmlspecialchars($row->departure);
-    $destination = htmlspecialchars($row->destination);
-    $seatId = htmlspecialchars($row->seatId);
-    $charges = htmlspecialchars($row->charges);
-    $vehicleId = htmlspecialchars($row->vehicleId);
-} else {
-    die("Booking not found.");
-}
-
-$conn->close();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,27 +1,4 @@
-<?php
-require_once __DIR__ . "/../config/database.php";
-require_once __DIR__ . '/../utils/auth/Auth.php';
 
-$conn = connect_db($db_config);
-$session = new Auth($conn);
-
-if ($session->user() !== null) {
-    switch ($session->user()->role) {
-        case "Passenger":
-            header("Location:./passengerdashboard.php");
-            break;
-        case "driver":
-            header("Location:/driver");
-            break;
-        case "admin":
-            header("Location:/admin");
-            break;
-        default:
-            header("location:home.html");
-    }
-    exit;
-}
-?>
 
 <!DOCTYPE html>
 <html>

@@ -1,23 +1,3 @@
-<?php
-require_once __DIR__ . "/../config/database.php";
-require_once __DIR__ . '/../utils/auth/Auth.php';
-$conn = connect_db($db_config);
-$session = new Auth($conn);
-
-if ((!isset($_SESSION['userId']) || $_SESSION['userId'] === null) && $_SERVER['REQUEST_URI'] != '/user') {
-    header("Location: /user");
-    exit;
-}
-
-$driver = $session->user();
-
-require_once __DIR__ . '/../utils/orm/BaseModel.php';
-
-$vehicle_model = new BaseModel('vehicle', $conn);
-$vehicle = $vehicle_model->where('driverId', '=', $driver->userId)->first();
-
-?>
-
 <html lang="en">
 
 <head>
