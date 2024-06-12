@@ -3,9 +3,15 @@
 require_once __DIR__ . "/../config/database.php";
 require_once __DIR__ . '/../utils/auth/Auth.php';
 
-$conn = connect_db($db_config);
+
 $session = new Auth($conn);
-$user = $session->user();
+$user = $userId = $_SESSION['userId'];
+$userQuery = "SELECT * FROM user WHERE userId = ?";
+$stmt = $conn->prepare($userQuery);
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$driver = $stmt->get_result()->fetch_object();
+
 ?>
 
 

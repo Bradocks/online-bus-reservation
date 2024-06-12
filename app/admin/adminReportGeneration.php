@@ -6,7 +6,7 @@ require_once("../utils/reports/StaffReport.php");
 require_once("../utils/reports/VehicleReport.php");
 require_once("../utils/reports/PassengerReport.php");
 
-$conn = connect_db($db_config);
+
 
 ?>
 

@@ -4,7 +4,7 @@ require_once __DIR__ . "/../config/database.php";
 require_once __DIR__ . '/../utils/auth/Auth.php';
 require_once __DIR__ . '/../utils/orm/BaseModel.php';
 
-$conn = connect_db($db_config);
+
 $session = new Auth($conn);
 
 $userId = $session->user()->userId;

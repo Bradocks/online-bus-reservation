@@ -2,7 +2,7 @@
 //establish connection to the database
 require_once("../config/database.php");
 
-$conn = connect_db($db_config);
+
 // process  form data from the post request and set the collected data to php variable for use in the php script
 $userName=$_POST['userName'];
 $Password=$_POST['newPassword'];

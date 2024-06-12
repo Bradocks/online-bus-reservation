@@ -2,7 +2,7 @@
 //establish connection to the database
 require_once("../config/database.php");
 
-$conn = connect_db($db_config);
+
 
 $vehicleId = $_POST['vehicleId'];
 

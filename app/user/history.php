@@ -8,10 +8,16 @@ require_once __DIR__ . "../../utils/integrations/Pesapal.php";
 
 
 
-$conn = connect_db($db_config);
+
 $session = new Auth($conn);
 $booking_model = new BaseModel('booking', $conn);
-$row = $session->user();
+$row = $userId = $_SESSION['userId'];
+$userQuery = "SELECT * FROM user WHERE userId = ?";
+$stmt = $conn->prepare($userQuery);
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$driver = $stmt->get_result()->fetch_object();
+
 
 $role = $row->role;
 
