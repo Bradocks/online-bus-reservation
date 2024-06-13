@@ -1,3 +1,4 @@
+//functions
 <?php
 //estalish connnection to the database
 require_once("../config/database.php");

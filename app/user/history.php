@@ -1,3 +1,4 @@
+//function
 <?php
 
 // Start a session to manage the user
