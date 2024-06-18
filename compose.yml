@@ -13,6 +13,20 @@ services:
       - db
     networks:
       - app-network
+  
+  v2:
+    build:
+      context: ./v2
+    container_name: php-web-app
+    volumes:
+      - ./v2:/var/www/html/
+    ports:
+      - "57001:80"
+    depends_on:
+      - db
+    networks:
+      - app-network
+
 
   db:
     build:
