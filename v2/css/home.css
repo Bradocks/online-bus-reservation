@@ -1,0 +1,180 @@
+/*header stling */
+header {
+    display: grid; /* use grid layout */
+    grid-template-columns:  2fr 8fr 1fr 1fr; /*divid the header into four columns*/
+    gap: 5px; /*set a gap of 5px between the grid items*/
+    padding:0px; /* Set padding to 0 */
+    height: 30px; /* Set height of the header */
+    position: fixed; /* Fix the header position  so as it does not move with on scroll*/
+    grid-column-end: -1;/* Span the header across all columns */
+    
+}
+ /*section styles */
+section{
+    padding: 20px; /* Add padding inside the section with 20px */
+    border-radius: 8px; /* Set border radius to create rounded corners */
+    background-color: beige; /* Set background color to colour beige */
+    text-align: center; /* have the text aligned at the center */
+ }
+  
+  /* main styling */     
+main{
+      flex: 1;/*take remaining vertical space to ensure the footer is at the bottom most even with little contente in the screen*/
+      font-weight: 900;/* Set font weight of 900 */
+      top: 20px; /* Set top position */
+    
+    }
+    
+    /* Styling for elements with class "getus" */
+.getus{
+    display: grid; /* Use grid layout */
+    grid-template-columns:  1fr 1fr 1fr; /* Divide the grid into 3 columns */
+    gap: 10px; /* Set gap between grid items of 10px*/
+    /*padding: 10px; /* Add padding inside the element distance between the wall and thecontent */
+    height: 140px; /* Set height of the element to 70px */
+     
+        }
+        /* Styling for element with id "reach_us" */
+#reach_us{
+            
+     padding: 20px; /* Add padding inside the element distance between the wall and the content */
+      border-radius: 8px; /* Set border radius to create rounded corners */    
+      background-color: thistle; /* Set background color to thistle*/
+      text-align: center; /* Center align text */
+  }
+  /* Footer styling */
+footer {
+            background-color:rgb(14, 6, 6); /* Set background color to black */
+            color:rgb(246, 243, 243); /* Set text color to white*/ 
+            text-align: center; /* Center align text */ 
+              
+            
+     }
+     /* Styling for element with id "copy" */
+#copy{
+            color:rgb(85, 255, 0); /* Set text color */
+        
+
+        }
+  /* Body styling */
+body{
+    background-color: #788585; /* Set background color */
+
+}
+
+ 
+/* Styling specific to the "home" page */
+#home{
+     
+    background-image: url('bus1.jpeg'); /* Set background image */   
+    text-align: center; /* Center align text */
+     background-size: cover; /* Cover the entire background */
+    background-repeat: no-repeat; /* Do not repeat the background image to oavoid several small images*/
+    background-position: center; /* Center the background image */
+   color: rgb(7, 66, 117);  /* Set text color */
+   font-size: x-large; /* Set font size */
+   
+     
+} 
+/*table styling */
+table {
+     
+    width: 80%; /* Adjust the width of the table */
+    margin: 0 auto; /* Center the table horizontally */     
+     /* Set body display to flex, align items and justify content to center to center content vertically and horizontally */
+    
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin-top: 60px;;
+}
+th, td {
+    border: 2px solid rgb(187, 169, 187);
+    text-align: left;
+    padding: 8px;
+    /*style=" background-color: thistle; height:150px;width:700px;margin: 0 auto;*/
+}
+th {
+    background-color:rgb(221, 213, 213);
+}
+ 
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('photo1.jpeg'); /* Add the background image */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+}
+
+a {
+    text-decoration: none;
+    color:black;
+}
+
+/* Header Styles */
+.header {
+    background-color:gold;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    flex: 1;
+}
+
+.logo {
+    width: 100px;
+    height: 80px;
+}
+
+.user-info {
+    flex: 1;
+    text-align: center;
+}
+
+.username, .userId {
+    margin: 0;
+}
+
+.navigation {
+    flex: 1;
+    text-align: center;
+}
+
+.nav-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-list li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+/* main styling */     
+
+/* Main Styles */
+.intro-text {
+    color: black;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: rgba(0, 0, 0, 0.918);
+    color:rgb(246, 243, 243); /* Set text color to white*/
+    padding: 10px;
+    text-align: center;
+    margin-top: auto; /* Push the footer to the bottom */
+}
+
+.copy {
+    margin-top: 10px;
+}
