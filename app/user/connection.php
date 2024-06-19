@@ -1,4 +1,3 @@
-//function 72
 <?php
 //establish connection to the database
 //estalish connnection 
@@ -44,7 +43,7 @@ $count = mysqli_num_rows($result_userName); // use mysqli_num_rows function to c
       else if there is no row picked the user name is not used thus creating the account in the database*/
 if ($count > 0) {
     echo "user name already TAKEN set another userName";
-    echo "<p><a href='userRegistrationform.html'> use another userName to register</a></P>"; 
+    echo "<p><a href='userRegistrationform.html'> use another userName to register</a></P>";
 } else {
     if ($role != 'Passenger') {
         $sql = "select * from staff where email='$email' and position='$role' ";
@@ -96,13 +95,13 @@ function addUser($conn)
 
     //The bind_param() method binds variables to the placeholders in the SQL query.
     $insertuserdetails->bind_param(
-        'sisssisss',  
+        'sisssisss',
         $name,
         $mobileNumber,
         $email,
         $role,
         $password,
-        $IdNO,       
+        $IdNO,
         $DOB,
         $gender,
         $username

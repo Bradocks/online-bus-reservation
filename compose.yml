@@ -17,7 +17,7 @@ services:
   v2:
     build:
       context: ./v2
-    container_name: php-web-app
+    container_name: php-web-app-v2
     volumes:
       - ./v2:/var/www/html/
     ports:

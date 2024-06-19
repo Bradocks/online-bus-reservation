@@ -1,6 +1,7 @@
 <?php
 include '../includes/db.php';
 include '../includes/auth.php';
+include '../includes/header.php';
 check_auth();
 check_role('admin');
 
@@ -23,9 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Manage Drivers</title>
 </head>
+
 <body>
     <h1>Manage Drivers</h1>
     <form method="POST" action="manage_drivers.php">
@@ -53,4 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </ul>
     <a href="index.php">Back to Dashboard</a>
 </body>
+
 </html>
+
+<?php include '../includes/footer.php'; ?>
