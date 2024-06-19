@@ -3,14 +3,14 @@ include '../includes/db.php';
 include '../includes/auth.php';
 include '../includes/header.php';
 check_auth();
-check_role('passenger');
+check_role('Passenger');
 ?>
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Passenger booking- Home</title>
-    <link rel="stylesheet" href="/v2/css/home.css" />
+    <link rel="stylesheet" href="/css/home.css" />
 </head>
 
 <body>
@@ -33,4 +33,4 @@ check_role('passenger');
         <img src="./assets/bus10.jpg" alt="" class="image-item" style="height: 900px; width: 100%" />
     </div>
 
-<?php include '../includes/footer.php'; ?>
+    <?php include '../includes/footer.php'; ?>

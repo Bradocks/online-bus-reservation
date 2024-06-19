@@ -29,9 +29,8 @@ session_start();
 
                     <?php if ($_SESSION['role'] === 'Passenger') : ?>
                         <a href="/passenger/feedback.php">Feedback</a>
-                        <a href="/passenger/book_bus.php">Book bus</a>
+                        <a href="/passenger/routes.php">Book bus</a>
                         <a href="/passenger/history.php">History</a>
-
                     <?php endif; ?>
                     <a href="/logout.php">Logout</a>
                 </div>

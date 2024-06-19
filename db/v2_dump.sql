@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql-db
--- Generation Time: Jun 19, 2024 at 11:42 AM
+-- Generation Time: Jun 19, 2024 at 05:39 PM
 -- Server version: 8.0.37
 -- PHP Version: 8.2.18
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `booking` (
-  `booking_id` int NOT NULL,
+  `id` int NOT NULL,
   `passenger_id` int DEFAULT NULL,
   `vehicle_id` int DEFAULT NULL,
   `place_of_departure` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
@@ -41,28 +41,34 @@ CREATE TABLE `booking` (
   `payment_statement` varchar(70) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `payment_detail` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `ticket_code` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `seat_id` int DEFAULT NULL
+  `seat_id` int DEFAULT NULL,
+  `route_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`booking_id`, `passenger_id`, `vehicle_id`, `place_of_departure`, `destination`, `category`, `date_time`, `route`, `charges`, `payment_method`, `payment_statement`, `payment_detail`, `ticket_code`, `seat_id`) VALUES
-(1, 2, 3, 'Nairobi', 'Kampala', 'coach', '2024-05-01 07:10:30', 'Bungoma', 1800, 'Mpesa', 'DNK6543', 'paid', NULL, NULL),
-(2, 1, 2, 'Kisumu', 'Nairobi', 'firstclass', '2024-05-10 07:40:00', 'Nakuru', 1200, 'cash', NULL, 'paid', NULL, NULL),
-(3, 12, 1, 'Nakuru', 'Narok', '', '2024-05-10 08:09:47', 'Nakuru-Narok', 2000, 'PESAPAL', NULL, NULL, 'CHf3AKK2', NULL),
-(4, 12, 4, 'Nakuru', 'Narok', NULL, '2024-05-10 08:10:06', 'Nakuru-Narok', 2000, 'PESAPAL', NULL, NULL, 'hefkJyAx', NULL),
-(5, 12, 4, 'Nakuru', 'Narok', NULL, '2024-05-10 08:11:03', 'Nakuru-Narok', 2000, 'PESAPAL', NULL, NULL, 'f9dmLewL', NULL),
-(6, 12, NULL, 'Kisumu', 'Malaba', NULL, '2024-05-29 09:11:22', 'Kisumu-Malaba', 2000, 'PESAPAL', NULL, NULL, 'ZOUW9PX8', NULL),
-(7, 12, NULL, 'Kisumu', 'Malaba', NULL, '2024-05-29 09:12:39', 'Kisumu-Malaba', 2000, 'PESAPAL', 'e6c7d5c6-f7e9-4036-8488-dd2d80592bec', NULL, '9SQ6KFSK', NULL),
-(8, 12, NULL, 'Kisumu', 'Malaba', NULL, '2024-05-29 09:48:28', 'Kisumu-Malaba', 2000, 'PESAPAL', '12e5b851-c0d8-4370-80b5-dd2d3c02ace7', NULL, '25BXZXKM', NULL),
-(9, 12, 1, 'Kisumu', 'Malaba', NULL, '2024-05-29 09:49:32', 'Kisumu-Malaba', 2000, 'PESAPAL', '36be5593-8f65-4fd0-9ed5-dd2d08def0ca', NULL, 'S5NLJP6D', 16),
-(10, 12, 2, 'Kisumu', 'Malaba', NULL, '2024-05-29 18:31:01', 'Kisumu-Malaba', 2000, 'PESAPAL', '94b5e5fc-698c-4b2c-bbbb-dd2d4d0dfa3f', NULL, 'O02B3OI4', NULL),
-(11, 12, 1, 'Kisumu', 'Malaba', NULL, '2024-05-29 18:32:09', 'Kisumu-Malaba', 2000, 'PESAPAL', NULL, NULL, 'SMGLU78F', NULL),
-(12, 12, 2, 'Kisumu', 'Malaba', NULL, '2024-05-29 19:03:08', 'Kisumu-Malaba', 2000, 'PESAPAL', NULL, NULL, 'HRXRMHSK', NULL),
-(13, 12, 1, 'Kisumu', 'Malaba', NULL, '2024-05-29 19:03:52', 'Kisumu-Malaba', 2000, 'PESAPAL', NULL, NULL, 'WB84JRBN', NULL),
-(14, 12, 1, 'Kisumu', 'Malaba', NULL, '2024-05-29 19:05:02', 'Kisumu-Malaba', 2000, 'PESAPAL', NULL, NULL, 'XTD63IWN', 19);
+INSERT INTO `booking` (`id`, `passenger_id`, `vehicle_id`, `place_of_departure`, `destination`, `category`, `date_time`, `route`, `charges`, `payment_method`, `payment_statement`, `payment_detail`, `ticket_code`, `seat_id`, `route_id`) VALUES
+(1, 2, 3, 'Nairobi', 'Kampala', 'coach', '2024-05-01 07:10:30', 'Bungoma', 1800, 'Mpesa', 'DNK6543', 'paid', NULL, NULL, NULL),
+(2, 1, 2, 'Kisumu', 'Nairobi', 'firstclass', '2024-05-10 07:40:00', 'Nakuru', 1200, 'cash', NULL, 'paid', NULL, NULL, NULL),
+(3, 12, 1, 'Nakuru', 'Narok', '', '2024-05-10 08:09:47', 'Nakuru-Narok', 2000, 'PESAPAL', NULL, NULL, 'CHf3AKK2', NULL, NULL),
+(4, 12, 4, 'Nakuru', 'Narok', NULL, '2024-05-10 08:10:06', 'Nakuru-Narok', 2000, 'PESAPAL', NULL, NULL, 'hefkJyAx', NULL, NULL),
+(5, 12, 4, 'Nakuru', 'Narok', NULL, '2024-05-10 08:11:03', 'Nakuru-Narok', 2000, 'PESAPAL', NULL, NULL, 'f9dmLewL', NULL, NULL),
+(6, 12, NULL, 'Kisumu', 'Malaba', NULL, '2024-05-29 09:11:22', 'Kisumu-Malaba', 2000, 'PESAPAL', NULL, NULL, 'ZOUW9PX8', NULL, NULL),
+(7, 12, NULL, 'Kisumu', 'Malaba', NULL, '2024-05-29 09:12:39', 'Kisumu-Malaba', 2000, 'PESAPAL', 'e6c7d5c6-f7e9-4036-8488-dd2d80592bec', NULL, '9SQ6KFSK', NULL, NULL),
+(8, 12, NULL, 'Kisumu', 'Malaba', NULL, '2024-05-29 09:48:28', 'Kisumu-Malaba', 2000, 'PESAPAL', '12e5b851-c0d8-4370-80b5-dd2d3c02ace7', NULL, '25BXZXKM', NULL, NULL),
+(9, 12, 1, 'Kisumu', 'Malaba', NULL, '2024-05-29 09:49:32', 'Kisumu-Malaba', 2000, 'PESAPAL', '36be5593-8f65-4fd0-9ed5-dd2d08def0ca', NULL, 'S5NLJP6D', 16, NULL),
+(10, 12, 2, 'Kisumu', 'Malaba', NULL, '2024-05-29 18:31:01', 'Kisumu-Malaba', 2000, 'PESAPAL', '94b5e5fc-698c-4b2c-bbbb-dd2d4d0dfa3f', NULL, 'O02B3OI4', NULL, NULL),
+(11, 12, 1, 'Kisumu', 'Malaba', NULL, '2024-05-29 18:32:09', 'Kisumu-Malaba', 2000, 'PESAPAL', NULL, NULL, 'SMGLU78F', NULL, NULL),
+(12, 12, 2, 'Kisumu', 'Malaba', NULL, '2024-05-29 19:03:08', 'Kisumu-Malaba', 2000, 'PESAPAL', NULL, NULL, 'HRXRMHSK', NULL, NULL),
+(13, 12, 1, 'Kisumu', 'Malaba', NULL, '2024-05-29 19:03:52', 'Kisumu-Malaba', 2000, 'PESAPAL', NULL, NULL, 'WB84JRBN', NULL, NULL),
+(14, 12, 1, 'Kisumu', 'Malaba', NULL, '2024-05-29 19:05:02', 'Kisumu-Malaba', 2000, 'PESAPAL', NULL, NULL, 'XTD63IWN', 19, NULL),
+(15, 12, 2, 'Kisumu', 'Malaba', NULL, '2024-01-02 02:00:00', NULL, NULL, 'cash', NULL, NULL, NULL, 21, 1),
+(16, 12, 2, 'Kisumu', 'Malaba', NULL, '2024-12-11 03:00:00', NULL, NULL, 'cash', NULL, NULL, NULL, 21, 1),
+(17, 12, 2, 'Kisumu', 'Malaba', NULL, '2024-11-12 02:00:00', NULL, NULL, 'cash', NULL, NULL, NULL, 21, 1),
+(18, 12, 2, 'Kisumu', 'Malaba', NULL, '2023-07-02 05:00:00', NULL, NULL, 'cash', NULL, NULL, NULL, 21, 1),
+(19, 12, 2, 'Kisumu', 'Malaba', NULL, '2023-07-02 05:00:00', NULL, NULL, 'cash', NULL, NULL, NULL, 21, 1);
 
 -- --------------------------------------------------------
 
@@ -213,7 +219,7 @@ INSERT INTO `passenger` (`ticket_id`, `customer_id`, `passenger_id`, `passenger_
 --
 
 CREATE TABLE `routes` (
-  `route_id` int NOT NULL,
+  `id` int NOT NULL,
   `route_name` varchar(100) NOT NULL,
   `place_of_departure` varchar(100) NOT NULL,
   `destination` varchar(100) NOT NULL
@@ -223,7 +229,7 @@ CREATE TABLE `routes` (
 -- Dumping data for table `routes`
 --
 
-INSERT INTO `routes` (`route_id`, `route_name`, `place_of_departure`, `destination`) VALUES
+INSERT INTO `routes` (`id`, `route_name`, `place_of_departure`, `destination`) VALUES
 (1, 'KSM - MLB', 'Kisumu', 'Malaba');
 
 -- --------------------------------------------------------
@@ -291,7 +297,7 @@ INSERT INTO `ticket` (`ticket_id`, `passenger_name`, `passenger_id`, `ticket_cod
 --
 
 CREATE TABLE `user` (
-  `user_id` int NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(50) DEFAULT NULL,
   `mobile_number` int DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
@@ -308,7 +314,7 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `name`, `mobile_number`, `email`, `role`, `user_name`, `password`, `id_no`, `dob`, `gender`, `staff_id`) VALUES
+INSERT INTO `user` (`id`, `name`, `mobile_number`, `email`, `role`, `user_name`, `password`, `id_no`, `dob`, `gender`, `staff_id`) VALUES
 (1, 'Brian', 796289156, 'brianotieno@gmail.com', 'Passenger', 'brayo', 'Brian@123!', 39402340, '1998-05-05', 'Male', NULL),
 (2, 'Peter01', 798639274, 'PeterMose@gmail.com', 'admin', 'Mose', 'Peter@123!', 37660526, '2000-01-04', 'Male', NULL),
 (3, 'Andrew', 796407372, 'andrewiman.com', 'driver', 'Iman', '$2y$10$xdGAvpGNhvsextEHxujzgeGOZvurb67zotsvPZBhRuKywlN/f/L4.', 35279245, '2004-03-12', 'Male', NULL),
@@ -334,7 +340,7 @@ INSERT INTO `user` (`user_id`, `name`, `mobile_number`, `email`, `role`, `user_n
 --
 
 CREATE TABLE `vehicle` (
-  `vehicle_id` int NOT NULL,
+  `id` int NOT NULL,
   `plate_number` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `brand` varchar(200) DEFAULT NULL,
   `model` varchar(200) DEFAULT NULL,
@@ -348,7 +354,7 @@ CREATE TABLE `vehicle` (
 -- Dumping data for table `vehicle`
 --
 
-INSERT INTO `vehicle` (`vehicle_id`, `plate_number`, `brand`, `model`, `capacity`, `driver_id`, `disabled`, `route_id`) VALUES
+INSERT INTO `vehicle` (`id`, `plate_number`, `brand`, `model`, `capacity`, `driver_id`, `disabled`, `route_id`) VALUES
 (1, 'KCT 513T', NULL, NULL, 55, 12, 1, 1),
 (2, 'KDD 570Q', NULL, NULL, 55, 12, 0, 1),
 (3, 'KDM 008J', NULL, NULL, 55, 5, 0, 1),
@@ -363,9 +369,10 @@ INSERT INTO `vehicle` (`vehicle_id`, `plate_number`, `brand`, `model`, `capacity
 -- Indexes for table `booking`
 --
 ALTER TABLE `booking`
-  ADD PRIMARY KEY (`booking_id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `passengerId` (`passenger_id`),
-  ADD KEY `item_ibfk_2` (`vehicle_id`);
+  ADD KEY `item_ibfk_2` (`vehicle_id`),
+  ADD KEY `route_id` (`route_id`);
 
 --
 -- Indexes for table `bus_seats`
@@ -396,7 +403,7 @@ ALTER TABLE `passenger`
 -- Indexes for table `routes`
 --
 ALTER TABLE `routes`
-  ADD PRIMARY KEY (`route_id`),
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `route_name` (`route_name`,`place_of_departure`,`destination`);
 
 --
@@ -415,14 +422,14 @@ ALTER TABLE `ticket`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`),
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `vehicle`
 --
 ALTER TABLE `vehicle`
-  ADD PRIMARY KEY (`vehicle_id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `route_id` (`route_id`);
 
 --
@@ -433,7 +440,7 @@ ALTER TABLE `vehicle`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `booking_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -445,7 +452,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `routes`
 --
 ALTER TABLE `routes`
-  MODIFY `route_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `staff`
@@ -457,13 +464,13 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `vehicle`
 --
 ALTER TABLE `vehicle`
-  MODIFY `vehicle_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -473,7 +480,8 @@ ALTER TABLE `vehicle`
 -- Constraints for table `booking`
 --
 ALTER TABLE `booking`
-  ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicle` (`vehicle_id`);
+  ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`route_id`) REFERENCES `routes` (`id`) ON DELETE SET NULL ON UPDATE RESTRICT,
+  ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicle` (`id`) ON DELETE SET NULL ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
