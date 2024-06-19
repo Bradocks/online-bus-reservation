@@ -2,7 +2,8 @@
 include '../includes/db.php';
 include '../includes/auth.php';
 check_auth();
-check_role('passenger');
+check_role('Passenger');
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_id = $_SESSION['user_id'];
@@ -17,10 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Book Bus</title>
 </head>
+
 <body>
+    TODO: Show seats for user to pick
     <h1>Book a Bus</h1>
     <form method="POST" action="book_bus.php">
         <input type="number" name="vehicle_id" placeholder="Vehicle ID" required>
@@ -30,4 +34,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
     <a href="index.php">Back to Dashboard</a>
 </body>
+
 </html>

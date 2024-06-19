@@ -7,11 +7,16 @@ check_role('driver');
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Driver Dashboard</title>
 </head>
+
 <body>
+    TODO: Trip information
+    TODO: Bus Details
     <h1>Welcome, Driver</h1>
     <a href="/logout.php">Logout</a>
 </body>
+
 </html>

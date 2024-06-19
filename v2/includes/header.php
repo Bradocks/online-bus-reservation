@@ -26,6 +26,12 @@ session_start();
                         <a href="/admin/manage_vehicles.php">Manage Vehicles</a>
                         <a href="/admin/reports.php">Reports</a>
                     <?php endif; ?>
+
+                    <?php if ($_SESSION['role'] === 'Passenger') : ?>
+                        <a href="/passenger/feedback.php">Feedback</a>
+                        <a href="/passenger/book_bus.php">Book bus</a>
+
+                    <?php endif; ?>
                     <a href="/logout.php">Logout</a>
                 </div>
             </div>

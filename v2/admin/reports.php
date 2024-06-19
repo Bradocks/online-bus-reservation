@@ -25,6 +25,14 @@ check_role('admin');
         <button type="submit">Filter</button>
     </form>
     <ul>
+        Bookings
+        Seat reports
+        Passenger reports
+        User reports
+        View Feedback
+        Vehicle reports
+        Staff Reports
+
         <?php
         $filter = isset($_GET['filter']) ? $_GET['filter'] : 'successful';
         $sql = "SELECT * FROM bookings WHERE status='$filter'";
