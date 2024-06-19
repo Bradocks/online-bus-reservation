@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql-db
--- Generation Time: Jun 19, 2024 at 05:37 AM
+-- Generation Time: Jun 19, 2024 at 11:42 AM
 -- Server version: 8.0.37
 -- PHP Version: 8.2.18
 
@@ -28,27 +28,27 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `booking` (
-  `bookingid` int NOT NULL,
-  `PassengerId` int DEFAULT NULL,
-  `vehicleId` int DEFAULT NULL,
-  `departure` varchar(50) DEFAULT NULL,
+  `booking_id` int NOT NULL,
+  `passenger_id` int DEFAULT NULL,
+  `vehicle_id` int DEFAULT NULL,
+  `place_of_departure` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `destination` varchar(60) DEFAULT NULL,
   `category` varchar(40) DEFAULT NULL,
-  `dateTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `route` text,
   `charges` int DEFAULT NULL,
-  `PaymentMethod` varchar(20) DEFAULT NULL,
-  `PaymentStatement` varchar(70) DEFAULT NULL,
-  `paymentDetail` varchar(20) DEFAULT NULL,
-  `ticketCode` varchar(10) DEFAULT NULL,
-  `seatId` int DEFAULT NULL
+  `payment_method` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `payment_statement` varchar(70) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `payment_detail` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `ticket_code` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `seat_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`bookingid`, `PassengerId`, `vehicleId`, `departure`, `destination`, `category`, `dateTime`, `route`, `charges`, `PaymentMethod`, `PaymentStatement`, `paymentDetail`, `ticketCode`, `seatId`) VALUES
+INSERT INTO `booking` (`booking_id`, `passenger_id`, `vehicle_id`, `place_of_departure`, `destination`, `category`, `date_time`, `route`, `charges`, `payment_method`, `payment_statement`, `payment_detail`, `ticket_code`, `seat_id`) VALUES
 (1, 2, 3, 'Nairobi', 'Kampala', 'coach', '2024-05-01 07:10:30', 'Bungoma', 1800, 'Mpesa', 'DNK6543', 'paid', NULL, NULL),
 (2, 1, 2, 'Kisumu', 'Nairobi', 'firstclass', '2024-05-10 07:40:00', 'Nakuru', 1200, 'cash', NULL, 'paid', NULL, NULL),
 (3, 12, 1, 'Nakuru', 'Narok', '', '2024-05-10 08:09:47', 'Nakuru-Narok', 2000, 'PESAPAL', NULL, NULL, 'CHf3AKK2', NULL),
@@ -72,7 +72,7 @@ INSERT INTO `booking` (`bookingid`, `PassengerId`, `vehicleId`, `departure`, `de
 
 CREATE TABLE `bus_seats` (
   `id` int NOT NULL,
-  `vehicleId` int NOT NULL,
+  `vehicle_id` int NOT NULL,
   `seat_id` varchar(10) NOT NULL,
   `row` int NOT NULL,
   `position` int NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE `bus_seats` (
 -- Dumping data for table `bus_seats`
 --
 
-INSERT INTO `bus_seats` (`id`, `vehicleId`, `seat_id`, `row`, `position`, `status`) VALUES
+INSERT INTO `bus_seats` (`id`, `vehicle_id`, `seat_id`, `row`, `position`, `status`) VALUES
 (1, 1, 'A1', 1, 1, 'booked'),
 (2, 1, 'A2', 1, 2, 'booked'),
 (3, 1, 'A3', 1, 3, 'booked'),
@@ -147,21 +147,21 @@ INSERT INTO `bus_seats` (`id`, `vehicleId`, `seat_id`, `row`, `position`, `statu
 --
 
 CREATE TABLE `customer` (
-  `customerId` int NOT NULL,
-  `customerName` varchar(50) DEFAULT NULL,
-  `customerIdNo` int DEFAULT NULL,
-  `customerPhoneNo` int DEFAULT NULL,
-  `customerEmail` varchar(60) DEFAULT NULL,
-  `customerLocation` text,
-  `customerDOB` date DEFAULT NULL,
-  `customerGender` varchar(20) DEFAULT NULL
+  `customer_id` int NOT NULL,
+  `customer_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `id_no` int DEFAULT NULL,
+  `mobile_number` int DEFAULT NULL,
+  `email` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `customer_location` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `customer_dob` date DEFAULT NULL,
+  `customer_gender` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`customerId`, `customerName`, `customerIdNo`, `customerPhoneNo`, `customerEmail`, `customerLocation`, `customerDOB`, `customerGender`) VALUES
+INSERT INTO `customer` (`customer_id`, `customer_name`, `id_no`, `mobile_number`, `email`, `customer_location`, `customer_dob`, `customer_gender`) VALUES
 (1, 'Brian', 39402340, 796289156, 'brianotieno@gmail.com', 'Dodoma', '1980-12-06', 'Male');
 
 -- --------------------------------------------------------
@@ -171,17 +171,17 @@ INSERT INTO `customer` (`customerId`, `customerName`, `customerIdNo`, `customerP
 --
 
 CREATE TABLE `feedback` (
-  `feedBackId` int NOT NULL,
-  `dateTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `feedback_id` int NOT NULL,
+  `date_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `source` varchar(20) DEFAULT NULL,
-  `feedBack` text
+  `feedback` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `feedback`
 --
 
-INSERT INTO `feedback` (`feedBackId`, `dateTime`, `source`, `feedBack`) VALUES
+INSERT INTO `feedback` (`feedback_id`, `date_time`, `source`, `feedback`) VALUES
 (1, '2024-04-10 09:10:00', 'passenger', 'poor driving');
 
 -- --------------------------------------------------------
@@ -191,19 +191,19 @@ INSERT INTO `feedback` (`feedBackId`, `dateTime`, `source`, `feedBack`) VALUES
 --
 
 CREATE TABLE `passenger` (
-  `ticketId` int NOT NULL,
-  `customerId` int NOT NULL,
-  `passengerId` int DEFAULT NULL,
-  `passengerName` varchar(50) DEFAULT NULL,
-  `passengerIdNo` int DEFAULT NULL,
-  `passengerPhoneNo` int DEFAULT NULL
+  `ticket_id` int NOT NULL,
+  `customer_id` int NOT NULL,
+  `passenger_id` int DEFAULT NULL,
+  `passenger_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `id_no` int DEFAULT NULL,
+  `mobile_number` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `passenger`
 --
 
-INSERT INTO `passenger` (`ticketId`, `customerId`, `passengerId`, `passengerName`, `passengerIdNo`, `passengerPhoneNo`) VALUES
+INSERT INTO `passenger` (`ticket_id`, `customer_id`, `passenger_id`, `passenger_name`, `id_no`, `mobile_number`) VALUES
 (1, 1, 1, 'Brian', 39402340, 796289156);
 
 -- --------------------------------------------------------
@@ -233,15 +233,15 @@ INSERT INTO `routes` (`route_id`, `route_name`, `place_of_departure`, `destinati
 --
 
 CREATE TABLE `staff` (
-  `staffId` int NOT NULL,
+  `staff_id` int NOT NULL,
   `name` varchar(40) DEFAULT NULL,
-  `userName` varchar(20) DEFAULT NULL,
-  `IdNO` int DEFAULT NULL,
-  `phoneNO` int DEFAULT NULL,
+  `user_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `id_no` int DEFAULT NULL,
+  `mobile_number` int DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `role` varchar(40) DEFAULT NULL,
   `gender` varchar(10) DEFAULT NULL,
-  `DOB` date DEFAULT NULL,
+  `dob` date DEFAULT NULL,
   `state` varchar(4) DEFAULT 'ON'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -249,7 +249,7 @@ CREATE TABLE `staff` (
 -- Dumping data for table `staff`
 --
 
-INSERT INTO `staff` (`staffId`, `name`, `userName`, `IdNO`, `phoneNO`, `email`, `role`, `gender`, `DOB`, `state`) VALUES
+INSERT INTO `staff` (`staff_id`, `name`, `user_name`, `id_no`, `mobile_number`, `email`, `role`, `gender`, `dob`, `state`) VALUES
 (1, 'Michael', NULL, 39402340, 796289156, 'omollomichael@gmail.com', 'Admin', 'Male', '1980-12-06', 'ON'),
 (2, 'Alice', NULL, 12345678, 987654321, 'alicesmith@gmail.com', 'Driver', 'Female', '1990-05-15', 'ON'),
 (3, 'John', NULL, 87654321, 123456789, 'johnochueng@gmail.com', 'Conductor', 'Male', '1985-10-20', 'ON'),
@@ -270,17 +270,17 @@ INSERT INTO `staff` (`staffId`, `name`, `userName`, `IdNO`, `phoneNO`, `email`, 
 --
 
 CREATE TABLE `ticket` (
-  `ticketId` int NOT NULL,
-  `passengerName` varchar(50) DEFAULT NULL,
-  `passengerID` int DEFAULT NULL,
-  `ticketCode` int DEFAULT NULL
+  `ticket_id` int NOT NULL,
+  `passenger_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `passenger_id` int DEFAULT NULL,
+  `ticket_code` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `ticket`
 --
 
-INSERT INTO `ticket` (`ticketId`, `passengerName`, `passengerID`, `ticketCode`) VALUES
+INSERT INTO `ticket` (`ticket_id`, `passenger_name`, `passenger_id`, `ticket_code`) VALUES
 (1, 'Brian', 1, 6752),
 (4, 'Peter', 2, 6754);
 
@@ -291,7 +291,7 @@ INSERT INTO `ticket` (`ticketId`, `passengerName`, `passengerID`, `ticketCode`) 
 --
 
 CREATE TABLE `user` (
-  `id` int NOT NULL,
+  `user_id` int NOT NULL,
   `name` varchar(50) DEFAULT NULL,
   `mobile_number` int DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
@@ -308,7 +308,7 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `mobile_number`, `email`, `role`, `user_name`, `password`, `id_no`, `dob`, `gender`, `staff_id`) VALUES
+INSERT INTO `user` (`user_id`, `name`, `mobile_number`, `email`, `role`, `user_name`, `password`, `id_no`, `dob`, `gender`, `staff_id`) VALUES
 (1, 'Brian', 796289156, 'brianotieno@gmail.com', 'Passenger', 'brayo', 'Brian@123!', 39402340, '1998-05-05', 'Male', NULL),
 (2, 'Peter01', 798639274, 'PeterMose@gmail.com', 'admin', 'Mose', 'Peter@123!', 37660526, '2000-01-04', 'Male', NULL),
 (3, 'Andrew', 796407372, 'andrewiman.com', 'driver', 'Iman', '$2y$10$xdGAvpGNhvsextEHxujzgeGOZvurb67zotsvPZBhRuKywlN/f/L4.', 35279245, '2004-03-12', 'Male', NULL),
@@ -334,12 +334,12 @@ INSERT INTO `user` (`id`, `name`, `mobile_number`, `email`, `role`, `user_name`,
 --
 
 CREATE TABLE `vehicle` (
-  `vehicleId` int NOT NULL,
-  `plateNo` text,
+  `vehicle_id` int NOT NULL,
+  `plate_number` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `brand` varchar(200) DEFAULT NULL,
   `model` varchar(200) DEFAULT NULL,
   `capacity` int NOT NULL,
-  `driverId` int DEFAULT NULL,
+  `driver_id` int DEFAULT NULL,
   `disabled` tinyint(1) NOT NULL DEFAULT '0',
   `route_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -348,7 +348,7 @@ CREATE TABLE `vehicle` (
 -- Dumping data for table `vehicle`
 --
 
-INSERT INTO `vehicle` (`vehicleId`, `plateNo`, `brand`, `model`, `capacity`, `driverId`, `disabled`, `route_id`) VALUES
+INSERT INTO `vehicle` (`vehicle_id`, `plate_number`, `brand`, `model`, `capacity`, `driver_id`, `disabled`, `route_id`) VALUES
 (1, 'KCT 513T', NULL, NULL, 55, 12, 1, 1),
 (2, 'KDD 570Q', NULL, NULL, 55, 12, 0, 1),
 (3, 'KDM 008J', NULL, NULL, 55, 5, 0, 1),
@@ -363,9 +363,9 @@ INSERT INTO `vehicle` (`vehicleId`, `plateNo`, `brand`, `model`, `capacity`, `dr
 -- Indexes for table `booking`
 --
 ALTER TABLE `booking`
-  ADD PRIMARY KEY (`bookingid`),
-  ADD KEY `passengerId` (`PassengerId`),
-  ADD KEY `item_ibfk_2` (`vehicleId`);
+  ADD PRIMARY KEY (`booking_id`),
+  ADD KEY `passengerId` (`passenger_id`),
+  ADD KEY `item_ibfk_2` (`vehicle_id`);
 
 --
 -- Indexes for table `bus_seats`
@@ -378,19 +378,19 @@ ALTER TABLE `bus_seats`
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
-  ADD PRIMARY KEY (`customerId`);
+  ADD PRIMARY KEY (`customer_id`);
 
 --
 -- Indexes for table `feedback`
 --
 ALTER TABLE `feedback`
-  ADD PRIMARY KEY (`feedBackId`);
+  ADD PRIMARY KEY (`feedback_id`);
 
 --
 -- Indexes for table `passenger`
 --
 ALTER TABLE `passenger`
-  ADD PRIMARY KEY (`ticketId`);
+  ADD PRIMARY KEY (`ticket_id`);
 
 --
 -- Indexes for table `routes`
@@ -403,26 +403,26 @@ ALTER TABLE `routes`
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
-  ADD PRIMARY KEY (`staffId`);
+  ADD PRIMARY KEY (`staff_id`);
 
 --
 -- Indexes for table `ticket`
 --
 ALTER TABLE `ticket`
-  ADD PRIMARY KEY (`ticketId`);
+  ADD PRIMARY KEY (`ticket_id`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `vehicle`
 --
 ALTER TABLE `vehicle`
-  ADD PRIMARY KEY (`vehicleId`),
+  ADD PRIMARY KEY (`vehicle_id`),
   ADD KEY `route_id` (`route_id`);
 
 --
@@ -433,13 +433,13 @@ ALTER TABLE `vehicle`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `bookingid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `booking_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `feedBackId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `feedback_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `routes`
@@ -451,19 +451,19 @@ ALTER TABLE `routes`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `staffId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `staff_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `vehicle`
 --
 ALTER TABLE `vehicle`
-  MODIFY `vehicleId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `vehicle_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -473,7 +473,7 @@ ALTER TABLE `vehicle`
 -- Constraints for table `booking`
 --
 ALTER TABLE `booking`
-  ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`vehicleId`) REFERENCES `vehicle` (`vehicleId`);
+  ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicle` (`vehicle_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
