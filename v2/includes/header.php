@@ -24,13 +24,18 @@ session_start();
                         <a href="/admin/manage_admins.php">Manage Admins</a>
                         <a href="/admin/manage_bookings.php">Manage Bookings</a>
                         <a href="/admin/manage_vehicles.php">Manage Vehicles</a>
+                        <a href="/admin/manage_routes.php">Manage Routes</a>
                         <a href="/admin/reports.php">Reports</a>
                     <?php endif; ?>
 
                     <?php if ($_SESSION['role'] === 'Passenger') : ?>
-                        <a href="/passenger/feedback.php">Feedback</a>
                         <a href="/passenger/routes.php">Book bus</a>
                         <a href="/passenger/history.php">History</a>
+                        <a href="/passenger/feedback.php">Feedback</a>
+                    <?php endif; ?>
+
+                    <?php if ($_SESSION['role'] === 'driver') : ?>
+                        <a href="/passenger/feedback.php">Feedback</a>
                     <?php endif; ?>
                     <a href="/logout.php">Logout</a>
                 </div>
