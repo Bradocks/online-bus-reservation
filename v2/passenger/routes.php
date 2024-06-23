@@ -16,12 +16,13 @@ check_role('Passenger');
                         <th>Route Name</th>
                         <th>Place of Departure</th>
                         <th>Destination</th>
+                        <th>Price</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT id, route_name, place_of_departure, destination FROM routes";
+                    $sql = "SELECT id, route_name, place_of_departure, destination, price FROM routes";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -30,6 +31,7 @@ check_role('Passenger');
                                     <td>{$row['route_name']}</td>
                                     <td>{$row['place_of_departure']}</td>
                                     <td>{$row['destination']}</td>
+                                    <td>{$row['price']}</td>
                                     <td><a href='book_bus.php?route_id={$row['id']}' class='btn btn-primary'>Book</a></td>
                                 </tr>";
                         }

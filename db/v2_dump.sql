@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql-db
--- Generation Time: Jun 19, 2024 at 05:39 PM
+-- Generation Time: Jun 23, 2024 at 02:56 PM
 -- Server version: 8.0.37
 -- PHP Version: 8.2.18
 
@@ -68,7 +68,8 @@ INSERT INTO `booking` (`id`, `passenger_id`, `vehicle_id`, `place_of_departure`,
 (16, 12, 2, 'Kisumu', 'Malaba', NULL, '2024-12-11 03:00:00', NULL, NULL, 'cash', NULL, NULL, NULL, 21, 1),
 (17, 12, 2, 'Kisumu', 'Malaba', NULL, '2024-11-12 02:00:00', NULL, NULL, 'cash', NULL, NULL, NULL, 21, 1),
 (18, 12, 2, 'Kisumu', 'Malaba', NULL, '2023-07-02 05:00:00', NULL, NULL, 'cash', NULL, NULL, NULL, 21, 1),
-(19, 12, 2, 'Kisumu', 'Malaba', NULL, '2023-07-02 05:00:00', NULL, NULL, 'cash', NULL, NULL, NULL, 21, 1);
+(19, 12, 2, 'Kisumu', 'Malaba', NULL, '2023-07-02 05:00:00', NULL, NULL, 'cash', NULL, NULL, NULL, 21, 1),
+(20, 12, 2, 'Kisumu', 'Malaba', NULL, '2024-08-20 04:00:00', NULL, NULL, 'cash', NULL, NULL, NULL, 21, 1);
 
 -- --------------------------------------------------------
 
@@ -221,6 +222,7 @@ INSERT INTO `passenger` (`ticket_id`, `customer_id`, `passenger_id`, `passenger_
 CREATE TABLE `routes` (
   `id` int NOT NULL,
   `route_name` varchar(100) NOT NULL,
+  `price` int NOT NULL,
   `place_of_departure` varchar(100) NOT NULL,
   `destination` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -229,8 +231,8 @@ CREATE TABLE `routes` (
 -- Dumping data for table `routes`
 --
 
-INSERT INTO `routes` (`id`, `route_name`, `place_of_departure`, `destination`) VALUES
-(1, 'KSM - MLB', 'Kisumu', 'Malaba');
+INSERT INTO `routes` (`id`, `route_name`, `price`, `place_of_departure`, `destination`) VALUES
+(1, 'KSM - MLB', 2000, 'Kisumu', 'Malaba');
 
 -- --------------------------------------------------------
 
@@ -315,9 +317,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `mobile_number`, `email`, `role`, `user_name`, `password`, `id_no`, `dob`, `gender`, `staff_id`) VALUES
-(1, 'Brian', 796289156, 'brianotieno@gmail.com', 'Passenger', 'brayo', 'Brian@123!', 39402340, '1998-05-05', 'Male', NULL),
-(2, 'Peter01', 798639274, 'PeterMose@gmail.com', 'admin', 'Mose', 'Peter@123!', 37660526, '2000-01-04', 'Male', NULL),
-(3, 'Andrew', 796407372, 'andrewiman.com', 'driver', 'Iman', '$2y$10$xdGAvpGNhvsextEHxujzgeGOZvurb67zotsvPZBhRuKywlN/f/L4.', 35279245, '2004-03-12', 'Male', NULL),
+(1, 'Brian', 796289156, 'brianotieno@gmail.com', 'driver', 'brayo', 'Brian@123!', 39402340, '1998-05-05', 'Male', 234567),
+(2, 'Peter 0001', 798639274, 'PeterMose@gmail.com', 'driver', 'Mose', 'Peter@123!', 37660526, '2000-01-04', 'Male', 34567890),
 (4, 'Felix', 794455836, 'felixmuhia@gmail.com', 'manager', 'Felo', 'Felix@123!', 33572892, '1992-05-11', 'Male', NULL),
 (5, 'Lena', 796813527, 'lenamumbi@gmail.com', 'cashier', 'mumbi', 'Lenah@123!', 36814257, '1997-05-10', 'Female', NULL),
 (6, 'George', 786244678, 'georgeooro@gmail.com', 'conductor', 'ooro', 'George@123!', 35618735, '2004-01-01', 'Male', NULL),
@@ -440,7 +441,7 @@ ALTER TABLE `vehicle`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `feedback`

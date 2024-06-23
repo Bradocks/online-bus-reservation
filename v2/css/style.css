@@ -194,6 +194,15 @@ body {
   color: white;
 }
 
+.btn-warning {
+  background-color: #edb40a;
+  color: white;
+}
+
+.btn-wanger:hover {
+  background-color: #d5a105;
+}
+
 .btn-danger:hover {
   background-color: #c82333;
 }
