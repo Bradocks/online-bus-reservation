@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($id) {
         // Update existing user
         $sql = "UPDATE user SET `name`='$name', mobile_number='$mobile_number', email='$email', `role`='$role', `user_name`='$user_name', id_no='$id_no', dob='$dob', gender='$gender', staff_id='$staff_id' WHERE id=$id";
-        var_dump($sql);
         echo "Driver updated successfully.";
     } else {
         // Create new user
@@ -77,7 +76,7 @@ $result = $conn->query($sql);
                 </div>
                 <div class="form-group">
                     <label>Role</label>
-                    <input type="text" class="form-control" name="role" disabled value="<?php echo $user_to_update ? $user_to_update['role'] : ''; ?>" required>
+                    <input type="text" class="form-control" name="role" disabled value="<?php echo $user_to_update ? $user_to_update['role'] : 'driver'; ?>" required>
                 </div>
                 <div class="form-group">
                     <label>Username</label>
