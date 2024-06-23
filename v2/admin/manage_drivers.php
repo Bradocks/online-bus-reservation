@@ -88,7 +88,7 @@ $result = $conn->query($sql);
                 </div>
                 <div class="form-group">
                     <label>Date of Birth</label>
-                    <input type="date" class="form-control" name="dob" value="<?php echo $user_to_update ? $user_to_update['dob'] : ''; ?>" required>
+                    <input type="text" class="form-control" placeholder ="DD/MM/YYYY" name="dob" value="<?php echo $user_to_update ? $user_to_update['dob'] : ''; ?>" required>
                 </div>
                 <div class="form-group">
                     <label>Gender</label>
