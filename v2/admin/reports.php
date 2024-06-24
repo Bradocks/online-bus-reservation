@@ -17,31 +17,15 @@ check_role('admin');
 <body>
     <h1>Reports</h1>
     <h2>Bookings</h2>
-    <form method="GET" action="reports.php">
-        <select name="filter">
-            <option value="successful">Successful</option>
-            <option value="failed">Failed</option>
-        </select>
-        <button type="submit">Filter</button>
-    </form>
+
     <ul>
-        Bookings
-        Seat reports
-        Passenger reports
-        User reports
-        View Feedback
-        Vehicle reports
-        Staff Reports
-
-        <?php
-        $filter = isset($_GET['filter']) ? $_GET['filter'] : 'successful';
-        $sql = "SELECT * FROM bookings WHERE status='$filter'";
-        $result = $conn->query($sql);
-
-        while ($booking = $result->fetch_assoc()) {
-            echo "<li>Booking ID: {$booking['id']}, User ID: {$booking['user_id']}, Vehicle ID: {$booking['vehicle_id']}, Seat: {$booking['seat_number']}, Transaction ID: {$booking['transaction_id']}</li>";
-        }
-        ?>
+        Bookings - List all Bookings filter by <br>
+        Seat reports - <br>
+        Passenger reports <br>
+        User reports <br>
+        View Feedback <br>
+        Vehicle reports <br>
+        Staff Reports <br>
     </ul>
     <a href="index.php">Back to Dashboard</a>
 </body>
