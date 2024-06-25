@@ -65,8 +65,8 @@
                     <label for="id_no">ID Number</label>
                     <input type="text" id="id_no" name="id_no" required>
 
-                    <label for="dob">Date of Birth (YYYY-MM-DD)</label>
-                    <input type="date" id="dob" name="dob" required>
+                    <label for="dob">Date of Birth</label>
+                    <input type="text" id="dob" name="dob" placeholder="dd/mm/yyyy"required>
 
                     <label for="gender">Select Gender</label>
                     <select name="gender" id="gender">
