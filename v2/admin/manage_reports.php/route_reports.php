@@ -1,3 +1,0 @@
-<?
-//most booked route
-?>
