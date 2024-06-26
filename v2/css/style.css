@@ -15,10 +15,17 @@ body {
 }
 
 .active {
-  background: #08090a;
-  padding: 10px;
-  border-radius: 10px;
-  border: solid gray 1px;
+  /* background-color: #08090a; */
+  /* padding: 10px; */
+  /* border-radius: 10px; */
+  /* border: solid gray 1px; */
+}
+
+.active .dropbtn {
+  background-color: #08090a;
+  /* padding: 10px; */
+  /* border-radius: 10px; */
+  /* border: solid gray 1px; */
 }
 
 .mt-4 {
@@ -62,21 +69,64 @@ body {
   justify-content: space-between;
 }
 
-/* Navbar */
+/* Combined Navbar and Dropdown Styles */
 .navbar {
   background-color: #333;
   color: white;
-  padding: 1rem;
+  padding: 10px 20px; /* Unified padding for simpler management */
+  font-size: 16px; /* Standard font size for navbar */
 }
 
-.navbar a {
+.navbar a,
+.dropbtn {
   color: white;
-  margin-right: 1rem;
+  cursor: pointer;
+  padding: 12px 16px;
+  margin-right: 10px;
+  text-decoration: none;
+  display: inline-block;
+  border: none;
+  background-color: #333;
+  font-size: inherit; /* Ensures font size is inherited from navbar */
+}
+
+/* Improved hover effects for links */
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+  text-decoration: none;
+  background-color: #333; /* Darken background on hover for dropbtn */
+}
+
+.navbar-links .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  font-size: inherit; /* Maintains consistent font size in dropdown */
+}
+
+.dropdown-content a {
+  color: rgb(243, 243, 243);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  width: 100%; /* Ensure the dropdown content width matches the text width */
+}
+
+.dropdown-content a:hover {
+  background-color: #5f5e5e; /* Lighten the background on hover */
   text-decoration: none;
 }
 
-.navbar a:hover {
-  text-decoration: underline;
+.dropdown:hover .dropdown-content {
+  display: block; /* Shows the dropdown content on hover */
 }
 
 /* Card */
