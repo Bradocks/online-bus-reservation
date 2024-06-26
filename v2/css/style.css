@@ -14,12 +14,12 @@ body {
   padding: 20px;
 }
 
-.active {
-  /* background-color: #08090a; */
-  /* padding: 10px; */
-  /* border-radius: 10px; */
-  /* border: solid gray 1px; */
-}
+/*.active {
+   background-color: #08090a; 
+   padding: 10px; 
+   border-radius: 10px; 
+   border: solid gray 1px; 
+}*/
 
 .active .dropbtn {
   background-color: #08090a;

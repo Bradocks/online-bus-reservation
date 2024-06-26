@@ -64,6 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="form-group">
                     <button type="submit">Login</button>
                 </div>
+                <p><a href="reset_password.php">forgot password</a></p>
+                <p><a href="register.php">Create account</a></p>
+                </body>
                 <?php if (isset($error)) echo "<p>$error</p>"; ?>
             </form>
         </div>
