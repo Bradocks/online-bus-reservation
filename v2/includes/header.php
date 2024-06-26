@@ -46,15 +46,29 @@ session_start();
                             </div>
                         </div>
 
+                        <div class="<?php
+                                    if (
+                                        $_SERVER['SCRIPT_NAME'] === '/admin/reports/booking_reports.php' ||
+                                        $_SERVER['SCRIPT_NAME'] === '/admin/reports/feedback_reports.php' ||
+                                        $_SERVER['SCRIPT_NAME'] === '/admin/reports/passenger_reports.php' ||
+                                        $_SERVER['SCRIPT_NAME'] === '/admin/reports/route_reports.php' ||
+                                        $_SERVER['SCRIPT_NAME'] === '/admin/reports/seat_reports.php' ||
+                                        $_SERVER['SCRIPT_NAME'] === '/admin/reports/vehicle_reports.php'
+                                    ) {
+                                        echo 'active dropdown';
+                                    } else {
+                                        echo 'dropdown';
+                                    }
+                                    ?>">
                         <div class="dropdown">
                             <button class="dropbtn">Reports</button>
                             <div class="dropdown-content">
-                                <a href="/admin/manage_drivers.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/manage_drivers.php') ? 'active' : ''; ?>">Manage Drivers</a>
-                                <a href="/admin/manage_admins.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/manage_admins.php') ? 'active' : ''; ?>">Manage Admins</a>
-                                <a href="/admin/manage_bookings.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/manage_bookings.php') ? 'active' : ''; ?>">Manage Bookings</a>
-                                <a href="/admin/manage_vehicles.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/manage_vehicles.php') ? 'active' : ''; ?>">Manage Vehicles</a>
-                                <a href="/admin/manage_routes.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/manage_routes.php') ? 'active' : ''; ?>">Manage Routes</a>
-                                <a href="/admin/reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports.php') ? 'active' : ''; ?>">Reports</a>
+                                <a href="/admin/reports/booking_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/booking_reports.php') ? 'active' : ''; ?>">Booking</a>
+                                <a href="/admin/reports/feedback_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/feedback_reports.php') ? 'active' : ''; ?>">Feedback</a>
+                                <a href="/admin/reports/passenger_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/passenger_reports.php') ? 'active' : ''; ?>">Passenger</a>
+                                <a href="/admin/reports/route_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/route_reports.php') ? 'active' : ''; ?>">Route</a>
+                                <a href="/admin/reports/seat_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/seat_reports.php') ? 'active' : ''; ?>">Seat</a>
+                                <a href="/admin/reports/vehicle_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/vehicle_reports.php') ? 'active' : ''; ?>">Vehicle</a>
                             </div>
                         </div>
                     <?php endif; ?>
