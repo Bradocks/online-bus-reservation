@@ -9,7 +9,7 @@
 <body>
     <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        include '/includes/db.php';
+        include './includes/db.php';
 
         $name = $_POST['name'];
         $lname = $_POST['lname'];
@@ -22,7 +22,7 @@
         $gender = $_POST['gender'];
 
         // Insert user into database
-        $sql = "INSERT INTO user (name, lname, mobile_number, email, user_name, password, id_no, dob, gender)
+        $sql = "INSERT INTO user (`name`, lname, mobile_number, email, `user_name`, `password`, id_no, dob, gender)
                 VALUES ('$name', '$lname', '$mobile_number', '$email', '$user_name', '$password', '$id_no', '$dob', '$gender')";
 
         if ($conn->query($sql) === TRUE) {
@@ -35,51 +35,62 @@
     }
     ?>
 
-    <form method="POST" action="register.php" onsubmit="return formValidation()">
-        <p class="text-center mt-4" style="font-size: 32px; font-weight: 700; font-family: 'Poppins', sans-serif;">Register</p>
-        </header>
-        <div class="container">
-            <div class="user_details">
-                <div class="form-group">
-                    <label for="name">First Name</label>
-                    <input type="text" id="name" name="name" required>
+    <div class="container mt-2">
+        <div class="card" style="max-width: 600px; margin: auto;">
+            <div class="card-body">
+                <form method="POST" action="register.php" onsubmit="return formValidation()">
+                    <p class="text-center mt-4" style="font-size: 32px; font-weight: 700; font-family: 'Poppins', sans-serif;">Register</p>
+                    </header>
+                    <div>
+                        <div class="user_details">
+                            <div class="form-group">
+                                <label for="name">First Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
 
-                    <label for="lname">Last Name</label>
-                    <input type="text" id="lname" name="lname" required>
+                            <div class="form-group">
 
-                    <label for="mobile_number">Mobile Number</label>
-                    <input type="text" id="mobile_number" name="mobile_number" required>
+                                <label for="lname">Last Name</label>
+                                <input type="text" id="lname" name="lname" required>
+                            </div>
 
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
 
-                    <label for="user_name">Username</label>
-                    <input type="text" id="user_name" name="user_name" required>
+                            <label for="mobile_number">Mobile Number</label>
+                            <input type="text" id="mobile_number" name="mobile_number" required>
 
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
 
-                    <label for="confirm_password">Confirm Password</label>
-                    <input type="password" id="confirm_password" name="confirm_password" required>
+                            <label for="user_name">Username</label>
+                            <input type="text" id="user_name" name="user_name" required>
 
-                    <label for="id_no">ID Number</label>
-                    <input type="text" id="id_no" name="id_no" required>
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required>
 
-                    <label for="dob">Date of Birth</label>
-                    <input type="text" id="dob" name="dob" placeholder="dd/mm/yyyy"required>
+                            <label for="confirm_password">Confirm Password</label>
+                            <input type="password" id="confirm_password" name="confirm_password" required>
 
-                    <label for="gender">Select Gender</label>
-                    <select name="gender" id="gender">
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        </select>
-                </div>
+                            <label for="id_no">ID Number</label>
+                            <input type="text" id="id_no" name="id_no" required>
+
+                            <label for="dob">Date of Birth</label>
+                            <input type="text" id="dob" name="dob" placeholder="dd/mm/yyyy" required>
+
+                            <label for="gender">Select Gender</label>
+                            <select name="gender" id="gender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="form-group text-center">
-            <button type="submit" class="btn btn-primary">Register</button>
-        </div>
-    </form>
+    </div>
 
     <script>
         function formValidation() {
