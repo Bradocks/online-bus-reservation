@@ -17,7 +17,7 @@
 
                 <div class="form-group">
                     <label>Payment Method</label>
-                    <select name="paymentMethod" id="paymentMethod" class="form-control" required>
+                    <select name="payment_method" id="payment_method" class="form-control" required>
                         <option value="*" hidden>Select option</option>
                         <option value="Cash">Cash</option>
                         <option value="PesaPal">PesaPal</option>
@@ -36,7 +36,7 @@
 
                 <div class="form-group">
                     <label>Payment Statement</label>
-                    <textarea id="paymenStatement" name="paymenStatement" class="form-control"></textarea>
+                    <textarea id="payment_statement" name="paymena_statement" class="form-control"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
