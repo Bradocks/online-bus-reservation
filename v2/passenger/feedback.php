@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Insert feedback into database
     $sql = "INSERT INTO feedback (date_time, source, feedback) VALUES ('$date_time', '$source', '$feedback')";
     $conn->query($sql);
-    header('Location: /index.php');
+    header('Location: /passenger/index.php');
     exit();
 }
 ?>

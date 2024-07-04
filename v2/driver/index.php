@@ -36,9 +36,9 @@ $vehicle = $vehicle_model->where('driver_id', '=', $driver->id)->first();*/
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4">
-                        <img src="/driver/assets/driver.jpg" alt="Bus Image" class="img-fluid" />
+                        <img src="/passenger/assets/driver.jpg" alt="Bus Image" class="img-fluid" />
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-8" style="display: flex; flex-direction: column; flex-wrap: wrap; height:150px; font-weight:bold">
                         <p>Driver name: <span><?php echo $driver->name; ?></span></p>
                         <p>License plate: <span><?php echo $vehicle->plateNo; ?></span></p>
                         <p>Brand: <span>Mercedes</span></p>
