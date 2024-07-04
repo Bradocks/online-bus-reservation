@@ -25,10 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Passenger updated successfully.";
     } else {
         // Create new user
-        $sql = "INSERT INTO user (`name`, mobile_number, email, `role`, `user_name`, `password`, id_no, dob, gender, staff_id) VALUES ('$name', '$mobile_number', '$email', '$role', '$user_name', '$password', '$id_no', '$dob', '$gender')";
+        $sql = "INSERT INTO user (`name`, mobile_number, email, `role`, `user_name`, `password`, id_no, dob, gender) VALUES ('$name', '$mobile_number', '$email', '$role', '$user_name', '$password', '$id_no', '$dob', '$gender')";
     }
     $conn->query($sql);
-    header('Location: /admin/manage_passengers.php');
+    header('Location: /admin/manage_passenger.php');
     exit();
 }
 
@@ -37,7 +37,7 @@ if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
     $sql = "DELETE FROM user WHERE id=$id";
     $conn->query($sql);
-    header('Location: /admin/manage_passengers.php');
+    header('Location: /admin/manage_passenger.php');
     exit();
 }
 
@@ -127,7 +127,7 @@ $result = $conn->query($sql);
                                     <td>{$row['dob']}</td>
                                     <td>{$row['gender']}</td>
                                     <td>
-                                        <a href='/admin/manage_passengers.php?edit={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>
+                                        <a href='/admin/manage_passenger.php?edit={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>
                                     </td>
                                     <td>
                                         <a href='javascript:void(0);' onclick='confirmDelete({$row['id']})' class='btn btn-danger btn-sm'>Delete</a>
@@ -147,7 +147,7 @@ $result = $conn->query($sql);
 <script>
     function confirmDelete(id) {
         if (confirm("Are you sure you want to delete this user?")) {
-            window.location.href = '/admin/manage_passengers.php?delete=' + id;
+            window.location.href = '/admin/manage_passenger.php?delete=' + id;
         }
     }
 </script>
