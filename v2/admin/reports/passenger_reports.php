@@ -8,9 +8,9 @@ check_auth();
 check_role('admin');
 
 $filters = [
-    'date_of_travel' => ['value' => isset($_GET['date_of_travel']) ? $_GET['date_of_travel'] : '', 'type' => 'date'],
-    'departure' => ['value' => isset($_GET['departure']) ? $_GET['departure'] : '', 'type' => 'like'],
-    'destination' => ['value' => isset($_GET['destination']) ? $_GET['destination'] : '', 'type' => 'like'],
+    'r.place_of_departure' => ['value' => isset($_GET['departure']) ? $_GET['departure'] : '', 'type' => 'like'],
+    'r.destination' => ['value' => isset($_GET['destination']) ? $_GET['destination'] : '', 'type' => 'like'],
+    'sub.time_bookings' => ['value' => isset($_GET['time_bookings']) ? $_GET['time_bookings'] : '', 'type' => 'date'],
 ];
 
 $query = "
@@ -34,12 +34,28 @@ foreach ($filters as $key => $filter) {
     $type = $filter['type'];
     if (!empty($value)) {
         if ($type == 'like') {
-            $query .= " AND r.$key LIKE '%$value%'";
-        } elseif ($type == 'date') {
-            $query .= " AND b.date_time = '$value'";
+            $query .= " AND $key LIKE '%$value%'";
         }
     }
 }
+
+if (isset($filters['sub.time_bookings']['value'])) {
+    switch ($filters['sub.time_bookings']['value']) {
+        case 'year':
+            $query .= " AND b.date_time BETWEEN now() - INTERVAL 1 YEAR AND now()";
+            break;
+        case '6months':
+            $query .= " AND b.date_time BETWEEN now() - INTERVAL 6 MONTH AND now()";
+            break;
+        case '3months':
+            $query .= " AND b.date_time BETWEEN now() - INTERVAL 3 MONTH AND now()";
+            break;
+        case '1month':
+            $query .= " AND b.date_time BETWEEN now() - INTERVAL 1 MONTH AND now()";
+            break;
+    }
+}
+
 
 $result = $conn->query($query);
 
@@ -59,12 +75,15 @@ echo '<div class="mt-4 container">';
 echo '<h1 class="mb-4">Passenger Travel Report</h1>';
 echo '<form method="GET" action="" class="card">';
 echo '<div class="mb-4 px-4 py-4 flex-container">';
-foreach ($filters as $field => $data) {
-    echo "<div class=\"form-group\">
-            <label>" . ucfirst(str_replace('_', ' ', $field)) . ":</label>
-            <input type=\"" . ($data['type'] === 'date' ? 'date' : 'text') . "\" name=\"$field\" value=\"" . htmlspecialchars($data['value']) . "\">
-          </div>";
-}
+echo '<div class="form-group"><label>Departure Point:</label><input type="text" name="departure" value="' . htmlspecialchars($filters['departure']['value']) . '"></div>';
+echo '<div class="form-group"><label>Destination:</label><input type="text" name="destination" value="' . htmlspecialchars($filters['destination']['value']) . '"></div>';
+echo '<div class="form-group"><label>Time Bookings:</label><select name="time_bookings">
+        <option value="">Select</option>
+        <option value="yearly"' . ($filters['time_bookings']['value'] === 'year' ? ' selected' : '') . '>Last 1 Year</option>
+        <option value="monthly"' . ($filters['time_bookings']['value'] === '6months' ? ' selected' : '') . '>Last 6 months</option>
+        <option value="weekly"' . ($filters['time_bookings']['value'] === '3months' ? ' selected' : '') . '>Last 3 months</option>
+        <option value="daily"' . ($filters['time_bookings']['value'] === '1month' ? ' selected' : '') . '>Last 30 days</option>
+    </select></div>';
 echo '<div class="form-group"><button type="submit" class="btn btn-primary">Filter</button></div>';
 echo '</div>';
 echo '</form>';

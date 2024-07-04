@@ -5,15 +5,16 @@ include 'includes/auth.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $role = $_POST['role'];
 
-    $sql = "SELECT * FROM user WHERE email='$username' AND role='$role'";
+    $sql = "SELECT * FROM user WHERE email='$username' OR `user_name`='$username'";
+
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
         $user = $result->fetch_assoc();
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['role'] = $user['role'];
+
 
         if (!password_verify($password, $user['password'])) {
             echo 'Wrong password provided';
@@ -54,14 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password" placeholder="Password" required>
                     </div>
-                    <div class="form-group">
-                        <label for="role">Role</label>
-                        <select id="role" name="role">
-                            <option value="admin">Admin</option>
-                            <option value="driver">Driver</option>
-                            <option value="Passenger">Passenger</option>
-                        </select>
-                    </div>
+
                     <div class="form-group">
                         <button type="submit">Login</button>
                     </div>

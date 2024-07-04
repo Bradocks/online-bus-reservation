@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $role = 'driver';
     $user_name = $_POST['user_name'];
-    $password = $_POST['password'];
+    $password = password_hash($_POST['id_no'], PASSWORD_BCRYPT);
     $id_no = $_POST['id_no'];
     $dob = $_POST['dob'];
     $gender = $_POST['gender'];

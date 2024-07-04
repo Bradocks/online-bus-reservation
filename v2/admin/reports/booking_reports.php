@@ -8,18 +8,18 @@ check_auth();
 check_role('admin');
 
 $filters = [
-    'passenger_name' => ['value' => isset($_GET['passenger_name']) ? $_GET['passenger_name'] : '', 'type' => 'like'],
-    'date_of_booking' => ['value' => isset($_GET['date_of_booking']) ? $_GET['date_of_booking'] : '', 'type' => 'date'],
-    'departure_date' => ['value' => isset($_GET['departure_date']) ? $_GET['departure_date'] : '', 'type' => 'date'],
-    'departure_point' => ['value' => isset($_GET['departure_point']) ? $_GET['departure_point'] : '', 'type' => 'like'],
-    'destination' => ['value' => isset($_GET['destination']) ? $_GET['destination'] : '', 'type' => 'like'],
-    'driver_name' => ['value' => isset($_GET['driver_name']) ? $_GET['driver_name'] : '', 'type' => 'like'],
-    'bus_plate_number' => ['value' => isset($_GET['bus_plate_number']) ? $_GET['bus_plate_number'] : '', 'type' => 'like'],
-    'capacity_percentage' => ['value' => isset($_GET['capacity_percentage']) ? $_GET['capacity_percentage'] : '', 'type' => 'like'],
-    'vacant_seats' => ['value' => isset($_GET['vacant_seats']) ? $_GET['vacant_seats'] : '', 'type' => 'like'],
-    'fully_booked_buses' => ['value' => isset($_GET['fully_booked_buses']) ? $_GET['fully_booked_buses'] : '', 'type' => 'like'],
-    'unsuccessful_bookings' => ['value' => isset($_GET['unsuccessful_bookings']) ? $_GET['unsuccessful_bookings'] : '', 'type' => 'like'],
-    'time_bookings' => ['value' => isset($_GET['time_bookings']) ? $_GET['time_bookings'] : '', 'type' => 'like'],
+    'sub.passenger_name' => ['value' => isset($_GET['passenger_name']) ? $_GET['passenger_name'] : '', 'type' => 'like'],
+    'sub.date_of_booking' => ['value' => isset($_GET['date_of_booking']) ? $_GET['date_of_booking'] : '', 'type' => 'date'],
+    'sub.departure_date' => ['value' => isset($_GET['departure_date']) ? $_GET['departure_date'] : '', 'type' => 'date'],
+    'sub.place_of_departure' => ['value' => isset($_GET['departure_point']) ? $_GET['departure_point'] : '', 'type' => 'like'],
+    'sub.destination' => ['value' => isset($_GET['destination']) ? $_GET['destination'] : '', 'type' => 'like'],
+    'sub.driver_name' => ['value' => isset($_GET['driver_name']) ? $_GET['driver_name'] : '', 'type' => 'like'],
+    'sub.bus_plate_number' => ['value' => isset($_GET['bus_plate_number']) ? $_GET['bus_plate_number'] : '', 'type' => 'like'],
+    'sub.capacity_percentage' => ['value' => isset($_GET['capacity_percentage']) ? $_GET['capacity_percentage'] : '', 'type' => 'like'],
+    'sub.vacant_seats' => ['value' => isset($_GET['vacant_seats']) ? $_GET['vacant_seats'] : '', 'type' => 'like'],
+    'sub.fully_booked_buses' => ['value' => isset($_GET['fully_booked_buses']) ? $_GET['fully_booked_buses'] : '', 'type' => 'like'],
+    'sub.unsuccessful_bookings' => ['value' => isset($_GET['unsuccessful_bookings']) ? $_GET['unsuccessful_bookings'] : '', 'type' => 'like'],
+    'sub.time_bookings' => ['value' => isset($_GET['time_bookings']) ? $_GET['time_bookings'] : '', 'type' => 'date'],
 ];
 
 $query = "
@@ -96,9 +96,24 @@ foreach ($filters as $key => $filter) {
     if (!empty($value)) {
         if ($type == 'like') {
             $query .= " AND $key LIKE '%$value%'";
-        } elseif ($type == 'date') {
-            $query .= " AND DATE(sub.$key) = '$value'";
         }
+    }
+}
+
+if (isset($filters['sub.time_bookings']['value'])) {
+    switch ($filters['sub.time_bookings']['value']) {
+        case 'year':
+            $query .= " AND b.date_time BETWEEN now() - INTERVAL 1 YEAR AND now()";
+            break;
+        case '6months':
+            $query .= " AND b.date_time BETWEEN now() - INTERVAL 6 MONTH AND now()";
+            break;
+        case '3months':
+            $query .= " AND b.date_time BETWEEN now() - INTERVAL 3 MONTH AND now()";
+            break;
+        case '1month':
+            $query .= " AND b.date_time BETWEEN now() - INTERVAL 1 MONTH AND now()";
+            break;
     }
 }
 
@@ -134,8 +149,6 @@ echo '<h1 class="mb-4">Booking Report</h1>';
 echo '<form method="GET" action="" class="card">';
 echo '<div class="mb-4 px-4 py-4 flex-container">';
 echo '<div class="form-group"><label>Passenger Name:</label><input type="text" name="passenger_name" value="' . htmlspecialchars($filters['passenger_name']['value']) . '"></div>';
-echo '<div class="form-group"><label>Date of Booking:</label><input type="date" name="date_of_booking" value="' . htmlspecialchars($filters['date_of_booking']['value']) . '"></div>';
-echo '<div class="form-group"><label>Departure Date:</label><input type="date" name="departure_date" value="' . htmlspecialchars($filters['departure_date']['value']) . '"></div>';
 echo '<div class="form-group"><label>Departure Point:</label><input type="text" name="departure_point" value="' . htmlspecialchars($filters['departure_point']['value']) . '"></div>';
 echo '<div class="form-group"><label>Destination:</label><input type="text" name="destination" value="' . htmlspecialchars($filters['destination']['value']) . '"></div>';
 echo '<div class="form-group"><label>Driver Name:</label><input type="text" name="driver_name" value="' . htmlspecialchars($filters['driver_name']['value']) . '"></div>';
@@ -146,10 +159,10 @@ echo '<div class="form-group"><label>Fully Booked Buses:</label><input type="tex
 echo '<div class="form-group"><label>Unsuccessful Bookings:</label><input type="text" name="unsuccessful_bookings" value="' . htmlspecialchars($filters['unsuccessful_bookings']['value']) . '"></div>';
 echo '<div class="form-group"><label>Time Bookings:</label><select name="time_bookings">
     <option value="">Select</option>
-    <option value="yearly"' . ($filters['time_bookings']['value'] === 'yearly' ? ' selected' : '') . '>Yearly</option>
-    <option value="monthly"' . ($filters['time_bookings']['value'] === 'monthly' ? ' selected' : '') . '>Monthly</option>
-    <option value="weekly"' . ($filters['time_bookings']['value'] === 'weekly' ? ' selected' : '') . '>Weekly</option>
-    <option value="daily"' . ($filters['time_bookings']['value'] === 'daily' ? ' selected' : '') . '>Daily</option>
+    <option value="yearly"' . ($filters['time_bookings']['value'] === 'year' ? ' selected' : '') . '>Last 1 Year</option>
+    <option value="monthly"' . ($filters['time_bookings']['value'] === '6months' ? ' selected' : '') . '>Last 6 months</option>
+    <option value="weekly"' . ($filters['time_bookings']['value'] === '3months' ? ' selected' : '') . '>Last 3 months</option>
+    <option value="daily"' . ($filters['time_bookings']['value'] === '1month' ? ' selected' : '') . '>Last 30 days</option>
 </select></div>';
 echo '</div>';
 echo '<div class="form-group px-4"><button type="submit" class="btn btn-primary">Filter</button></div>';
@@ -180,7 +193,7 @@ if ($result->num_rows > 0) {
         echo "<tr>
                 <td>{$row['passenger_name']}</td>
                 <td>{$row['booking_date']}</td>
-                <td>{$row['route']}</td>
+                <td>{$row['departure_date']}</td>
                 <td>{$row['place_of_departure']}</td>
                 <td>{$row['destination']}</td>
                 <td>{$row['driver_name']}</td>

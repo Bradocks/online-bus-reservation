@@ -50,7 +50,7 @@ if (isset($_GET['edit'])) {
 }
 
 // Fetch all vehicles
-$sql = "SELECT * FROM vehicle";
+$sql = "SELECT * FROM vehicle v  JOIN routes r ON v.route_id = r.id";
 $result = $conn->query($sql);
 ?>
 
@@ -105,7 +105,7 @@ $result = $conn->query($sql);
                         <th>Capacity</th>
                         <th>Driver ID</th>
                         <th>Disabled</th>
-                        <th>Route ID</th>
+                        <th>Route</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -120,7 +120,7 @@ $result = $conn->query($sql);
                                     <td>{$row['capacity']}</td>
                                     <td>{$row['driver_id']}</td>
                                     <td>{$row['disabled']}</td>
-                                    <td>{$row['route_id']}</td>
+                                    <td>{$row['route_name']}</td>
                                     <td>
                                         <a href='/admin/manage_vehicles.php?edit={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>
                                     </td>

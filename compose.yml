@@ -1,19 +1,6 @@
 version: '3.8'
 
 services:
-  web:
-    build:
-      context: ./app
-    container_name: php-web-app
-    volumes:
-      - ./app:/var/www/html/
-    ports:
-      - "57000:80"
-    depends_on:
-      - db
-    networks:
-      - app-network
-  
   v2:
     build:
       context: ./v2

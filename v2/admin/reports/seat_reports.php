@@ -8,8 +8,8 @@ check_auth();
 check_role('admin');
 
 $filters = [
-    'bus_plate_number' => ['value' => isset($_GET['bus_plate_number']) ? $_GET['bus_plate_number'] : '', 'type' => 'like'],
-    'route' => ['value' => isset($_GET['route']) ? $_GET['route'] : '', 'type' => 'like'],
+    'v.plate_number' => ['value' => isset($_GET['bus_plate_number']) ? $_GET['bus_plate_number'] : '', 'type' => 'like'],
+    'r.route_name' => ['value' => isset($_GET['route']) ? $_GET['route'] : '', 'type' => 'like'],
 ];
 
 $query = "
@@ -34,14 +34,13 @@ foreach ($filters as $key => $filter) {
     $type = $filter['type'];
     if (!empty($value)) {
         if ($type == 'like') {
-            $query .= " AND v.$key LIKE '%$value%'";
+            $query .= " AND $key LIKE '%$value%'";
         }
     }
 }
 
 $query .= " GROUP BY v.plate_number, r.route_name, v.capacity";
 
-var_dump($query);
 $result = $conn->query($query);
 
 echo '<style>
