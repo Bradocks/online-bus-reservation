@@ -75,14 +75,14 @@ session_start();
 
                         <?php if ($_SESSION['role'] === 'Passenger') : ?>
                             <a href="/passenger/index.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/index.php') ? 'active' : ''; ?>">Home</a>
-                            <a href="/passenger/book_bus.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/book_bus.php') ? 'active' : ''; ?>">Book Bus</a>
+                            <a href="/passenger/routes.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/routes.php') ? 'active' : ''; ?>">Book Bus</a>
                             <a href="/passenger/history.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/history.php') ? 'active' : ''; ?>">Booking History</a>
                             <a href="/passenger/feedback.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/feedback.php') ? 'active' : ''; ?>">Feedback</a>
                         <?php endif; ?>
 
                         <?php if ($_SESSION['role'] === 'driver') : ?>
                             <a href="/driver/index.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/driver/index.php') ? 'active' : ''; ?>">Home</a>
-                            <a href= '/passenger/feedback.php' class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/feedback.php') ? 'active' : ''; ?>">Feedback</a>
+                            <a href='/passenger/feedback.php' class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/feedback.php') ? 'active' : ''; ?>">Feedback</a>
                         <?php endif; ?>
 
                         <a href="/logout.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/logout.php') ? 'active' : ''; ?>">Logout</a>
@@ -91,4 +91,4 @@ session_start();
         </nav>
     <?php endif; ?>
 
-    <main class="container">
+    <!-- <main class="container"> -->

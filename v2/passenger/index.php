@@ -13,14 +13,9 @@ check_role('Passenger');
     <link rel="stylesheet" href="/css/home.css" />
 </head>
 
+
 <body>
-    body{
-     <img src="/passenger/assets/bus1.jpeg"       
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover; 
-        style="height: 100%; width: 100%">
-    }
+    <img src="/passenger/assets/bus1.jpeg" style="background-position: center; background-repeat: no-repeat;  background-size: cover; height: 100%; width: 100%" />
 </body>
 
 <?php include '../includes/footer.php'; ?>
