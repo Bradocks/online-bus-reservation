@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql-db
--- Generation Time: Jun 25, 2024 at 07:08 AM
+-- Generation Time: Jul 04, 2024 at 08:23 PM
 -- Server version: 8.0.37
 -- PHP Version: 8.2.18
 
@@ -69,7 +69,8 @@ INSERT INTO `booking` (`id`, `passenger_id`, `vehicle_id`, `place_of_departure`,
 (17, 12, 2, 'Kisumu', 'Malaba', NULL, '2024-11-12 02:00:00', NULL, NULL, 'cash', NULL, NULL, NULL, 21, 1),
 (18, 12, 2, 'Kisumu', 'Malaba', NULL, '2023-07-02 05:00:00', NULL, NULL, 'cash', NULL, NULL, NULL, 21, 1),
 (19, 12, 2, 'Kisumu', 'Malaba', NULL, '2023-07-02 05:00:00', NULL, NULL, 'cash', NULL, NULL, NULL, 21, 1),
-(20, 12, 2, 'Kisumu', 'Malaba', NULL, '2024-08-20 04:00:00', NULL, NULL, 'cash', NULL, NULL, NULL, 21, 1);
+(20, 12, 2, 'Kisumu', 'Malaba', NULL, '2024-08-20 04:00:00', NULL, 2000, 'Cash', 'GSDGDLHG124', NULL, NULL, 21, 1),
+(21, 1, 1, 'Nairobi', 'Kisumu', 'Bus', '2024-05-01 07:10:30', 'KSM-MLB', 2000, 'Cash', '1241234', '51325126', '5123616', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -165,7 +166,10 @@ CREATE TABLE `feedback` (
 --
 
 INSERT INTO `feedback` (`feedback_id`, `date_time`, `source`, `feedback`) VALUES
-(1, '2024-04-10 09:10:00', 'passenger', 'poor driving');
+(1, '2024-04-10 09:10:00', 'passenger', 'poor driving'),
+(2, '2024-07-04 20:22:12', 'driver', 'Sample test'),
+(3, '2024-07-04 20:22:54', 'driver', 'Testing new feed back'),
+(4, '2024-07-04 20:23:31', 'driver', 'Testing feed back');
 
 -- --------------------------------------------------------
 
@@ -186,7 +190,9 @@ CREATE TABLE `routes` (
 --
 
 INSERT INTO `routes` (`id`, `route_name`, `price`, `place_of_departure`, `destination`) VALUES
-(1, 'KSM - MLB', 2000, 'Kisumu', 'Malaba');
+(1, 'KSM - MLB', 2000, 'Kisumu', 'Malaba'),
+(3, 'NBI-MSA', 3500, 'Nairobi', 'Mombasa'),
+(4, 'NKU - MSA', 4500, 'Nakuru', 'Mombasa');
 
 -- --------------------------------------------------------
 
@@ -243,13 +249,17 @@ INSERT INTO `user` (`id`, `name`, `mobile_number`, `email`, `role`, `user_name`,
 (9, 'Henry', 745679627, 'henryshiemi@gmail.com', 'conductor', 'shiemi', 'Henry@123!', 36374256, '2003-12-12', 'Male', NULL),
 (10, 'Roy', 778356272, 'royjakinda@gmail.com', 'cashier', 'Jaks', 'Roy@123!', 33410254, '1992-05-11', 'Male', NULL),
 (12, 'Sample sample', 123451351, 'sample@gmail.com', 'Passenger', NULL, '$2y$10$xdGAvpGNhvsextEHxujzgeGOZvurb67zotsvPZBhRuKywlN/f/L4.', 123456, '01/01/1980', 'Male', NULL),
-(13, 'Samuel Odoyo', 1234567890, 'samuel.odoyo@gmail.com', 'admin', 'samuel.odoyo', '$2y$10$LDVpMHlJSEOlwf1qXrS7Cul/LEawmVbkddZPQ84MJ5cCH2.zywkIy', NULL, '1980-01-12', 'Male', NULL),
+(13, 'Samuel Odoyo', 1234567890, 'samuel.odoyo@gmail.com', 'admin', 'samuel.odoyo', '$2y$10$LDVpMHlJSEOlwf1qXrS7Cul/LEawmVbkddZPQ84MJ5cCH2.zywkIy', 124234, '1980-01-12', 'Male', 23151325),
 (16, 'Adams Okode', 702759950, 'adamsokode@gmail.com', 'admin', 'adams.okode', '$2y$10$LDVpMHlJSEOlwf1qXrS7Cul/LEawmVbkddZPQ84MJ5cCH2.zywkIy', 12345678, '1998-01-01', 'Male', 14),
 (17, 'Justin Leto', 1234567890, 'justin.leto@gmail.com', 'admin', 'justin.leto', '$2y$10$H9jbvFn/w5oxwhkfesX3MueNKSx8pT7Gk9AgxWGfMB5ZLpcoX5.l.', 23456789, '1990-02-02', 'Male', 15),
 (19, 'Samuel Kamau', 1234567873, 'samuelkamau@gmail.com', 'Passenger', 'Kamau', '$2y$10$PqNPIhkC35XYVo1RjhCUpOueCX/ObPi9KsNj1in4JmjUrQsLvaYDe', 98765432, '1999-10-10', 'Male', NULL),
 (20, 'Collins Oyoo', 707869127, 'collinsoyoo@gmail.com', 'admin', 'Oyoo', '$2y$10$NEoV.q.ucqEQSekSKSQS0u1eT3rBWgnR1fgvXXrr3E17XBYk9kA9K', 98765432, '2000-01-24', 'Male', 17),
 (21, 'jacob ojee', 1234567873, 'j.ojee@gmail.com', 'driver', 'Ojee', '$2y$10$XmepPFvBpdzWehA2qndKFucM1faCqVeLWaUs5AoNpCLQCOFcj8PJW', 12345678, '1998-03-30', 'Male', 18),
-(22, 'Vincent Onduto', 1234567873, 'v.onduto@gmail.com', 'driver', 'Onduto', '$2y$10$NXwQJNOHU66nXs5zVvltKuSScICanaDqt5/A8U.p7XmH.ekw6zB4S', 12345678, '1998-05-05', 'Male', 19);
+(22, 'Vincent Onduto', 1234567873, 'v.onduto@gmail.com', 'driver', 'Onduto', '$2y$10$NXwQJNOHU66nXs5zVvltKuSScICanaDqt5/A8U.p7XmH.ekw6zB4S', 12345678, '1998-05-05', 'Male', 19),
+(25, 'George', 719234678, 'george.driver@gmail.com', 'driver', 'george.driver', '$2y$10$WeAmojGojhGfhjcNoTm54u1cPv67lXLMph9DPTcsO0RPSlV53.8OK', 456789, '01/20/1991', 'Male', 1539199),
+(26, 'dasfd', 12351231, 'aafdass@fasdga.com', 'admin', 'ffasdgagag', '$2y$10$i/mJeQ5BPxhVHLRaRSrqXe4N9U8OqhYo5ZcPr2.zGZ4tE2Db.IUSK', 321251, '1/1/234', 'male', 1234123512),
+(27, 'SDFAS', 1421353215, 'aasf@asdfa.coas', 'driver', 'qewraqetwq', '$2y$10$sbNLbk4Jm8K438tnkHa8T.riz2d4qj3ec0tI8mosyptVNSE7RVIEO', 12345123, '12/12/2013', 'male', 1918704),
+(28, 'afasdga', 12341235, 'fasdag@afsdga.sdfg', 'passenger', 'safsgdad', '$2y$10$5182SwiYiVTdfyFp3Amom.Fujyc5/Lxk2raMsBdz.oCnsyKxmpwd6', 123451231, '1/1/2019', 'asdgasdg', NULL);
 
 -- --------------------------------------------------------
 
@@ -273,7 +283,7 @@ CREATE TABLE `vehicle` (
 --
 
 INSERT INTO `vehicle` (`id`, `plate_number`, `brand`, `model`, `capacity`, `driver_id`, `disabled`, `route_id`) VALUES
-(1, 'KCT 513T', NULL, NULL, 55, NULL, 1, 1),
+(1, 'KCT 513T', 'Mercedes', 'Actros', 55, 22, 1, 1),
 (2, 'KDD 570Q', NULL, NULL, 55, NULL, 0, 1),
 (3, 'KDM 008J', NULL, NULL, 55, NULL, 0, 1),
 (4, 'KDA 675R', NULL, NULL, 55, NULL, 0, 1),
@@ -343,25 +353,25 @@ ALTER TABLE `vehicle`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `feedback_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `feedback_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `routes`
 --
 ALTER TABLE `routes`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `vehicle`
