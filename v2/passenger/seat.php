@@ -64,7 +64,8 @@ $seats_result = $conn->query($seats_sql);
     function confirmSeat(seatId, bookingId) {
         if (confirm("Do you want to book this seat?")) {
             // Handle seat booking here, e.g., redirect to a booking page
-            window.location.href = `/passenger/ticket.php?seat_id=${seatId}&booking_id=${bookingId}`;
+
+            window.location.href = `/passenger/payment.php?seat_id=${seatId}&booking_id=${bookingId}`;
         }
     }
 </script>
