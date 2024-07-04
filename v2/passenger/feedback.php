@@ -7,15 +7,15 @@ check_auth();
 
 // Handle form submission for creating feedback
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $source = $_SESSION['role']; 
+    $source = $_SESSION['role'];
     $feedback = $_POST['feedback'];
     $date_time = date('Y-m-d H:i:s');
 
     // Insert feedback into database
     $sql = "INSERT INTO feedback (date_time, source, feedback) VALUES ('$date_time', '$source', '$feedback')";
     $conn->query($sql);
-    header('Location: /passenger/index.php');
-    exit();
+
+    echo "<div class=\"container mt-4\"> Feed back sent successfully </div>";
 }
 ?>
 
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="card">
         <div class="card-header">Submit Feedback</div>
         <div class="card-body">
-            <form method="POST" action="/passenger/feedback.php">
+            <form method="POST" action="">
                 <div class="form-group">
                     <label>Feedback</label>
                     <textarea class="form-control" name="feedback" rows="5" required></textarea>

@@ -5,18 +5,31 @@ include '../includes/auth.php';
 include '../includes/header.php';
 check_auth();
 
-/* Ensure $session is properly instantiated
-$session = new Auth($conn);
+$id = $_SESSION['user_id'];
+$sql = "SELECT id, `name`, mobile_number, email, `role`, `user_name`, `password`, id_no, dob, gender, staff_id FROM user WHERE id = '$id'";
+$result = $conn->query($sql);
 
-if ((!isset($_SESSION['id']) || $_SESSION['id'] === null) && $_SERVER['REQUEST_URI'] != '/user') {
-    header("Location: /user");
-    exit;
+if ($result) {
+    $driver = (object) $result->fetch_assoc();
+} else {
+    // Handle query error
+    echo 'Error: ' . $conn->error;
 }
 
-$driver = $session->user();
-$vehicle_model = new BaseModel('vehicle', $conn);
-$vehicle = $vehicle_model->where('driver_id', '=', $driver->id)->first();*/
+$vehicle_sql = "SELECT * FROM vehicle WHERE driver_id = '$id'";
+try {
+    $vehicle_result = $conn->query($vehicle_sql);
+    if ($vehicle_result) {
+        $vehicle = (object) $vehicle_result->fetch_assoc();
+    } else {
+        // Handle query error
+        echo 'Error: ' . $conn->error;
+    }
+} catch (Exception $e) {
+    echo 'Message: ' . $e->getMessage();
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,9 +53,9 @@ $vehicle = $vehicle_model->where('driver_id', '=', $driver->id)->first();*/
                     </div>
                     <div class="col-md-8" style="display: flex; flex-direction: column; flex-wrap: wrap; height:150px; font-weight:bold">
                         <p>Driver name: <span><?php echo $driver->name; ?></span></p>
-                        <p>License plate: <span><?php echo $vehicle->plateNo; ?></span></p>
-                        <p>Brand: <span>Mercedes</span></p>
-                        <p>Model: <span>Benz</span></p>
+                        <p>License plate: <span><?php echo $vehicle->plate_number; ?></span></p>
+                        <p>Brand: <span><?php echo $vehicle->brand; ?></span></p>
+                        <p>Model: <span><?php echo $vehicle->model; ?></span></p>
                         <p>Passenger Capacity: <span><?php echo $vehicle->capacity; ?></span></p>
                     </div>
                 </div>
