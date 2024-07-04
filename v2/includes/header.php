@@ -18,9 +18,10 @@ session_start();
             <div class="container flex justify-between items-center">
                 <a href="/index.php" class="navbar-brand">Bus Booking System</a>
                 <div class="navbar-links">
-                    <a href="/admin/index.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/index.php') ? 'active' : ''; ?>">Home</a>
+
                     <?php if ($_SESSION['role'] === 'admin') : ?>
                         <!-- Dropdown for Admin specific management links -->
+                        <a href="/admin/index.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/index.php') ? 'active' : ''; ?>">Home</a>
                         <div class="<?php
                                     if (
                                         $_SERVER['SCRIPT_NAME'] === '/admin/manage_drivers.php' ||
@@ -60,34 +61,36 @@ session_start();
                                         echo 'dropdown';
                                     }
                                     ?>">
-                        <div class="dropdown">
-                            <button class="dropbtn">Reports</button>
-                            <div class="dropdown-content">
-                                <a href="/admin/reports/booking_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/booking_reports.php') ? 'active' : ''; ?>">Booking</a>
-                                <a href="/admin/reports/feedback_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/feedback_reports.php') ? 'active' : ''; ?>">Feedback</a>
-                                <a href="/admin/reports/passenger_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/passenger_reports.php') ? 'active' : ''; ?>">Passenger</a>
-                                <a href="/admin/reports/route_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/route_reports.php') ? 'active' : ''; ?>">Route</a>
-                                <a href="/admin/reports/seat_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/seat_reports.php') ? 'active' : ''; ?>">Seat</a>
-                                <a href="/admin/reports/vehicle_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/vehicle_reports.php') ? 'active' : ''; ?>">Vehicle</a>
+                            <div class="dropdown">
+                                <button class="dropbtn">Reports</button>
+                                <div class="dropdown-content">
+                                    <a href="/admin/reports/booking_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/booking_reports.php') ? 'active' : ''; ?>">Booking</a>
+                                    <a href="/admin/reports/feedback_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/feedback_reports.php') ? 'active' : ''; ?>">Feedback</a>
+                                    <a href="/admin/reports/passenger_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/passenger_reports.php') ? 'active' : ''; ?>">Passenger</a>
+                                    <a href="/admin/reports/route_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/route_reports.php') ? 'active' : ''; ?>">Route</a>
+                                    <a href="/admin/reports/seat_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/seat_reports.php') ? 'active' : ''; ?>">Seat</a>
+                                    <a href="/admin/reports/vehicle_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/vehicle_reports.php') ? 'active' : ''; ?>">Vehicle</a>
+                                </div>
                             </div>
+                        <?php endif; ?>
+
+                        <?php if ($_SESSION['role'] === 'Passenger') : ?>
+                            <!-- Passenger specific links -->
+                            <a href="/passenger/index.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/index.php') ? 'active' : ''; ?>">Home</a>
+                            <a href="/passenger/book_bus.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/book_bus.php') ? 'active' : ''; ?>">Book Bus</a>
+                            <a href="/passenger/history.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/history.php') ? 'active' : ''; ?>">Booking History</a>
+                            <a href="/passenger/feedback.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/feedback.php') ? 'active' : ''; ?>">Feedback</a>
+                        <?php endif; ?>
+
+                        <?php if ($_SESSION['role'] === 'driver') : ?>
+                            <!-- Driver specific links -->
+                            <a href="/driver/index.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/driver/index.php') ? 'active' : ''; ?>">Home</a>
+                            <a href="/driver/feedback.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/driver/feedback.php') ? 'active' : ''; ?>">Feedback</a>
+                        <?php endif; ?>
+
+                        <a href="/logout.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/logout.php') ? 'active' : ''; ?>">Logout</a>
                         </div>
-                    <?php endif; ?>
-
-                    <?php if ($_SESSION['role'] === 'passenger') : ?>
-                        <!-- Passenger specific links -->
-                        <a href="/passenger/book_bus.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/book_bus.php') ? 'active' : ''; ?>">Book Bus</a>
-                        <a href="/passenger/history.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/history.php') ? 'active' : ''; ?>">Booking History</a>
-                        <a href="/passenger/feedback.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/feedback.php') ? 'active' : ''; ?>">Feedback</a>
-                    <?php endif; ?>
-
-                    <?php if ($_SESSION['role'] === 'driver') : ?>
-                        <!-- Driver specific links -->
-                        <a href="/driver/feedback.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/driver/feedback.php') ? 'active' : ''; ?>">Feedback</a>
-                    <?php endif; ?>
-
-                    <a href="/logout.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/logout.php') ? 'active' : ''; ?>">Logout</a>
                 </div>
-            </div>
         </nav>
     <?php endif; ?>
 

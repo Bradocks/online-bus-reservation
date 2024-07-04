@@ -40,39 +40,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <?php include 'includes/header.php'; ?>
 
-<div class="container mt-4">
-    <div class="card" style="max-width: 400px; margin: auto;">
-        <div class="card-header">Login</div>
-        <div class="card-body">
-            <form method="POST" action="login.php">
-                <div class="form-group">
-                    <label for="username">Email</label>
-                    <input type="text" id="username" name="username" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Password" required>
-                </div>
-                <div class="form-group">
-                    <label for="role">Role</label>
-                    <select id="role" name="role">
-                        <option value="admin">Admin</option>
-                        <option value="driver">Driver</option>
-                        <option value="Passenger">Passenger</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <button type="submit">Login</button>
-                </div>
-                <p><a href="reset_password.php">forgot password</a></p>
-                <p><a href="register.php">Create account</a></p>
-                </body>
-                <?php if (isset($error)) echo "<p>$error</p>"; ?>
-            </form>
+<?php if (!isset($_SESSION['user_id'])) : ?>
+    <div class="container mt-4">
+        <div class="card" style="max-width: 400px; margin: auto;">
+            <div class="card-header">Login</div>
+            <div class="card-body">
+                <form method="POST" action="login.php">
+                    <div class="form-group">
+                        <label for="username">Email</label>
+                        <input type="text" id="username" name="username" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <select id="role" name="role">
+                            <option value="admin">Admin</option>
+                            <option value="driver">Driver</option>
+                            <option value="Passenger">Passenger</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Login</button>
+                    </div>
+                    <p><a href="reset_password.php">forgot password</a></p>
+                    <p><a href="register.php">Create account</a></p>
+                    </body>
+                    <?php if (isset($error)) echo "<p>$error</p>"; ?>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-</body>
+    </body>
 
-</html>
+    </html>
+<?php endif; ?>

@@ -22,13 +22,13 @@
         $gender = $_POST['gender'];
 
         // Insert user into database
-        $sql = "INSERT INTO user (`name`, lname, mobile_number, email, `user_name`, `password`, id_no, dob, gender)
-                VALUES ('$name', '$lname', '$mobile_number', '$email', '$user_name', '$password', '$id_no', '$dob', '$gender')";
+        $sql = "INSERT INTO user (`name`, mobile_number, email, `user_name`, `password`, id_no, dob, gender)
+                VALUES ('$name $lname', '$mobile_number', '$email', '$user_name', '$password', '$id_no', '$dob', '$gender')";
 
         if ($conn->query($sql) === TRUE) {
             echo "<script>alert('Registration successful!'); window.location.href='/login.php';</script>";
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo "Error:" . $conn->error;
         }
 
         $conn->close();
