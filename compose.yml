@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  v2:
+  v2: # PHP Server for out application runs docker file inside ./v2
     build:
       context: ./v2
     container_name: php-web-app-v2
@@ -14,8 +14,7 @@ services:
     networks:
       - app-network
 
-
-  db:
+  db: # MYSQL Database similar to what we have for 
     build:
       context: ./db
     container_name: mysql-db
