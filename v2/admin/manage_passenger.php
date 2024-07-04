@@ -60,7 +60,7 @@ $result = $conn->query($sql);
     <div class="card">
         <div class="card-header"><?php echo $user_to_update ? 'Update User' : 'Create User'; ?></div>
         <div class="card-body">
-            <form method="POST" action="/admin/manage_passengers.php?edit=<?php echo $user_to_update['id']; ?>">
+            <form method="POST" action="/admin/manage_passenger.php?edit=<?php echo $user_to_update['id']; ?>">
                 <input type="hidden" name="id" value="<?php echo $user_to_update ? $user_to_update['id'] : ''; ?>">
                 <div class="form-group">
                     <label>Name</label>

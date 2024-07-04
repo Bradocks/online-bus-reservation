@@ -6,6 +6,7 @@ include '../includes/header.php';
 check_auth();
 check_role('admin');
 
+
 // Handle form submission for create and update
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = isset($_POST['id']) ? $_POST['id'] : '';
@@ -28,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Create new user
         $sql = "INSERT INTO user (`name`, mobile_number, email, `role`, `user_name`, `password`, id_no, dob, gender, staff_id) VALUES ('$name', '$mobile_number', '$email', '$role', '$user_name', '$password', '$id_no', '$dob', '$gender', '$staff_id')";
     }
+
     $conn->query($sql);
     header('Location: /admin/manage_admins.php');
     exit();
@@ -60,7 +62,7 @@ $result = $conn->query($sql);
     <div class="card">
         <div class="card-header"><?php echo $user_to_update ? 'Update User' : 'Create User'; ?></div>
         <div class="card-body">
-            <form method="POST" action="/admin/manage_admins.php?edit=<?php echo $user_to_update['id']; ?>">
+            <form method="POST" action="/admin/manage_admins.php?edit=<?php echo $user_to_update ? $user_to_update['id'] : ''; ?>">
                 <input type="hidden" name="id" value="<?php echo $user_to_update ? $user_to_update['id'] : ''; ?>">
                 <div class="form-group">
                     <label>Name</label>
@@ -128,9 +130,7 @@ $result = $conn->query($sql);
                                     <td>{$row['name']}</td>
                                     <td>{$row['mobile_number']}</td>
                                     <td>{$row['email']}</td>
-                                  
                                     <td>{$row['user_name']}</td>
-                                    
                                     <td>{$row['id_no']}</td>
                                     <td>{$row['dob']}</td>
                                     <td>{$row['gender']}</td>
@@ -160,8 +160,5 @@ $result = $conn->query($sql);
         }
     }
 </script>
-
-
-
 
 <?php include '../includes/footer.php'; ?>

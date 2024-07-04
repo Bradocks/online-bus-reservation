@@ -34,7 +34,6 @@ $booking = $conn->query($booking_sql)->fetch_assoc();
 
 <head>
     <title>Payment</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 
 <body>
