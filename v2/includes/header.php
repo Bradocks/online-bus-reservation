@@ -20,7 +20,6 @@ session_start();
                 <div class="navbar-links">
 
                     <?php if ($_SESSION['role'] === 'admin') : ?>
-                        <!-- Dropdown for Admin specific management links -->
                         <a href="/admin/index.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/index.php') ? 'active' : ''; ?>">Home</a>
                         <div class="<?php
                                     if (
@@ -75,7 +74,6 @@ session_start();
                         <?php endif; ?>
 
                         <?php if ($_SESSION['role'] === 'Passenger') : ?>
-                            <!-- Passenger specific links -->
                             <a href="/passenger/index.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/index.php') ? 'active' : ''; ?>">Home</a>
                             <a href="/passenger/book_bus.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/book_bus.php') ? 'active' : ''; ?>">Book Bus</a>
                             <a href="/passenger/history.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/history.php') ? 'active' : ''; ?>">Booking History</a>
@@ -83,9 +81,8 @@ session_start();
                         <?php endif; ?>
 
                         <?php if ($_SESSION['role'] === 'driver') : ?>
-                            <!-- Driver specific links -->
                             <a href="/driver/index.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/driver/index.php') ? 'active' : ''; ?>">Home</a>
-                            <a href="/driver/feedback.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/driver/feedback.php') ? 'active' : ''; ?>">Feedback</a>
+                            <a href= '/passenger/feedback.php' class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/passenger/feedback.php') ? 'active' : ''; ?>">Feedback</a>
                         <?php endif; ?>
 
                         <a href="/logout.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/logout.php') ? 'active' : ''; ?>">Logout</a>

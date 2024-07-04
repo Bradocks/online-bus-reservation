@@ -14,23 +14,13 @@ check_role('Passenger');
 </head>
 
 <body>
-    <header class="passenger-header">
-        <div class="logo-container">
-            <img src="logo.png" alt=" Logo" class="logo" style="height: 100px" />
-        </div>
-        <div class="passenger-nav-details">
-            <div class="user-info">
-                <p class="userName">
-                    Welcome
-                </p>
-                <p class="userId">
-                    ID
-                </p>
-            </div>
-    </header>
+    body{
+     <img src="/passenger/assets/bus1.jpeg"       
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover; 
+        style="height: 100%; width: 100%">
+    }
+</body>
 
-    <div class="dash-image-container">
-        <img src="./assets/bus10.jpg" alt="" class="image-item" style="height: 900px; width: 100%" />
-    </div>
-
-    <?php include '../includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

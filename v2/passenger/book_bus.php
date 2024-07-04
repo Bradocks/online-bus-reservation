@@ -51,9 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             VALUES ('$user_id', '$vehicle_id', '$place_of_departure', '$destination', '$date_of_departure $departure_time', '$route_id', '$payment_method', '$seat_id')";
     if ($conn->query($sql) === TRUE) {
         $booking_id = $conn->insert_id;
-        // // Update seat as booked
-        // $sql = "UPDATE seats SET is_booked = 1 WHERE id = '$seat_id'";
-        // $conn->query($sql);
         echo "<script>window.location.href='/passenger/seat.php?booking_id=$booking_id';</script>";
         exit();
     } else {

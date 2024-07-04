@@ -18,15 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_no = $_POST['id_no'];
     $dob = $_POST['dob'];
     $gender = $_POST['gender'];
-    $staff_id = $_POST['staff_id'];
 
     if ($id) {
         // Update existing user
-        $sql = "UPDATE user SET `name`='$name', mobile_number='$mobile_number', email='$email', `role`='$role', `user_name`='$user_name', id_no='$id_no', dob='$dob', gender='$gender', staff_id='$staff_id' WHERE id=$id";
+        $sql = "UPDATE user SET `name`='$name', mobile_number='$mobile_number', email='$email', `role`='$role', `user_name`='$user_name', id_no='$id_no', dob='$dob', gender='$gender' WHERE id=$id";
         echo "Passenger updated successfully.";
     } else {
         // Create new user
-        $sql = "INSERT INTO user (`name`, mobile_number, email, `role`, `user_name`, `password`, id_no, dob, gender, staff_id) VALUES ('$name', '$mobile_number', '$email', '$role', '$user_name', '$password', '$id_no', '$dob', '$gender', '$staff_id')";
+        $sql = "INSERT INTO user (`name`, mobile_number, email, `role`, `user_name`, `password`, id_no, dob, gender, staff_id) VALUES ('$name', '$mobile_number', '$email', '$role', '$user_name', '$password', '$id_no', '$dob', '$gender')";
     }
     $conn->query($sql);
     header('Location: /admin/manage_passengers.php');
@@ -46,13 +45,13 @@ if (isset($_GET['delete'])) {
 $user_to_update = null;
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
-    $sql = "SELECT id, `name`, mobile_number, email, `role`, `user_name`, `password`, id_no, dob, gender, staff_id FROM user WHERE id=$id";
+    $sql = "SELECT id, `name`, mobile_number, email, `role`, `user_name`, `password`, id_no, dob, gender, id FROM user WHERE id=$id";
     $result_edit = $conn->query($sql);
     $user_to_update = $result_edit->fetch_assoc();
 }
 
 // Fetch all users
-$sql = "SELECT id, `name`, mobile_number, email, `role`, `user_name`, `password`, id_no, dob, gender, staff_id FROM user WHERE `role` = 'passenger'";
+$sql = "SELECT id, `name`, mobile_number, email, `role`, `user_name`, `password`, id_no, dob, gender, id FROM user WHERE `role` = 'passenger'";
 $result = $conn->query($sql);
 ?>
 
@@ -94,10 +93,6 @@ $result = $conn->query($sql);
                     <label>Gender</label>
                     <input type="text" class="form-control" name="gender" value="<?php echo $user_to_update ? $user_to_update['gender'] : ''; ?>" required>
                 </div>
-                <div class="form-group">
-                    <label>Staff ID</label>
-                    <input type="text" class="form-control" name="staff_id" value="<?php echo $user_to_update ? $user_to_update['staff_id'] : rand(10000, 2000000); ?>" required>
-                </div>
                 <button type="submit" class="btn btn-primary"><?php echo $user_to_update ? 'Update' : 'Create'; ?></button>
             </form>
         </div>
@@ -116,7 +111,6 @@ $result = $conn->query($sql);
                         <th>ID No</th>
                         <th>DOB</th>
                         <th>Gender</th>
-                        <th>Staff ID</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -132,7 +126,6 @@ $result = $conn->query($sql);
                                     <td>{$row['id_no']}</td>
                                     <td>{$row['dob']}</td>
                                     <td>{$row['gender']}</td>
-                                    <td>{$row['staff_id']}</td>
                                     <td>
                                         <a href='/admin/manage_passengers.php?edit={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>
                                     </td>

@@ -108,7 +108,7 @@ $passenger_name = $passenger_result->fetch_assoc()['name'];
         <div class="footer">
             <p>If you have any questions, please contact our support team.</p>
             <p>alluresupport@co.ke</p>
-            <p>© 2024 Company Name. All rights reserved.</p>
+            <p>© 2024 Allure. All rights reserved.</p>
         </div>
     </div>
 </body>
