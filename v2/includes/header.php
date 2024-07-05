@@ -49,7 +49,6 @@ session_start();
                         <div class="<?php
                                     if (
                                         $_SERVER['SCRIPT_NAME'] === '/admin/reports/booking_reports.php' ||
-                                        $_SERVER['SCRIPT_NAME'] === '/admin/reports/feedback_reports.php' ||
                                         $_SERVER['SCRIPT_NAME'] === '/admin/reports/passenger_reports.php' ||
                                         $_SERVER['SCRIPT_NAME'] === '/admin/reports/route_reports.php' ||
                                         $_SERVER['SCRIPT_NAME'] === '/admin/reports/seat_reports.php' ||
@@ -64,7 +63,6 @@ session_start();
                                 <button class="dropbtn">Reports</button>
                                 <div class="dropdown-content">
                                     <a href="/admin/reports/booking_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/booking_reports.php') ? 'active' : ''; ?>">Booking</a>
-                                    <a href="/admin/reports/feedback_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/feedback_reports.php') ? 'active' : ''; ?>">Feedback</a>
                                     <a href="/admin/reports/passenger_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/passenger_reports.php') ? 'active' : ''; ?>">Passenger</a>
                                     <a href="/admin/reports/route_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/route_reports.php') ? 'active' : ''; ?>">Route</a>
                                     <a href="/admin/reports/seat_reports.php" class="<?php echo ($_SERVER['SCRIPT_NAME'] === '/admin/reports/seat_reports.php') ? 'active' : ''; ?>">Seat</a>
